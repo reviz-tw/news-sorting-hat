@@ -1,0 +1,77 @@
+# 共用資料契約 v0.2.0
+
+## 目錄
+
+- 輸入與兩階段輸出
+- 證據與可追溯性
+- 呈現與程式驗證
+- 模型呼叫與維護
+
+## 輸入與兩階段輸出
+
+`schemas/` 採 JSON Schema Draft 2020-12，所有物件拒絕未定義欄位。輸入 `kind: rag_input`，含 question、as_of、sources；source 含 id、title、url、published_at、updated_at、chunks（id、locator、text）。時間未知用 null；source URL 可 null。chunk ID 在同一 source 內唯一。
+
+第一階段 `kind: analysis`，含 question、as_of、status、classification、title、summary、sections、sources、evidence、limitations。status 為 complete、partial、insufficient；complete 表示目前材料足以回答問題，不代表取得所有歷史新聞。classification.status 為 determined、tentative、undetermined；最後一種 primary 必須 null，其餘必須是類型 ID。
+
+第二階段 `kind: presentation`，含完整且不可變的 analysis 與 blocks。這避免把中間證據另丟掉，也讓前端能由 evidence_id 查來源。兩階段獨立呼叫時，應用程式要比對前後 analysis 相等；CLI 用 `--analysis` 執行此檢查。
+
+`section_ids` 是區塊涵蓋的原稿節；`evidence_ids` 是區塊用到的證據。每節至少有一個 text 區塊精確保留其 body 與 evidence_ids。其他區塊可涵蓋多節或補充一節。原稿摘要由前端直接讀 analysis.summary，來源查 analysis.sources；不用另產一份無來源摘要。
+
+## 證據與可追溯性
+
+所有證據都有 id、kind、text、refs。refs 是非空的 `{source_id, chunk_id}` 陣列，必須落在本次 sources。inference 另有非空 based_on，指向已存在證據，不得循環。
+
+| kind | 額外欄位 | 意義 |
+| --- | --- | --- |
+| fact | 無 | 來源陳述的事實，不等於獨立查證已完成 |
+| claim | speaker、verbatim | 帶歸屬的主張；verbatim 才能當引文 |
+| inference | based_on | 模型根據證據整理的推論；text 要明示推論範圍 |
+| event | date | 事件日期，精度可年、月或日 |
+| measurement | metric、value、unit、region、statistic、period、category | value 為數字或 null；category 可 null；statistic 保留統計口徑 |
+| partition | label、total_id、member_ids、mutually_exclusive、exhaustive | 來源支持的互斥完整分配；總量及每個分項均引用 measurement，兩個旗標必須 true |
+| entity | label、entity_type、period | 已去重對象，不由同名或共同出現推定身分相同 |
+| relationship | from_id、to_id、relationship、directed、period、weight_evidence_id | 逐筆 entity 關係；線寬另引 measurement，未知權重用 null |
+| location | label、region_code、boundary_id、latitude、longitude | 有來源的座標或行政區／邊界版本配對；不生成地理多邊形 |
+| process_step | label、role、scope、conditions、exceptions | 程序節點；role 為 start／step／decision／end，scope 限定適用範圍 |
+| process_link | from_id、to_id、label、conditions、exceptions、rule_basis、version | 程序箭頭；rule_basis 區分 regulation／practice／case，不能把個案變成普遍規則 |
+| text_term | term、corpus、period、language、sample_size、sampling、method、group、present、value、unit | 語料與計數／分類方法；僅有出現與否時 value/unit=null，未知樣本數可 null，但不能用權重字級 |
+
+文字內容與數值不能靠 ID 驗證為真；驗證器只確認來源結構與精確的引文包含關係，語意支持程度仍須評估。來源可信度、樣本代表性、因果、日期版本與數值抽取正確性由第一階段判斷。
+
+limitations 含 code（missing_data、incomparable、conflicting、historical、uncertain）、text、evidence_ids。不能取得足夠證據時允許空 evidence_ids，但要寫明缺口。sections 在完全無證據且 status=insufficient 時才可空引用，其餘必須有證據。
+
+與原始輸入一起驗證時，question、as_of、sources 必須完全相等，防止模型改寫或擴充 RAG。不要只驗輸出就以為已與原始檢索核對。
+
+## 呈現與程式驗證
+
+各 blocks 共用 id、type、title、section_ids、evidence_ids、decision、decision_reason、notes。資料欄位由 type 決定：text.body、table.columns/rows、chart.points、timeline.events、quote.evidence_id。schema 以 oneOf 白名單限制元件。
+
+原 HTML 的 13 種圖表與欄位映射見 [components.json](../schemas/components.json)、[元件選型](../skills/news-presentation/references/components.md)。加上 text、quote，共 15 種 block type。13 種新聞回答分類與這組圖表分類互相獨立。
+
+| 新增 type | 專屬欄位 | 來源與檢查 |
+| --- | --- | --- |
+| stacked_chart | mode、partition_ids | 每組引用 partition 及其總數、分項；核對加總、單位與比較口徑；percentage 由 renderer 按已有分母換算 |
+| scatter_plot | x_axis、y_axis、points | 每軸 metric/unit/statistic；每點 label/x_evidence_id/y_evidence_id，category 配對對象、期間與母體一致 |
+| bubble_chart | scale、measurement_ids | scale 固定 area；同口徑非負數值，renderer 由面積計算半徑，不以半徑同比縮放 |
+| unit_chart | partition_id、unit_value、representation | 正整數單位、整數分配；aggregate_count 或 percentage；餘數明示，不自行四捨五入 |
+| map | mode、features | points 或 choropleth；每筆 location_id/measurement_id；值的 region 對應位置 label，區界版本由 renderer 登錄 |
+| flowchart | node_ids、edge_ids | process_step/process_link；一入口、至少一出口、所有節點可達且有出口路徑；分支有條件、版本與程序性質一致 |
+| network_graph | node_ids、edge_ids | entity/relationship；連結端點存在且同期間，權重必須逐筆支持；同一共同合計不能複用為多條邊權重 |
+| word_cloud | mode、term_ids | frequency/topic 為可比較的正數權重，presence 為等大字；保留樣本、語言、方法、群體與語料範圍 |
+| treemap | nodes、partition_ids | 每 node 含 id/parent_id/measurement_id；單根、無循環、所有內部節點各有分配，逐層核對子項等於父項 |
+
+新增元件直接引用證據，避免再複製一套可能漂移的數字。partition 本身也需來源，不以加總通過推定分類真的互斥完整。自動檢查能核對算術與連結，不能自動驗證法規分支是否完整、語料方法是否適當或區界是否與報導期間相容；這些仍需第一階段與應用程式核對。
+
+可視化必須引用證據子集，區塊的證據也必須來自其 section_ids 的證據聯集。時間軸至少兩個事件；圖表至少三個／兩個非缺值；表格儲存格需有證據；引文需能在 cited chunk 原文找到相同字串。
+
+CLI 使用標準函式庫，實作本 repo 所用的 schema 關鍵字：`$ref`（僅同目錄檔案／$defs）、`type`、`const`、`enum`、`properties`、`required`、`additionalProperties`、`items`、`minItems`、`uniqueItems`、`minLength`、`pattern`、`oneOf`。拒絕未知關鍵字，避免規格擴充後靜默漏驗。它不是通用 JSON Schema 引擎；正式環境可換完整 Draft 2020-12 引擎，仍保留語意驗證。
+
+額外檢查所有 ID、日期是否合法、圖表數值是否等於證據、序列的指標／單位／地區／統計方式、時間排序與連續期間、表格欄寬、區塊涵蓋、引用閉合與 inference 無循環。錯誤即拒絕渲染。只接受有限 JSON 數字，不接受 NaN／Infinity。
+
+schema 語法與引用驗證不能代替編輯品質測試；下一步需用真實 RAG 做分類、遺漏、衝突保留、數字與來源抽查。合成 fixture 的通過只證明契約與檢查流程可運作。
+
+## 模型呼叫與維護
+
+預設一次呼叫，同時載入兩份 Skill，依順序先建立 analysis 再建立 blocks；不要求輸出私有推理過程。複雜情況可兩次呼叫並保留第一階段結果。不要承諾降低固定比例延遲；以實測決定拆分策略。
+
+版本改動同時維護 schemas、Skills、驗證器與 fixtures，新增元件後才開放 renderer。尚未定義串流事件協定；開啟 token streaming 不等於能安全逐區塊 render。

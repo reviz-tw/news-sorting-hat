@@ -1,0 +1,22 @@
+{
+  "schema_version": "0.2.0",
+  "kind": "rag_input",
+  "question": "合成地區五年空污是否改善？",
+  "as_of": "2026-10-28T18:00:00+08:00",
+  "sources": [
+    {
+      "id": "s1",
+      "title": "合成測試材料（非真實新聞）",
+      "url": null,
+      "published_at": null,
+      "updated_at": null,
+      "chunks": [
+        {
+          "id": "c1",
+          "locator": "合成段落 1",
+          "text": "合成資料：2020 年 PM2.5 實測年平均 20 µg/m³（相同測站集合、相同加權方式）；2024-06-01 單日 AQI 80。未提供其餘年度同口徑數值。"
+        }
+      ]
+    }
+  ]
+}

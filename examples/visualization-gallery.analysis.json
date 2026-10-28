@@ -1,0 +1,470 @@
+{
+  "schema_version": "0.2.0",
+  "kind": "analysis",
+  "question": "展示九種新增視覺化的合成資料契約",
+  "as_of": "2026-10-28T20:00:00+08:00",
+  "status": "complete",
+  "classification": {
+    "status": "determined",
+    "primary": "data_analysis",
+    "secondary": [],
+    "reason": "以合成資料示範可用的結構。",
+    "evidence_ids": [
+      "total",
+      "a",
+      "b",
+      "part",
+      "ya",
+      "yb",
+      "loc1",
+      "vloc1",
+      "loc2",
+      "vloc2",
+      "n1",
+      "n2",
+      "rel",
+      "start",
+      "check",
+      "end",
+      "p1",
+      "p2",
+      "t1",
+      "t2"
+    ],
+    "tags": {
+      "topic": [
+        "合成測試"
+      ],
+      "method": [],
+      "angle": [],
+      "temporal": []
+    }
+  },
+  "title": "九種新增形式的合成契約",
+  "summary": "這是合成格式測試：100件案件分為甲60、乙40，兩類滿意度為8與6分。兩處座標的服務件數為12與8；示例企業提供服務給示例機構。示例程序只適用示例申請者，經送件、受理後通知結果。十篇文本含交通與教育的篇數為8與5。這些虛構資料不能用於新聞回答或現行申請指引。",
+  "sections": [
+    {
+      "id": "sec1",
+      "heading": "合成資料",
+      "body": "這是合成格式測試：100件案件分為甲60、乙40，兩類滿意度為8與6分。兩處座標的服務件數為12與8；示例企業提供服務給示例機構。示例程序只適用示例申請者，經送件、受理後通知結果。十篇文本含交通與教育的篇數為8與5。這些虛構資料不能用於新聞回答或現行申請指引。",
+      "evidence_ids": [
+        "total",
+        "a",
+        "b",
+        "part",
+        "ya",
+        "yb",
+        "loc1",
+        "vloc1",
+        "loc2",
+        "vloc2",
+        "n1",
+        "n2",
+        "rel",
+        "start",
+        "check",
+        "end",
+        "p1",
+        "p2",
+        "t1",
+        "t2"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "s1",
+      "title": "九種視覺化的合成材料（非新聞）",
+      "url": null,
+      "published_at": null,
+      "updated_at": null,
+      "chunks": [
+        {
+          "id": "c1",
+          "locator": "合成段落",
+          "text": "合成2024年資料：同一母體互斥分類案件共100件，類別甲60、類別乙40。甲、乙十分制平均滿意度分別8分、6分。地點甲座標25,121服務12件，地點乙座標24,120服務8件，均為同截止日統計。示例企業向示例機構提供服務，沒有金額資料。合成2024版程序僅限示例申請者：送件入口、受理文件、通知結果，不保證核准。合成十篇繁體中文文本使用固定詞表，每篇含詞計一次，不合併近義詞，交通出現於8篇、教育出現於5篇，群體為合成群體。所有數據與規則皆為測試用虛構。"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "total",
+      "kind": "measurement",
+      "text": "合成資料：總數為100件。",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "metric": "案件數",
+      "value": 100,
+      "unit": "件",
+      "region": "合成母體",
+      "statistic": "互斥案件分類",
+      "period": "2024",
+      "category": "總數"
+    },
+    {
+      "id": "a",
+      "kind": "measurement",
+      "text": "合成資料：類別甲為60件。",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "metric": "案件數",
+      "value": 60,
+      "unit": "件",
+      "region": "合成母體",
+      "statistic": "互斥案件分類",
+      "period": "2024",
+      "category": "類別甲"
+    },
+    {
+      "id": "b",
+      "kind": "measurement",
+      "text": "合成資料：類別乙為40件。",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "metric": "案件數",
+      "value": 40,
+      "unit": "件",
+      "region": "合成母體",
+      "statistic": "互斥案件分類",
+      "period": "2024",
+      "category": "類別乙"
+    },
+    {
+      "id": "part",
+      "kind": "partition",
+      "text": "合成案件分配完整且互斥。",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "label": "合成案件分配",
+      "total_id": "total",
+      "member_ids": [
+        "a",
+        "b"
+      ],
+      "mutually_exclusive": true,
+      "exhaustive": true
+    },
+    {
+      "id": "ya",
+      "kind": "measurement",
+      "text": "合成資料：類別甲為8分。",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "metric": "平均滿意度",
+      "value": 8,
+      "unit": "分",
+      "region": "合成母體",
+      "statistic": "十分制平均",
+      "period": "2024",
+      "category": "類別甲"
+    },
+    {
+      "id": "yb",
+      "kind": "measurement",
+      "text": "合成資料：類別乙為6分。",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "metric": "平均滿意度",
+      "value": 6,
+      "unit": "分",
+      "region": "合成母體",
+      "statistic": "十分制平均",
+      "period": "2024",
+      "category": "類別乙"
+    },
+    {
+      "id": "loc1",
+      "kind": "location",
+      "text": "合成位置：合成地點甲",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "label": "合成地點甲",
+      "region_code": null,
+      "boundary_id": null,
+      "latitude": 25,
+      "longitude": 121
+    },
+    {
+      "id": "vloc1",
+      "kind": "measurement",
+      "text": "合成資料：合成地點甲為12件。",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "metric": "案件數",
+      "value": 12,
+      "unit": "件",
+      "region": "合成地點甲",
+      "statistic": "同截止日服務件數",
+      "period": "2024",
+      "category": "合成地點甲"
+    },
+    {
+      "id": "loc2",
+      "kind": "location",
+      "text": "合成位置：合成地點乙",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "label": "合成地點乙",
+      "region_code": null,
+      "boundary_id": null,
+      "latitude": 24,
+      "longitude": 120
+    },
+    {
+      "id": "vloc2",
+      "kind": "measurement",
+      "text": "合成資料：合成地點乙為8件。",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "metric": "案件數",
+      "value": 8,
+      "unit": "件",
+      "region": "合成地點乙",
+      "statistic": "同截止日服務件數",
+      "period": "2024",
+      "category": "合成地點乙"
+    },
+    {
+      "id": "n1",
+      "kind": "entity",
+      "text": "合成對象：示例企業",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "label": "示例企業",
+      "entity_type": "公司",
+      "period": "2024"
+    },
+    {
+      "id": "n2",
+      "kind": "entity",
+      "text": "合成對象：示例機構",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "label": "示例機構",
+      "entity_type": "機構",
+      "period": "2024"
+    },
+    {
+      "id": "rel",
+      "kind": "relationship",
+      "text": "示例企業向示例機構提供服務，沒有金額資料。",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "from_id": "n1",
+      "to_id": "n2",
+      "relationship": "提供服務",
+      "directed": true,
+      "period": "2024",
+      "weight_evidence_id": null
+    },
+    {
+      "id": "start",
+      "kind": "process_step",
+      "text": "合成程序：限示例申請者使用",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "label": "限示例申請者使用",
+      "role": "start",
+      "scope": "僅限示例申請者；非現行服務規則",
+      "conditions": [],
+      "exceptions": []
+    },
+    {
+      "id": "check",
+      "kind": "process_step",
+      "text": "合成程序：受理文件",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "label": "受理文件",
+      "role": "step",
+      "scope": "僅限示例申請者；非現行服務規則",
+      "conditions": [],
+      "exceptions": []
+    },
+    {
+      "id": "end",
+      "kind": "process_step",
+      "text": "合成程序：通知結果，不預設核准",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "label": "通知結果，不預設核准",
+      "role": "end",
+      "scope": "僅限示例申請者；非現行服務規則",
+      "conditions": [],
+      "exceptions": []
+    },
+    {
+      "id": "p1",
+      "kind": "process_link",
+      "text": "合成程序箭頭：依示例程序送件",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "from_id": "start",
+      "to_id": "check",
+      "label": "依示例程序送件",
+      "conditions": [],
+      "exceptions": [],
+      "rule_basis": "regulation",
+      "version": "合成版本2024"
+    },
+    {
+      "id": "p2",
+      "kind": "process_link",
+      "text": "合成程序箭頭：處理後通知",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "from_id": "check",
+      "to_id": "end",
+      "label": "處理後通知",
+      "conditions": [],
+      "exceptions": [],
+      "rule_basis": "regulation",
+      "version": "合成版本2024"
+    },
+    {
+      "id": "t1",
+      "kind": "text_term",
+      "text": "合成文本詞頻：交通",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "term": "交通",
+      "corpus": "合成十篇文本",
+      "period": "2024",
+      "language": "zh-Hant",
+      "sample_size": 10,
+      "sampling": "全部十篇合成文本",
+      "method": "每篇含詞即計一次；固定詞表，不合併近義詞",
+      "group": "合成群體",
+      "present": true,
+      "value": 8,
+      "unit": "含詞篇數"
+    },
+    {
+      "id": "t2",
+      "kind": "text_term",
+      "text": "合成文本詞頻：教育",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "term": "教育",
+      "corpus": "合成十篇文本",
+      "period": "2024",
+      "language": "zh-Hant",
+      "sample_size": 10,
+      "sampling": "全部十篇合成文本",
+      "method": "每篇含詞即計一次；固定詞表，不合併近義詞",
+      "group": "合成群體",
+      "present": true,
+      "value": 5,
+      "unit": "含詞篇數"
+    }
+  ],
+  "limitations": [
+    {
+      "code": "uncertain",
+      "text": "全為合成測試資料，不代表真實新聞；尚無 renderer。",
+      "evidence_ids": [
+        "total",
+        "a",
+        "b",
+        "part",
+        "ya",
+        "yb",
+        "loc1",
+        "vloc1",
+        "loc2",
+        "vloc2",
+        "n1",
+        "n2",
+        "rel",
+        "start",
+        "check",
+        "end",
+        "p1",
+        "p2",
+        "t1",
+        "t2"
+      ]
+    }
+  ]
+}

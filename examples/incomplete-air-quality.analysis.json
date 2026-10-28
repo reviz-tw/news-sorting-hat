@@ -1,0 +1,109 @@
+{
+  "schema_version": "0.2.0",
+  "kind": "analysis",
+  "question": "合成地區五年空污是否改善？",
+  "as_of": "2026-10-28T18:00:00+08:00",
+  "status": "partial",
+  "classification": {
+    "status": "tentative",
+    "primary": "data_analysis",
+    "secondary": [],
+    "reason": "依問題的主要閱讀任務與實際證據分類。",
+    "evidence_ids": [
+      "m2020",
+      "aqi"
+    ],
+    "tags": {
+      "topic": [
+        "環境"
+      ],
+      "method": [],
+      "angle": [],
+      "temporal": [
+        "歷史回顧"
+      ]
+    }
+  },
+  "title": "合成案例：合成地區五年空污是否改善？",
+  "summary": "材料只有 2020 年 PM2.5 年平均 20 µg/m³ 與 2024 年 6 月 1 日 AQI 80。指標與統計期間不同，不能接成五年趨勢，也無法由此判定五年間是否改善。",
+  "sections": [
+    {
+      "id": "sec1",
+      "heading": "可確認的內容",
+      "body": "材料只有 2020 年 PM2.5 年平均 20 µg/m³ 與 2024 年 6 月 1 日 AQI 80。指標與統計期間不同，不能接成五年趨勢，也無法由此判定五年間是否改善。",
+      "evidence_ids": [
+        "m2020",
+        "aqi"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "s1",
+      "title": "合成測試材料（非真實新聞）",
+      "url": null,
+      "published_at": null,
+      "updated_at": null,
+      "chunks": [
+        {
+          "id": "c1",
+          "locator": "合成段落 1",
+          "text": "合成資料：2020 年 PM2.5 實測年平均 20 µg/m³（相同測站集合、相同加權方式）；2024-06-01 單日 AQI 80。未提供其餘年度同口徑數值。"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "m2020",
+      "kind": "measurement",
+      "text": "合成地區 2020 年 PM2.5 年平均為 20 µg/m³。",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "metric": "PM2.5",
+      "value": 20,
+      "unit": "µg/m³",
+      "region": "合成地區",
+      "statistic": "實測年平均；相同測站集合、相同加權方式",
+      "period": "2020",
+      "category": null
+    },
+    {
+      "id": "aqi",
+      "kind": "measurement",
+      "text": "合成地區 2024-06-01 單日 AQI 為 80。",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "metric": "AQI",
+      "value": 80,
+      "unit": "指數",
+      "region": "合成地區",
+      "statistic": "單日 AQI",
+      "period": "2024-06-01",
+      "category": null
+    }
+  ],
+  "limitations": [
+    {
+      "code": "incomparable",
+      "text": "PM2.5 年平均與單日 AQI 不可比較。",
+      "evidence_ids": [
+        "m2020",
+        "aqi"
+      ]
+    },
+    {
+      "code": "missing_data",
+      "text": "缺少連續五年的同口徑年度數值；需要補查。",
+      "evidence_ids": []
+    }
+  ]
+}

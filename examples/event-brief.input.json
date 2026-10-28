@@ -1,0 +1,22 @@
+{
+  "schema_version": "0.2.0",
+  "kind": "rag_input",
+  "question": "示例圖書館何時重新開館？",
+  "as_of": "2026-10-28T18:00:00+08:00",
+  "sources": [
+    {
+      "id": "s1",
+      "title": "合成測試材料（非真實新聞）",
+      "url": null,
+      "published_at": null,
+      "updated_at": null,
+      "chunks": [
+        {
+          "id": "c1",
+          "locator": "合成段落 1",
+          "text": "合成資料：示例市圖書館於 2024 年 6 月 1 日重新開館。"
+        }
+      ]
+    }
+  ]
+}

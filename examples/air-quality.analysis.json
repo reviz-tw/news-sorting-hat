@@ -1,0 +1,155 @@
+{
+  "schema_version": "0.2.0",
+  "kind": "analysis",
+  "question": "合成地區五年的 PM2.5 如何變化？",
+  "as_of": "2026-10-28T18:00:00+08:00",
+  "status": "complete",
+  "classification": {
+    "status": "determined",
+    "primary": "data_analysis",
+    "secondary": [],
+    "reason": "依問題的主要閱讀任務與實際證據分類。",
+    "evidence_ids": [
+      "m2020",
+      "m2021",
+      "m2022",
+      "m2023",
+      "m2024"
+    ],
+    "tags": {
+      "topic": [
+        "環境"
+      ],
+      "method": [],
+      "angle": [],
+      "temporal": [
+        "歷史回顧"
+      ]
+    }
+  },
+  "title": "合成案例：合成地區五年的 PM2.5 如何變化？",
+  "summary": "合成地區的 PM2.5 年平均在 2020 至 2024 年依序為 20、18、17、16、15 µg/m³，呈下降。這些同口徑數值只支持趨勢描述，不能證明特定政策造成下降。",
+  "sections": [
+    {
+      "id": "sec1",
+      "heading": "可確認的內容",
+      "body": "合成地區的 PM2.5 年平均在 2020 至 2024 年依序為 20、18、17、16、15 µg/m³，呈下降。這些同口徑數值只支持趨勢描述，不能證明特定政策造成下降。",
+      "evidence_ids": [
+        "m2020",
+        "m2021",
+        "m2022",
+        "m2023",
+        "m2024"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "s1",
+      "title": "合成測試材料（非真實新聞）",
+      "url": null,
+      "published_at": null,
+      "updated_at": null,
+      "chunks": [
+        {
+          "id": "c1",
+          "locator": "合成段落 1",
+          "text": "合成資料，非實測新聞數據。同地區、同測站集合與加權方式的 PM2.5 實測年平均（µg/m³）：2020 年 20、2021 年 18、2022 年 17、2023 年 16、2024 年 15。"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "m2020",
+      "kind": "measurement",
+      "text": "合成地區 2020 年 PM2.5 年平均為 20 µg/m³。",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "metric": "PM2.5",
+      "value": 20,
+      "unit": "µg/m³",
+      "region": "合成地區",
+      "statistic": "實測年平均；相同測站集合、相同加權方式",
+      "period": "2020",
+      "category": null
+    },
+    {
+      "id": "m2021",
+      "kind": "measurement",
+      "text": "合成地區 2021 年 PM2.5 年平均為 18 µg/m³。",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "metric": "PM2.5",
+      "value": 18,
+      "unit": "µg/m³",
+      "region": "合成地區",
+      "statistic": "實測年平均；相同測站集合、相同加權方式",
+      "period": "2021",
+      "category": null
+    },
+    {
+      "id": "m2022",
+      "kind": "measurement",
+      "text": "合成地區 2022 年 PM2.5 年平均為 17 µg/m³。",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "metric": "PM2.5",
+      "value": 17,
+      "unit": "µg/m³",
+      "region": "合成地區",
+      "statistic": "實測年平均；相同測站集合、相同加權方式",
+      "period": "2022",
+      "category": null
+    },
+    {
+      "id": "m2023",
+      "kind": "measurement",
+      "text": "合成地區 2023 年 PM2.5 年平均為 16 µg/m³。",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "metric": "PM2.5",
+      "value": 16,
+      "unit": "µg/m³",
+      "region": "合成地區",
+      "statistic": "實測年平均；相同測站集合、相同加權方式",
+      "period": "2023",
+      "category": null
+    },
+    {
+      "id": "m2024",
+      "kind": "measurement",
+      "text": "合成地區 2024 年 PM2.5 年平均為 15 µg/m³。",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "metric": "PM2.5",
+      "value": 15,
+      "unit": "µg/m³",
+      "region": "合成地區",
+      "statistic": "實測年平均；相同測站集合、相同加權方式",
+      "period": "2024",
+      "category": null
+    }
+  ],
+  "limitations": []
+}

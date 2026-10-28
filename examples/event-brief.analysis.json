@@ -1,0 +1,69 @@
+{
+  "schema_version": "0.2.0",
+  "kind": "analysis",
+  "question": "示例圖書館何時重新開館？",
+  "as_of": "2026-10-28T18:00:00+08:00",
+  "status": "complete",
+  "classification": {
+    "status": "determined",
+    "primary": "event_brief",
+    "secondary": [],
+    "reason": "依問題的主要閱讀任務與實際證據分類。",
+    "evidence_ids": [
+      "e1"
+    ],
+    "tags": {
+      "topic": [
+        "地方"
+      ],
+      "method": [],
+      "angle": [],
+      "temporal": [
+        "歷史回顧"
+      ]
+    }
+  },
+  "title": "合成案例：示例圖書館何時重新開館？",
+  "summary": "依這份合成材料，示例市圖書館於 2024 年 6 月 1 日重新開館。",
+  "sections": [
+    {
+      "id": "sec1",
+      "heading": "可確認的內容",
+      "body": "依這份合成材料，示例市圖書館於 2024 年 6 月 1 日重新開館。",
+      "evidence_ids": [
+        "e1"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "s1",
+      "title": "合成測試材料（非真實新聞）",
+      "url": null,
+      "published_at": null,
+      "updated_at": null,
+      "chunks": [
+        {
+          "id": "c1",
+          "locator": "合成段落 1",
+          "text": "合成資料：示例市圖書館於 2024 年 6 月 1 日重新開館。"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e1",
+      "kind": "event",
+      "text": "示例市圖書館重新開館。",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "date": "2024-06-01"
+    }
+  ],
+  "limitations": []
+}

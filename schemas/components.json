@@ -1,0 +1,92 @@
+{
+  "schema_version": "0.2.0",
+  "source": {
+    "title": "資料視覺化選型指引_圖解版.html",
+    "document_date": "2026-09-24",
+    "library_file_id": "libfile_b6e37c57c6c48191b6bd95b87a57023c"
+  },
+  "visualizations": [
+    {
+      "id": "line_chart",
+      "label": "折線圖",
+      "source_section": "form-01",
+      "reference": "skills/news-presentation/references/forms/01-line-chart.md"
+    },
+    {
+      "id": "bar_chart",
+      "label": "長條圖",
+      "source_section": "form-02",
+      "reference": "skills/news-presentation/references/forms/02-bar-chart.md"
+    },
+    {
+      "id": "stacked_chart",
+      "label": "堆疊圖",
+      "source_section": "form-03",
+      "reference": "skills/news-presentation/references/forms/03-stacked-chart.md"
+    },
+    {
+      "id": "scatter_plot",
+      "label": "散佈圖",
+      "source_section": "form-04",
+      "reference": "skills/news-presentation/references/forms/04-scatter-plot.md"
+    },
+    {
+      "id": "bubble_chart",
+      "label": "比例氣泡圖",
+      "source_section": "form-05",
+      "reference": "skills/news-presentation/references/forms/05-bubble-chart.md"
+    },
+    {
+      "id": "unit_chart",
+      "label": "單位圖示／點陣圖",
+      "source_section": "form-06",
+      "reference": "skills/news-presentation/references/forms/06-unit-chart.md"
+    },
+    {
+      "id": "map",
+      "label": "地圖",
+      "source_section": "form-07",
+      "reference": "skills/news-presentation/references/forms/07-map.md"
+    },
+    {
+      "id": "table",
+      "label": "比較表／矩陣",
+      "source_section": "form-08",
+      "reference": "skills/news-presentation/references/forms/08-table.md"
+    },
+    {
+      "id": "timeline",
+      "label": "事件時間軸",
+      "source_section": "form-09",
+      "reference": "skills/news-presentation/references/forms/09-timeline.md"
+    },
+    {
+      "id": "flowchart",
+      "label": "流程圖",
+      "source_section": "form-10",
+      "reference": "skills/news-presentation/references/forms/10-flowchart.md"
+    },
+    {
+      "id": "network_graph",
+      "label": "關係網絡圖",
+      "source_section": "form-11",
+      "reference": "skills/news-presentation/references/forms/11-network-graph.md"
+    },
+    {
+      "id": "word_cloud",
+      "label": "文字雲",
+      "source_section": "form-12",
+      "reference": "skills/news-presentation/references/forms/12-word-cloud.md"
+    },
+    {
+      "id": "treemap",
+      "label": "矩形樹圖",
+      "source_section": "form-13",
+      "reference": "skills/news-presentation/references/forms/13-treemap.md"
+    }
+  ],
+  "basic_blocks": [
+    "text",
+    "quote"
+  ]
+}

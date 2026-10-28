@@ -1,0 +1,4 @@
+interface:
+  display_name: "新聞分析與內容整理"
+  short_description: "依使用者問題統整新聞 RAG，產出主次類型、完整回答、來源證據與資料限制"
+  default_prompt: "使用 $news-analysis 將問題與新聞檢索材料整理成符合共用 schema 的 analysis JSON。"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "新聞呈現與視覺化規劃"
+  short_description: "依整理後的證據選擇十三種視覺化及文字區塊，保留來源與限制並產出前端資料"
+  default_prompt: "使用 $news-presentation 將已驗證的 analysis 規劃成符合共用 schema 的 presentation JSON。"
