@@ -1,0 +1,133 @@
+{
+  "module_catalog_version": "1.0.0",
+  "modules": [
+    {
+      "id": "text",
+      "label": "完整文字",
+      "availability": "supported",
+      "block_type": "text",
+      "reference": "skills/news-presentation/references/components.md",
+      "evidence_requirements": "原樣保留 analysis.sections 的完整文字、來源與限制；同一段落可承接多個角色。"
+    },
+    {
+      "id": "quote",
+      "label": "引文",
+      "availability": "supported",
+      "block_type": "quote",
+      "reference": "skills/news-presentation/references/components.md",
+      "evidence_requirements": "具 speaker 歸屬、verbatim=true 且可核對原文的 claim；不將模型摘要當引文。"
+    },
+    {
+      "id": "line_chart",
+      "label": "折線圖",
+      "availability": "supported",
+      "block_type": "line_chart",
+      "reference": "skills/news-presentation/references/forms/01-line-chart.md",
+      "evidence_requirements": "measurement：至少三個可比較非缺值，同指標、地區、統計口徑及日期精度，期間連續；缺值不得補造。"
+    },
+    {
+      "id": "bar_chart",
+      "label": "長條圖",
+      "availability": "supported",
+      "block_type": "bar_chart",
+      "reference": "skills/news-presentation/references/forms/02-bar-chart.md",
+      "evidence_requirements": "measurement：至少兩個同期間、同地區與統計口徑的類別數值；零基線，明示目標／實際等性質。"
+    },
+    {
+      "id": "stacked_chart",
+      "label": "堆疊圖",
+      "availability": "supported",
+      "block_type": "stacked_chart",
+      "reference": "skills/news-presentation/references/forms/03-stacked-chart.md",
+      "evidence_requirements": "partition：有來源的完整互斥分項與總量，數值可加總且比較口徑一致。"
+    },
+    {
+      "id": "scatter_plot",
+      "label": "散佈圖",
+      "availability": "supported",
+      "block_type": "scatter_plot",
+      "reference": "skills/news-presentation/references/forms/04-scatter-plot.md",
+      "evidence_requirements": "同對象、期間及母體的兩項 measurement 成對對照；相關不等於因果。"
+    },
+    {
+      "id": "bubble_chart",
+      "label": "比例氣泡圖",
+      "availability": "supported",
+      "block_type": "bubble_chart",
+      "reference": "skills/news-presentation/references/forms/05-bubble-chart.md",
+      "evidence_requirements": "同口徑的非負 measurement，以面積同比縮放；目前基礎版位置無數值意義。"
+    },
+    {
+      "id": "unit_chart",
+      "label": "單位圖示／點陣圖",
+      "availability": "supported",
+      "block_type": "unit_chart",
+      "reference": "skills/news-presentation/references/forms/06-unit-chart.md",
+      "evidence_requirements": "partition：有完整分母、整數分項及單位值，明示餘數與換算方式。"
+    },
+    {
+      "id": "map",
+      "label": "地圖",
+      "availability": "supported",
+      "block_type": "map",
+      "reference": "skills/news-presentation/references/forms/07-map.md",
+      "evidence_requirements": "location 與 measurement 配對；座標或有版本的行政區 ID 有來源，地區一致。"
+    },
+    {
+      "id": "table",
+      "label": "比較表／矩陣",
+      "availability": "supported",
+      "block_type": "table",
+      "reference": "skills/news-presentation/references/forms/08-table.md",
+      "evidence_requirements": "有共同維度的比較材料，各格保留條件及來源；未知、不適用、不可比須區分。"
+    },
+    {
+      "id": "timeline",
+      "label": "事件時間軸",
+      "availability": "supported",
+      "block_type": "timeline",
+      "reference": "skills/news-presentation/references/forms/09-timeline.md",
+      "evidence_requirements": "至少兩筆有可靠日期的 event；保留來源日期精度，不用刊出日代填。"
+    },
+    {
+      "id": "flowchart",
+      "label": "流程圖",
+      "availability": "supported",
+      "block_type": "flowchart",
+      "reference": "skills/news-presentation/references/forms/10-flowchart.md",
+      "evidence_requirements": "process_step/process_link：有來源的步驟與連結，同範圍、版本與程序性質，一入口且所有節點可到出口。"
+    },
+    {
+      "id": "network_graph",
+      "label": "關係網絡圖",
+      "availability": "supported",
+      "block_type": "network_graph",
+      "reference": "skills/news-presentation/references/forms/11-network-graph.md",
+      "evidence_requirements": "逐筆 entity/relationship，同一觀察期間；權重另需 measurement，不由同名或共現推定連結。"
+    },
+    {
+      "id": "word_cloud",
+      "label": "文字雲",
+      "availability": "supported",
+      "block_type": "word_cloud",
+      "reference": "skills/news-presentation/references/forms/12-word-cloud.md",
+      "evidence_requirements": "text_term：語料範圍、方法與群體已知；沒有計數只能等大字，不視為民意比例。"
+    },
+    {
+      "id": "treemap",
+      "label": "矩形樹圖",
+      "availability": "supported",
+      "block_type": "treemap",
+      "reference": "skills/news-presentation/references/forms/13-treemap.md",
+      "evidence_requirements": "partition：單一整體與互斥分項，各層總數可核對，不重複計算父類。"
+    },
+    {
+      "id": "photo",
+      "label": "照片",
+      "availability": "planning_only",
+      "block_type": null,
+      "reference": "skills/news-presentation/references/presentation-modules.md",
+      "evidence_requirements": "只有已提供、可追溯的真實照片資產才可規劃；須有出處、授權／使用條件、拍攝時間與地點的已知範圍、圖說、替代文字及驗證狀態。照片只能支持畫面可確認的內容，不能用生成或示意影像充作調查證據；未知資訊不補造。目前 RAG／presentation 尚無照片資產契約，不能輸出 photo block。"
+    }
+  ]
+}

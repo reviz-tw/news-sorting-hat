@@ -72,6 +72,15 @@ class ContractTests(unittest.TestCase):
         self.doc["analysis"]["classification"]["secondary"] = ["data_analysis"]
         self.invalid("Primary repeated")
 
+    def test_retired_category_rejected_in_primary_and_secondary(self):
+        for field, value in (("primary", "service_guidance"),
+                             ("secondary", ["service_guidance"])):
+            with self.subTest(field=field):
+                document = copy.deepcopy(self.doc)
+                document["analysis"]["classification"][field] = value
+                with self.assertRaises(ValidationError):
+                    validate(document, self.input)
+
     def test_undetermined_classification(self):
         cls = self.doc["analysis"]["classification"]
         cls["status"] = "undetermined"

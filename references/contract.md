@@ -13,11 +13,21 @@
 
 第一階段 `kind: analysis`，含 question、as_of、status、classification、title、summary、sections、sources、evidence、limitations。status 為 complete、partial、insufficient；complete 表示目前材料足以回答問題，不代表取得所有歷史新聞。classification.status 為 determined、tentative、undetermined；最後一種 primary 必須 null，其餘必須是類型 ID。
 
+目前分類清單為 12 類，已移除 service_guidance；主／次分類使用此舊值的文件會被驗證器拒絕。須重新判定分類與角色映射，不能只刪除標籤或固定換成另一類。無法歸入保留類型時，使用 undetermined、primary=null，若有 article_structure 則採 unclassified。
+
 第二階段 `kind: presentation`，含完整且不可變的 analysis 與 blocks。這避免把中間證據另丟掉，也讓前端能由 evidence_id 查來源。兩階段獨立呼叫時，應用程式要比對前後 analysis 相等；CLI 用 `--analysis` 執行此檢查。
 
 `section_ids` 是區塊涵蓋的原稿節；`evidence_ids` 是區塊用到的證據。每節至少有一個 text 區塊精確保留其 body 與 evidence_ids。其他區塊可涵蓋多節或補充一節。原稿摘要由前端直接讀 analysis.summary，來源查 analysis.sources；不用另產一份無來源摘要。
 
 ## 證據與可追溯性
+
+立場材料的 claim 可帶 position 擴充，保留 stakeholder_id/name、identity_basis、issue_id/issue、statement_date、context、stance、conditions、reasons；新版 positions_debate 分析應提供。statement_date 是實際發言日期，未知為 null，不能代填刊出日期。stance_comparison 是新增證據類型，含共同 stakeholder_id/issue_id、至少兩個 claim_ids 與 assessment（changed/consistent/conditional/not_comparable/insufficient）。text 說明分析及適用範圍，refs 保留所有被比較主張的來源。前三種判斷要求日期已知、可排序且精度區間不重疊；具體規則見分析 Skill 的 positions-over-time.md。舊 claim 可不含 position，維持 0.2.0 相容性。
+
+分析輸出可帶 `article_structure` 擴充（新版分析 Skill 必須產出，舊 0.2.0 文件仍可省略）。格式見 [article-structure.schema.json](../schemas/article-structure.schema.json)，角色定義見 [article-templates.json](../schemas/article-templates.json)。使用 `--require-structure` 強制新版整合輸出此欄位。
+
+`templates` 依序對應 primary、secondary；無法分類時使用 unclassified。`nodes` 按閱讀順序排列，每個節點含 roles(type/slot)、reader_question、status、reason、section_ids、evidence_ids。角色可合併或映射多節，但每個所選模板 slot 都要且只要交代一次。主類型 core 不可標不適用，無資料時標 missing。covered/partial 需成稿與證據；missing 不得宣稱有支持證據；not_applicable 沒有映射。所有段落均須被結構涵蓋。
+
+驗證器核對模板與分類一致、角色名稱、唯一性、段落覆蓋、證據歸屬及狀態規則；不自動判定正文是否真正回答該角色，也不強制套用固定篇幅。呈現階段保留結構原樣。
 
 所有證據都有 id、kind、text、refs。refs 是非空的 `{source_id, chunk_id}` 陣列，必須落在本次 sources。inference 另有非空 based_on，指向已存在證據，不得循環。
 
@@ -44,9 +54,13 @@ limitations 含 code（missing_data、incomparable、conflicting、historical、
 
 ## 呈現與程式驗證
 
+模板 slots.presentation_modules 是候選定義，以 module_id 參照 [presentation-modules.json](../schemas/presentation-modules.json)；不新增 analysis 或 block 欄位。15 個 supported 模組對應現有 block type；photo 為 planning_only，沒有合法 block_type。呈現階段只能輸出 supported 模組，不把候選數量視為必要區塊數量。
+
 各 blocks 共用 id、type、title、section_ids、evidence_ids、decision、decision_reason、notes。資料欄位由 type 決定：text.body、table.columns/rows、chart.points、timeline.events、quote.evidence_id。schema 以 oneOf 白名單限制元件。
 
-原 HTML 的 13 種圖表與欄位映射見 [components.json](../schemas/components.json)、[元件選型](../skills/news-presentation/references/components.md)。加上 text、quote，共 15 種 block type。13 種新聞回答分類與這組圖表分類互相獨立。
+data_analysis 的編輯要求為 insight 先行，資料符合元件門檻時呈現至少一張、可多張數量圖表，詳見 article-templates.json 的 presentation_hints。表格可補充精確數字，但不替代此要求；無適用圖種時以 text 的 insufficient_data 與 decision_reason 明示缺口。這些是 Skill 的語意規則，既有 schema／驗證器不自動判斷洞察品質及圖表需求是否完整。
+
+原 HTML 的 13 種圖表與欄位映射見 [components.json](../schemas/components.json)、[元件選型](../skills/news-presentation/references/components.md)。加上 text、quote，共 15 種 block type。12 種新聞回答分類與這組圖表分類互相獨立。
 
 | 新增 type | 專屬欄位 | 來源與檢查 |
 | --- | --- | --- |

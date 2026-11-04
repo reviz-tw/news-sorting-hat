@@ -1,0 +1,388 @@
+{
+  "schema_version": "0.2.0",
+  "kind": "presentation",
+  "analysis": {
+    "schema_version": "0.2.0",
+    "kind": "analysis",
+    "question": "這個政策執行得如何？請搭配數據說明目標與成果。",
+    "as_of": "2026-11-02T16:00:00+08:00",
+    "status": "partial",
+    "classification": {
+      "status": "determined",
+      "primary": "policy_evaluation",
+      "secondary": [
+        "data_analysis"
+      ],
+      "reason": "以政策目標與執行落差為主，以同口徑數據對照為輔。",
+      "evidence_ids": [
+        "goal",
+        "execution",
+        "result"
+      ],
+      "tags": {
+        "topic": [
+          "公共服務"
+        ],
+        "method": [
+          "文件比對"
+        ],
+        "angle": [],
+        "temporal": [
+          "歷史回顧"
+        ]
+      }
+    },
+    "title": "合成案例：名額未達目標，生活成效待評估",
+    "summary": "年底開放80個名額，未達100個目標；資料不足以判定居民生活成效。",
+    "sections": [
+      {
+        "id": "s_goal",
+        "heading": "原定目標",
+        "body": "2024年目標新增100個服務名額；比較基準為同一制度下可提供服務的核定名額。",
+        "evidence_ids": [
+          "goal"
+        ]
+      },
+      {
+        "id": "s_execution",
+        "heading": "執行進度",
+        "body": "擴建已完成，但20個名額因人員未到位尚未開放。",
+        "evidence_ids": [
+          "execution"
+        ]
+      },
+      {
+        "id": "s_result",
+        "heading": "成果與目標",
+        "body": "年底已開放80個名額，尚未達到100個名額的目標。",
+        "evidence_ids": [
+          "goal",
+          "result"
+        ]
+      },
+      {
+        "id": "s_limits",
+        "heading": "成效判定範圍",
+        "body": "目前可確認開放名額與執行落差；沒有使用成效或對照研究，不能推定政策改善居民生活。材料未提供既有研究或公眾認知，無法判斷這項發現與既有認識的關係；政策目標本身不等於既有共識。",
+        "evidence_ids": [
+          "limit"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "s1",
+        "title": "合成政策案例",
+        "url": null,
+        "published_at": null,
+        "updated_at": null,
+        "chunks": [
+          {
+            "id": "c1",
+            "locator": "合成段落",
+            "text": "合成政策：示例市2024年目標新增100個服務名額。年底已開放80個名額，年度擴建已完成，但20個名額因人員未到位尚未開放。這些名額是同一制度下可提供服務的核定名額。本材料沒有前後使用成效或對照研究，不能評估政策對居民生活的效果。"
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "id": "goal",
+        "kind": "measurement",
+        "text": "2024年目標新增100個服務名額。",
+        "refs": [
+          {
+            "source_id": "s1",
+            "chunk_id": "c1"
+          }
+        ],
+        "value": 100,
+        "category": "年度目標",
+        "metric": "服務名額",
+        "unit": "個",
+        "region": "示例市",
+        "statistic": "同一制度下可提供服務的核定名額",
+        "period": "2024"
+      },
+      {
+        "id": "execution",
+        "kind": "fact",
+        "text": "擴建完成，但20個名額因人員未到位尚未開放。",
+        "refs": [
+          {
+            "source_id": "s1",
+            "chunk_id": "c1"
+          }
+        ]
+      },
+      {
+        "id": "result",
+        "kind": "measurement",
+        "text": "年底已開放80個名額，目標100個名額。",
+        "refs": [
+          {
+            "source_id": "s1",
+            "chunk_id": "c1"
+          }
+        ],
+        "value": 80,
+        "category": "年底實際開放",
+        "metric": "服務名額",
+        "unit": "個",
+        "region": "示例市",
+        "statistic": "同一制度下可提供服務的核定名額",
+        "period": "2024"
+      },
+      {
+        "id": "limit",
+        "kind": "fact",
+        "text": "缺少使用成效與對照研究，不能評估居民生活效果。",
+        "refs": [
+          {
+            "source_id": "s1",
+            "chunk_id": "c1"
+          }
+        ]
+      }
+    ],
+    "limitations": [
+      {
+        "code": "missing_data",
+        "text": "沒有生活成效或對照研究。",
+        "evidence_ids": [
+          "limit"
+        ]
+      },
+      {
+        "code": "missing_data",
+        "text": "材料未提供既有研究或公眾認知，無法判斷這項發現與既有認識的關係；政策目標本身不等於既有共識。",
+        "evidence_ids": []
+      }
+    ],
+    "article_structure": {
+      "structure_version": "1.0.0",
+      "templates": [
+        "policy_evaluation",
+        "data_analysis"
+      ],
+      "composition_reason": "以政策評估四角色為主線；將資料分析的主要發現併入成果、資料基準併入目標與成果、解讀限制併入歸因。",
+      "nodes": [
+        {
+          "id": "goals",
+          "roles": [
+            {
+              "type": "policy_evaluation",
+              "slot": "goals"
+            },
+            {
+              "type": "data_analysis",
+              "slot": "basis"
+            }
+          ],
+          "reader_question": "原定多少名額，如何對照成果？",
+          "status": "covered",
+          "reason": "目標與成果使用同制度名額。",
+          "section_ids": [
+            "s_goal",
+            "s_result"
+          ],
+          "evidence_ids": [
+            "goal",
+            "result"
+          ]
+        },
+        {
+          "id": "implementation",
+          "roles": [
+            {
+              "type": "policy_evaluation",
+              "slot": "implementation"
+            }
+          ],
+          "reader_question": "設施與人員進度如何？",
+          "status": "covered",
+          "reason": "保留擴建完成與人員未到位的差異。",
+          "section_ids": [
+            "s_execution"
+          ],
+          "evidence_ids": [
+            "execution"
+          ]
+        },
+        {
+          "id": "outcomes",
+          "roles": [
+            {
+              "type": "policy_evaluation",
+              "slot": "outcomes"
+            },
+            {
+              "type": "data_analysis",
+              "slot": "finding"
+            }
+          ],
+          "reader_question": "年底成果是否達標？",
+          "status": "covered",
+          "reason": "同一段交代數據發現與目標落差。",
+          "section_ids": [
+            "s_result"
+          ],
+          "evidence_ids": [
+            "goal",
+            "result"
+          ]
+        },
+        {
+          "id": "knowledge_comparison",
+          "roles": [
+            {
+              "type": "data_analysis",
+              "slot": "knowledge_comparison"
+            }
+          ],
+          "reader_question": "名額未達標的發現與既有研究或公眾認知有何關係？",
+          "status": "missing",
+          "reason": "只有政策目標與執行數據，缺少既有認識的來源；由限制段落說明無法比較。",
+          "section_ids": [
+            "s_limits"
+          ],
+          "evidence_ids": []
+        },
+        {
+          "id": "attribution",
+          "roles": [
+            {
+              "type": "policy_evaluation",
+              "slot": "attribution"
+            },
+            {
+              "type": "data_analysis",
+              "slot": "limits"
+            }
+          ],
+          "reader_question": "名額結果是否等於生活改善？",
+          "status": "partial",
+          "reason": "有來源指出評估限制，但缺少生活成效與對照研究。",
+          "section_ids": [
+            "s_limits"
+          ],
+          "evidence_ids": [
+            "limit"
+          ]
+        },
+        {
+          "id": "patterns",
+          "roles": [
+            {
+              "type": "data_analysis",
+              "slot": "patterns"
+            }
+          ],
+          "reader_question": "是否需要展開時間趨勢或分布？",
+          "status": "not_applicable",
+          "reason": "本題重點為單年目標與成果對照，不展開趨勢或分布。",
+          "section_ids": [],
+          "evidence_ids": []
+        }
+      ]
+    }
+  },
+  "blocks": [
+    {
+      "id": "bs_goal",
+      "type": "text",
+      "title": "原定目標",
+      "section_ids": [
+        "s_goal"
+      ],
+      "evidence_ids": [
+        "goal"
+      ],
+      "decision": "text_sufficient",
+      "decision_reason": "文字可保留本段角色與條件。",
+      "notes": [],
+      "body": "2024年目標新增100個服務名額；比較基準為同一制度下可提供服務的核定名額。"
+    },
+    {
+      "id": "bs_execution",
+      "type": "text",
+      "title": "執行進度",
+      "section_ids": [
+        "s_execution"
+      ],
+      "evidence_ids": [
+        "execution"
+      ],
+      "decision": "text_sufficient",
+      "decision_reason": "文字可保留本段角色與條件。",
+      "notes": [],
+      "body": "擴建已完成，但20個名額因人員未到位尚未開放。"
+    },
+    {
+      "id": "bs_result",
+      "type": "text",
+      "title": "成果與目標",
+      "section_ids": [
+        "s_result"
+      ],
+      "evidence_ids": [
+        "goal",
+        "result"
+      ],
+      "decision": "text_sufficient",
+      "decision_reason": "文字可保留本段角色與條件。",
+      "notes": [],
+      "body": "年底已開放80個名額，尚未達到100個名額的目標。"
+    },
+    {
+      "id": "b_goal_result",
+      "type": "bar_chart",
+      "title": "2024 年服務名額：目標與實際開放",
+      "section_ids": [
+        "s_result"
+      ],
+      "evidence_ids": [
+        "goal",
+        "result"
+      ],
+      "decision": "visual_selected",
+      "decision_reason": "對照同年度、同制度的目標與實際開放名額，支持尚未達標的發現。",
+      "notes": [
+        "合成資料；兩欄分別為目標與實際開放，並非時間序列。",
+        "名額不代表實際使用人數或居民生活改善。"
+      ],
+      "zero_baseline": true,
+      "points": [
+        {
+          "x": "年度目標",
+          "value": 100,
+          "evidence_id": "goal"
+        },
+        {
+          "x": "年底實際開放",
+          "value": 80,
+          "evidence_id": "result"
+        }
+      ],
+      "metric": "服務名額",
+      "unit": "個",
+      "region": "示例市",
+      "statistic": "同一制度下可提供服務的核定名額"
+    },
+    {
+      "id": "bs_limits",
+      "type": "text",
+      "title": "成效判定範圍",
+      "section_ids": [
+        "s_limits"
+      ],
+      "evidence_ids": [
+        "limit"
+      ],
+      "decision": "text_sufficient",
+      "decision_reason": "文字可保留本段角色與條件。",
+      "notes": [],
+      "body": "目前可確認開放名額與執行落差；沒有使用成效或對照研究，不能推定政策改善居民生活。材料未提供既有研究或公眾認知，無法判斷這項發現與既有認識的關係；政策目標本身不等於既有共識。"
+    }
+  ]
+}

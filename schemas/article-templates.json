@@ -1,0 +1,1615 @@
+{
+  "structure_version": "1.0.0",
+  "templates": [
+    {
+      "type": "event_brief",
+      "name": "事件事實敘述",
+      "narrative_logic": "先交代事件核心、已知結果與必要背景，說明未明事項；有助理解事件的其他說法與回應，於收尾交代。",
+      "slots": [
+        {
+          "id": "event_lead",
+          "role": "事件核心",
+          "reader_question": "發生了什麼，涉及誰、何時、何地？",
+          "priority": "core",
+          "evidence_requirements": "可追溯的人事時地物；未知項保留未知",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "photo",
+              "use_when": "有可追溯照片能呈現人物、現場、物件或文件細節時；目前僅供規劃，不能生成 photo block。"
+            },
+            {
+              "module_id": "map",
+              "use_when": "地理位置或空間差異是理解此角色的必要資訊，且有位置證據時。"
+            }
+          ]
+        },
+        {
+          "id": "outcome",
+          "role": "已知結果",
+          "reader_question": "目前確認的結果或狀態是什麼？",
+          "priority": "conditional",
+          "evidence_requirements": "結果或最新狀態及資訊日期",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            },
+            {
+              "module_id": "photo",
+              "use_when": "有可追溯照片能呈現人物、現場、物件或文件細節時；目前僅供規劃，不能生成 photo block。"
+            }
+          ]
+        },
+        {
+          "id": "context",
+          "role": "必要背景",
+          "reader_question": "哪個背景是理解此事必需的？",
+          "priority": "conditional",
+          "evidence_requirements": "與問題直接相關的前情",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "timeline",
+              "use_when": "已知事件的先後有助理解此角色，且至少兩個 event 有可靠日期時。"
+            }
+          ]
+        },
+        {
+          "id": "unknowns",
+          "role": "未明事項",
+          "reader_question": "哪些原因或後續仍不能確認？",
+          "priority": "conditional",
+          "evidence_requirements": "已知缺口與未確認範圍",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            }
+          ]
+        },
+        {
+          "id": "other_accounts",
+          "role": "其他說法與回應",
+          "reader_question": "關於這件事，還有哪些與理解事實直接相關的不同說法、當事方回應或更正？",
+          "priority": "conditional",
+          "evidence_requirements": "具歸屬與來源的相關主張、回應或更正，保留已知發言時間及其與事件事實的關係。指出相異、補充或待確認之處；沒有相關材料時不編造反方，也不把未檢索到回應寫成當事人拒絕或尚未回應。",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "以簡短收尾交代具歸屬的其他說法、回應及確認程度，保留完整文字。"
+            },
+            {
+              "module_id": "quote",
+              "use_when": "原話措辭本身有閱讀價值，且有可核對的逐字 claim 時。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "有多個與事件直接相關的說法，需要按共同問題並列發言者、時間、內容與確認程度時。"
+            }
+          ]
+        }
+      ],
+      "composition_guidance": "other_accounts 為條件式收尾，補充事件相關的不同說法、當事方回應及更正，不泛收所有意見。短答或相關性不足時標 not_applicable，不增加空段落；若事件含直接指控、關鍵事實有爭議或問題要求多方回應，而必要說法未取得，標 partial/missing 並交代缺口，不能當成不適用。只有單方來源不代表已掌握全貌，也不自動需要假設存在反方。影響事件核心的爭議或更正須在 event_lead／outcome 同步反映，不能等到文末才推翻前文確定敘述；收尾補充歸屬與細節。unknowns 處理尚不能確認的事項，other_accounts 處理具歸屬的說法，重疊時可合併節點。其他說法仍是 claim，不能當成同等確定的事實；若立場比較成為重要任務，搭配 positions_debate，或依主要閱讀任務改以它為主類型。"
+    },
+    {
+      "type": "human_story",
+      "name": "人物與經驗敘事",
+      "narrative_logic": "先交代當事人的背景與當時處境，再敘述經歷、選擇、限制及個人經驗的邊界；有相關側訪時，以他人觀察收尾，補充或對照當事人的自述。",
+      "slots": [
+        {
+          "id": "person_context",
+          "role": "人物背景與處境",
+          "reader_question": "當事人是誰，故事發生時處於什麼生活或工作情境，為何與這件事有關？",
+          "priority": "core",
+          "evidence_requirements": "有來源且與故事相關的身分／角色、生活或工作背景、時間與處境。只選理解後續經歷及選擇所必需的資訊，不要求完整履歷；沿用來源的姓名、化名或匿名方式，不補造年齡、家庭、職業、場景或內心。區分故事發生時與報導當時的身分，未知背景明示。",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "在敘述經歷之前，以精簡文字交代當事人背景、當時處境及其與事件的關係；即使搭配照片仍需文字說明。"
+            },
+            {
+              "module_id": "photo",
+              "use_when": "有可追溯照片能呈現人物、現場、物件或文件細節時；目前僅供規劃，不能生成 photo block。"
+            }
+          ]
+        },
+        {
+          "id": "experience",
+          "role": "經歷與選擇",
+          "reader_question": "在上述背景與處境下，當事人經歷了什麼、面臨哪些選項，又作了什麼選擇？",
+          "priority": "core",
+          "evidence_requirements": "有來源的實際經歷、選項與行動，帶歸屬的原話及理由；動機只依當事人陳述或有來源的材料交代，不能從背景替當事人推定心理或選擇原因。",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "quote",
+              "use_when": "原話的措辭或歸屬本身有閱讀價值，且有可核對的逐字主張時。"
+            },
+            {
+              "module_id": "photo",
+              "use_when": "有可追溯照片能呈現人物、現場、物件或文件細節時；目前僅供規劃，不能生成 photo block。"
+            },
+            {
+              "module_id": "timeline",
+              "use_when": "已知事件的先後有助理解此角色，且至少兩個 event 有可靠日期時。"
+            }
+          ]
+        },
+        {
+          "id": "constraints",
+          "role": "處境限制",
+          "reader_question": "哪些制度或資源限制影響選擇？",
+          "priority": "conditional",
+          "evidence_requirements": "具體限制與人物經驗的來源",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "quote",
+              "use_when": "原話的措辭或歸屬本身有閱讀價值，且有可核對的逐字主張時。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            }
+          ]
+        },
+        {
+          "id": "wider_context",
+          "role": "經驗的邊界",
+          "reader_question": "此經驗能說明什麼、不能代表誰？",
+          "priority": "conditional",
+          "evidence_requirements": "背景材料與樣本代表性限制",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            },
+            {
+              "module_id": "bar_chart",
+              "use_when": "同口徑的數量差異有助回答本角色問題，且類別可比較時。"
+            },
+            {
+              "module_id": "map",
+              "use_when": "地理位置或空間差異是理解此角色的必要資訊，且有位置證據時。"
+            }
+          ]
+        },
+        {
+          "id": "side_interviews",
+          "role": "側訪與他人觀察",
+          "reader_question": "家人、同事、同行或其他相關人士如何觀察當事人的經歷與選擇？哪些內容印證、補充或不同於本人自述？",
+          "priority": "conditional",
+          "evidence_requirements": "只整理已取得報導中的側訪，保留發言者、與當事人的關係、已知觀察／發言時間、觀察依據及來源；區分親身觀察、轉述與評價。說法以具歸屬的 claim 保留，印證程度依證據判斷，不因多人附和就當成獨立查證，也不替當事人推定內心。",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "在人物故事收尾交代相關側訪、受訪者關係及其對自述的補充或差異，保留完整文字與限制。"
+            },
+            {
+              "module_id": "quote",
+              "use_when": "側訪原話本身有閱讀價值，且有可核對的逐字 claim，可保留觀察者的語氣與歸屬時。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "多位受訪者針對同一經歷或選擇提供可對照內容，需要並列觀察角度、依據及異同時。"
+            }
+          ]
+        }
+      ],
+      "composition_guidance": "person_context 是經歷與選擇之前的背景說明，保留既有角色 ID。human_story 為主類型時，正文開頭先交代人物背景與當時處境，再進入 experience；為次類型時，在人物段落開始先做必要介紹。短文可將 person_context 與 experience 合併同一 section/node，正文仍先背景後經歷，保留兩個角色映射，不重複介紹。只納入與故事理解相關的背景，不列完整履歷或無關個資；資料不足時標 partial/missing，簡述可確認的身分與缺口，繼續呈現有依據的經歷，不為開場補造生平。背景可以幫助理解選擇，但不能直接當成動機或因果證明。 side_interviews 是條件式收尾：有與故事相關的側訪就納入，可印證、補充或提出不同觀察，不為平衡而強配正反或等量篇幅。側訪缺乏且本題無需他人觀察時標 not_applicable；若使用者要求側訪、材料已指出關鍵爭議需外部觀察，或回應對理解故事不可或缺但未取得，則標 partial/missing 並說明範圍。未取得訪談不等於對方拒訪，不能聲稱模型已訪問當事人或他人。多角度補充仍須按證據強弱呈現，關鍵矛盾也須在相應經歷段落交代，不到收尾才修正確定敘述。側訪在短文可與 experience／wider_context 合併同一節，保留角色映射，依正文順序先自述再補充觀察。"
+    },
+    {
+      "type": "event_context",
+      "name": "事件脈絡與重建",
+      "narrative_logic": "先界定截至指定時間的狀態，重建關鍵先後與轉折，交代脈絡缺口，最後補充與事件理解相關的其他方觀點。",
+      "slots": [
+        {
+          "id": "current_state",
+          "role": "現在的位置",
+          "reader_question": "問題所指事件目前走到哪一步？",
+          "priority": "core",
+          "evidence_requirements": "截至指定時間的狀態",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "photo",
+              "use_when": "有可追溯照片能呈現人物、現場、物件或文件細節時；目前僅供規劃，不能生成 photo block。"
+            },
+            {
+              "module_id": "map",
+              "use_when": "地理位置或空間差異是理解此角色的必要資訊，且有位置證據時。"
+            }
+          ]
+        },
+        {
+          "id": "sequence",
+          "role": "關鍵經過",
+          "reader_question": "哪些事件依什麼順序發生？",
+          "priority": "core",
+          "evidence_requirements": "事件時間與來源；區分刊出時間",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "timeline",
+              "use_when": "已知事件的先後有助理解此角色，且至少兩個 event 有可靠日期時。"
+            },
+            {
+              "module_id": "photo",
+              "use_when": "有可追溯照片能呈現人物、現場、物件或文件細節時；目前僅供規劃，不能生成 photo block。"
+            }
+          ]
+        },
+        {
+          "id": "turning_points",
+          "role": "轉折與連結",
+          "reader_question": "哪個轉折改變後續？",
+          "priority": "conditional",
+          "evidence_requirements": "轉折證據；因果未證實須明示",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "timeline",
+              "use_when": "已知事件的先後有助理解此角色，且至少兩個 event 有可靠日期時。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            }
+          ]
+        },
+        {
+          "id": "open_questions",
+          "role": "脈絡缺口",
+          "reader_question": "哪段時間或說法尚有爭議？",
+          "priority": "conditional",
+          "evidence_requirements": "缺漏紀錄、相異說法與歸屬",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            },
+            {
+              "module_id": "quote",
+              "use_when": "原話的措辭或歸屬本身有閱讀價值，且有可核對的逐字主張時。"
+            }
+          ]
+        },
+        {
+          "id": "other_perspectives",
+          "role": "其他方觀點",
+          "reader_question": "其他參與者、受影響者或相關人士如何理解事件經過、關鍵轉折與影響？有哪些補充或分歧？",
+          "priority": "conditional",
+          "evidence_requirements": "與事件脈絡直接相關、具來源及歸屬的主張與解釋，保留發言者身分、與事件的關係、已知發言時間及觀察依據。區分親歷敘述、事後評價與因果主張，交代補充、共通點或分歧；未知資訊不補造，觀點不能直接升格為已確認的經過或原因。",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "收尾交代其他方對事件經過、轉折或影響的理解及其來源與限制。"
+            },
+            {
+              "module_id": "quote",
+              "use_when": "原話措辭有閱讀價值，且有具歸屬、可核對的逐字 claim 時。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "多方對同一事件或轉折有可對照的觀點，適合並列發言者、已知時間、主張與依據時。"
+            }
+          ]
+        }
+      ],
+      "presentation_hints": [
+        {
+          "roles": [
+            "sequence",
+            "turning_points"
+          ],
+          "preferred_component": "timeline",
+          "reader_task": "理解關鍵事件的先後、轉折及目前進展。",
+          "selection_rule": "當事件先後是本次閱讀任務且證據符合門檻時，優先產出 timeline，並保留文字解釋。",
+          "evidence_requirements": [
+            "至少兩個與問題相關、具來源及可靠事件日期的 event 證據。",
+            "日期精度沿用來源，區分事件發生、公告與報導刊出時間。",
+            "時間軸只能使用對應 sections 引用的事件；有爭議或未知日期另以文字說明。"
+          ],
+          "fallback": {
+            "component": "text",
+            "decision": "insufficient_data",
+            "reason": "日期或事件證據不足時，整理已知脈絡並列出缺口，不補造時間節點。"
+          },
+          "text_only_exception": "若使用者只需單一日期或簡短事實，文字已足夠；重新檢視主類型是否應為 event_brief，並記錄 text_sufficient。"
+        }
+      ],
+      "composition_guidance": "other_perspectives 為條件式收尾，納入與理解事件脈絡相關的其他參與者、受影響者或相關人士觀點，不泛收無關意見，不強配正反或等量篇幅。若必要觀點未取得，標 partial/missing 並交代來源涵蓋範圍；本題無需展開時可標 not_applicable，不由單一來源推定各方一致，也不把未取得回應寫成拒絕回應。open_questions 處理尚未釐清的時間與脈絡缺口，other_perspectives 處理具歸屬的理解與評價，重疊時可合併節點並保留兩個角色映射。若不同說法會影響事件經過、轉折或原因的理解，應在 sequence／turning_points 同步標示分歧與確認程度，不能只到文末才揭露。時間軸仍只引用符合契約的 event，觀點保留為 claim，以文字／引文／表格補充，不直接把評論畫成已確認事件。立場比較成為重要閱讀任務時搭配 positions_debate，合併重疊角色；主要問題轉為各方爭點時重新判定主類型。"
+    },
+    {
+      "type": "issue_explainer",
+      "name": "議題與機制解釋",
+      "narrative_logic": "由核心解答進入作用機制與理解背景；涉及法律或制度時交代法規依據及法律觀點，再呈現不同意見，最後說明範圍與例外。",
+      "slots": [
+        {
+          "id": "core_answer",
+          "role": "核心解答",
+          "reader_question": "這個議題是什麼，為何與問題有關？",
+          "priority": "core",
+          "evidence_requirements": "可支持定義與重點的材料",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "photo",
+              "use_when": "有可追溯照片能呈現人物、現場、物件或文件細節時；目前僅供規劃，不能生成 photo block。"
+            }
+          ]
+        },
+        {
+          "id": "mechanism",
+          "role": "作用機制",
+          "reader_question": "制度或現象如何運作？",
+          "priority": "core",
+          "evidence_requirements": "步驟、規則或作用關係；勿由相關推因果",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "flowchart",
+              "use_when": "需要理解有來源的程序、步驟或分支，且有逐筆節點與連結時。"
+            },
+            {
+              "module_id": "network_graph",
+              "use_when": "需要理解有證據的對象關係、權責或往來，且有逐筆連結時。"
+            }
+          ]
+        },
+        {
+          "id": "context",
+          "role": "理解背景",
+          "reader_question": "理解機制還需要哪些背景？",
+          "priority": "conditional",
+          "evidence_requirements": "歷史或制度脈絡",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "timeline",
+              "use_when": "已知事件的先後有助理解此角色，且至少兩個 event 有可靠日期時。"
+            },
+            {
+              "module_id": "photo",
+              "use_when": "有可追溯照片能呈現人物、現場、物件或文件細節時；目前僅供規劃，不能生成 photo block。"
+            }
+          ]
+        },
+        {
+          "id": "legal_context",
+          "role": "法規依據與法律觀點",
+          "priority": "conditional",
+          "reader_question": "哪些法規或法律解釋影響這個議題及其運作？規範要求什麼、適用於誰，哪些解釋仍有分歧？",
+          "evidence_requirements": "已取得材料中的法規名稱與條次（來源有提供才填）、適用法域、版本／生效時間與適用條件，以及具歸屬的主管機關解釋、法院見解或專家意見。區分法條原文、報導轉述、行政解釋、裁判內容與個別評論；保留來源明示的草案／通過／生效狀態及裁判範圍，不自行推定效力、確定狀態或普遍適用性。未知法域、條號或版本明示，不補造法條與案號。",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "以白話連結法規依據與議題機制，交代規範內容、來源性質、適用時間、條件及解釋分歧。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "需對照法規規定、適用條件、不同法律見解或版本差異，且每格有來源可核對時。"
+            },
+            {
+              "module_id": "quote",
+              "use_when": "有可核對原文、具發言者歸屬的 verbatim claim 可呈現法律解釋或專家原話時；不得把報導摘要當成法條原文或硬轉成引文。"
+            },
+            {
+              "module_id": "flowchart",
+              "use_when": "來源提供完整適用條件、程序與例外，能抽取符合契約的同法域、同版本 process_step／process_link 時。"
+            }
+          ]
+        },
+        {
+          "id": "perspectives",
+          "role": "不同意見與觀點",
+          "reader_question": "不同當事人或機構如何理解這個議題，主張與理由有何差異？",
+          "priority": "conditional",
+          "evidence_requirements": "帶歸屬的各方主張、理由、支持證據及相關利益或處境；爭議議題須評估此角色，只有單一觀點時明示涵蓋缺口，不補造另一方、不假設各方證據強度相同。",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            },
+            {
+              "module_id": "quote",
+              "use_when": "原話的措辭或歸屬本身有閱讀價值，且有可核對的逐字主張時。"
+            }
+          ]
+        },
+        {
+          "id": "boundaries",
+          "role": "範圍與例外",
+          "reader_question": "何時適用、何時不能如此解釋？",
+          "priority": "core",
+          "evidence_requirements": "適用對象、版本、條件、例外與未知",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            }
+          ]
+        }
+      ],
+      "composition_guidance": "每次先評估不同觀點是否影響讀者理解。有政策選擇、價值分歧、解釋爭議或不同受影響者處境時，納入 perspectives；有部分材料則 partial，缺少必要觀點則 missing。純粹概念或操作機制且觀點差異與問題無關時，可說明 not_applicable。若各方主張與爭點比較是重要次要任務，加入 positions_debate 次類型，將 perspectives 與 positions／fault_lines 合併映射，避免重複段落。 每次評估 legal_context 是否影響理解：涉及權利義務、法律程序、制度權責或法規解釋時，納入有來源的法律依據與觀點，通常放在背景之後、各方觀點之前。法規是機制核心時可與 mechanism 合併，法律見解與 perspectives 重疊時合併映射，避免重複篇幅。法律面向無關時標 not_applicable；必要但材料不足則標 partial/missing，說明欠缺原文、法域、版本或解釋依據。法條、機關解釋、法院見解與專家評論不可當成相同性質或效力；主張要連到依據，不能靠法律頭銜增加未證實結論的可信度。僅取得報導轉述時明示未核對原文；歷史報導不證明現行規定，草案不當作已生效規範，個案裁判不自行推廣到所有情況。只整理已納入 sources 的材料，不為填此角色自行補出法律內容或個案法律判斷。"
+    },
+    {
+      "type": "positions_debate",
+      "name": "立場與爭點分析",
+      "narrative_logic": "先交代議題背景、爭議起點與共同問題，限定討論版本及觀察期間，再整理各方逐時主張、同一對象的立場變化、分歧與未解處。",
+      "slots": [
+        {
+          "id": "issue",
+          "role": "議題背景與共同問題",
+          "reader_question": "發生了什麼、原本制度或提案是什麼，為何形成爭議？各方究竟在爭哪個問題，討論範圍與期間為何？",
+          "priority": "core",
+          "evidence_requirements": "有來源且足以理解爭點的必要前情、制度或提案內容、涉及對象、爭議起點，以及政策／方案版本、觀察期間與共同問題。區分已確認背景與帶歸屬的爭議說法，不將某方的問題框架寫成共同事實；起因或制度細節未提供時明示，不從各方立場反推事件背景。",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "在各方主張之前，以精簡文字交代必要前情、制度或提案、爭議起點與共同問題；時間軸或立場表不取代這段說明。"
+            },
+            {
+              "module_id": "timeline",
+              "use_when": "已知事件的先後有助理解此角色，且至少兩個 event 有可靠日期時。"
+            }
+          ]
+        },
+        {
+          "id": "positions",
+          "role": "各方主張",
+          "reader_question": "哪個 stakeholder 在什麼時間、以何種身分主張什麼，理由與條件為何？",
+          "priority": "core",
+          "evidence_requirements": "穩定的 stakeholder 身分、實際發言時間、主張、理由、條件與來源；區分個人與組織立場，不強分正反",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            },
+            {
+              "module_id": "quote",
+              "use_when": "原話的措辭或歸屬本身有閱讀價值，且有可核對的逐字主張時。"
+            }
+          ]
+        },
+        {
+          "id": "position_evolution",
+          "role": "立場的時間與變化",
+          "reader_question": "同一 stakeholder 對同一爭點的立場是否隨時間改變？改變的是結論、條件、理由還是討論對象？",
+          "priority": "core",
+          "evidence_requirements": "同一 stakeholder、同一爭點的逐時主張與來源；區分改變、一致、條件改變、不可比與資料不足。只有單一時間點或日期不明時，明說無法判定，不把沉默當一致。",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            },
+            {
+              "module_id": "timeline",
+              "use_when": "已知事件的先後有助理解此角色，且至少兩個 event 有可靠日期時。"
+            }
+          ]
+        },
+        {
+          "id": "fault_lines",
+          "role": "分歧與共通點",
+          "reader_question": "分歧是事實、價值還是方案選擇？",
+          "priority": "core",
+          "evidence_requirements": "對照主張的依據；共識不能自行推定",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            },
+            {
+              "module_id": "quote",
+              "use_when": "原話的措辭或歸屬本身有閱讀價值，且有可核對的逐字主張時。"
+            }
+          ]
+        },
+        {
+          "id": "unresolved",
+          "role": "未解爭議",
+          "reader_question": "哪些問題仍無法由材料裁定？",
+          "priority": "conditional",
+          "evidence_requirements": "爭議、未回覆與證據不對稱",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            }
+          ]
+        }
+      ],
+      "composition_guidance": "issue 保留既有角色 ID，明確作為「議題背景與共同問題」開場。positions_debate 為主類型時，先讓讀者知道發生什麼、為何形成爭議及大家在爭什麼，再進入各方主張，不直接以支持／反對名單開場。只交代理解爭點必要的背景；短答可與 positions 合併一節，但仍先背景後主張，保留兩個角色映射。作為次類型時，可共用主類型已有的背景段落，避免重複。必要背景不足時標 partial/missing，指出可確認範圍與缺口，不補造爭議起因，也不預設不同主張正在回答同一問題。觀察期間屬於 issue；positions 保留逐時主張，position_evolution 比較同一 stakeholder。人物與機構、個人意見與代組織發言分開識別；同名不足以合併。政策版本或情境不同先判斷可比性，不因措辭不同判定轉向。不把最晚檢索到的一筆說法稱為目前立場。",
+      "presentation_hints": [
+        {
+          "roles": [
+            "positions",
+            "position_evolution"
+          ],
+          "preferred_component": "table",
+          "reader_task": "按 stakeholder、發言時間、爭點、主張、理由與條件對照，保留每格來源。",
+          "evidence_requirements": [
+            "claim.position 提供身分、時間與語境；未知日期明示未知。",
+            "stance_comparison 引用可核對的逐時 claims，不只引用文章刊出日期。"
+          ],
+          "alternative_component": "timeline",
+          "alternative_condition": "若先後變化是核心閱讀任務，且已有至少兩筆可靠日期的 event 證據，可另加 timeline；不能把 claim ID 直接填入只接受 event 的時間軸。",
+          "fallback": {
+            "component": "text",
+            "decision": "insufficient_data",
+            "reason": "只取得一筆說法或日期／身分無法核對時，交代目前所知及變化無法判定。"
+          }
+        }
+      ]
+    },
+    {
+      "type": "data_analysis",
+      "name": "資料現況與趨勢分析",
+      "narrative_logic": "以資料支持的核心洞察開場，接著對照有來源的既有認識，說明這項發現印證、補充、修正或挑戰了什麼，再以圖表與數據展開證據、比較口徑、差異及解讀限制。",
+      "slots": [
+        {
+          "id": "finding",
+          "role": "核心洞察（insight）",
+          "reader_question": "資料最值得注意的發現是什麼，對本次問題有何意義？",
+          "priority": "core",
+          "evidence_requirements": "由可比較數據支持的趨勢、差距、集中、轉折或例外，附關鍵數值、對象與期間；推論連到依據，不把相關性寫成因果；不足時明示無法形成可靠洞察",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "line_chart",
+              "use_when": "時間趨勢有助回答本角色問題，且數據符合折線圖門檻時。"
+            },
+            {
+              "module_id": "bar_chart",
+              "use_when": "同口徑的數量差異有助回答本角色問題，且類別可比較時。"
+            },
+            {
+              "module_id": "stacked_chart",
+              "use_when": "需要同時觀察總量與分項組成，且分項完整互斥時。"
+            },
+            {
+              "module_id": "scatter_plot",
+              "use_when": "需要檢視兩個數值指標之間的關係且有成對資料時。"
+            },
+            {
+              "module_id": "bubble_chart",
+              "use_when": "比較非負數量規模，面積比較有助理解而不需精確排名時。"
+            },
+            {
+              "module_id": "unit_chart",
+              "use_when": "以固定單位呈現數量或完整比例能幫助讀者理解時。"
+            },
+            {
+              "module_id": "map",
+              "use_when": "地理位置或空間差異是理解此角色的必要資訊，且有位置證據時。"
+            },
+            {
+              "module_id": "treemap",
+              "use_when": "需要呈現單一整體的組成或層級，且各層分項可加總時。"
+            }
+          ]
+        },
+        {
+          "id": "knowledge_comparison",
+          "role": "既有認識與新發現的對照",
+          "priority": "core",
+          "reader_question": "過去的報導、研究或公開說法如何理解這個議題？這次資料與哪些既有認識一致或不同，增加了什麼理解？",
+          "evidence_requirements": "可追溯的既有研究、報導、調查或具歸屬的公開說法，保留提出者、時間、研究對象／範圍與原結論；同時引用本次資料發現。核對定義、母體、期間、方法與指標是否可比，區分印證、補充、修正、挑戰及無法比較。沒有社會認知或共識的來源，不泛稱大家一直認為；只有新年份或新取得的數據，不足以宣稱首次發現、推翻共識或突破。",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "在 insight 後用一段連接既有認識、本次發現及其意義，交代來源、適用範圍與可比較程度。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "有明確對照材料時，並列既有認識、原依據、本次發現、關係及限制，每格連回來源。"
+            },
+            {
+              "module_id": "quote",
+              "use_when": "既有公開說法的原句本身值得檢視，且有可核對的 verbatim claim 時。"
+            },
+            {
+              "module_id": "bar_chart",
+              "use_when": "既有與本次材料中的類別數值符合共同期間及口徑的圖表契約時；質性觀點不能硬換成數字。"
+            },
+            {
+              "module_id": "line_chart",
+              "use_when": "既有與本次數據可組成符合契約的同口徑連續時間序列，且趨勢比較有助理解時。"
+            }
+          ]
+        },
+        {
+          "id": "basis",
+          "role": "資料與比較基準",
+          "reader_question": "比較哪些指標、期間、母體與分母？",
+          "priority": "core",
+          "evidence_requirements": "單位、期間、範圍、方法、分母與缺值",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            }
+          ]
+        },
+        {
+          "id": "patterns",
+          "role": "差異與例外",
+          "reader_question": "哪些分布、轉折或離群值得說明？",
+          "priority": "conditional",
+          "evidence_requirements": "逐筆或彙總數據及來源",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "line_chart",
+              "use_when": "時間趨勢有助回答本角色問題，且數據符合折線圖門檻時。"
+            },
+            {
+              "module_id": "bar_chart",
+              "use_when": "同口徑的數量差異有助回答本角色問題，且類別可比較時。"
+            },
+            {
+              "module_id": "stacked_chart",
+              "use_when": "需要同時觀察總量與分項組成，且分項完整互斥時。"
+            },
+            {
+              "module_id": "scatter_plot",
+              "use_when": "需要檢視兩個數值指標之間的關係且有成對資料時。"
+            },
+            {
+              "module_id": "bubble_chart",
+              "use_when": "比較非負數量規模，面積比較有助理解而不需精確排名時。"
+            },
+            {
+              "module_id": "unit_chart",
+              "use_when": "以固定單位呈現數量或完整比例能幫助讀者理解時。"
+            },
+            {
+              "module_id": "map",
+              "use_when": "地理位置或空間差異是理解此角色的必要資訊，且有位置證據時。"
+            },
+            {
+              "module_id": "treemap",
+              "use_when": "需要呈現單一整體的組成或層級，且各層分項可加總時。"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "role": "解讀限制",
+          "reader_question": "這些資料不能支持哪些結論？",
+          "priority": "core",
+          "evidence_requirements": "樣本、口徑、缺漏、不確定性與因果限制",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            }
+          ]
+        }
+      ],
+      "composition_guidance": "保留 finding 作為 insight 角色的穩定 ID。data_analysis 為主類型時，summary 與第一節先用一至兩句提出資料支持的發現，再展開數值及口徑；不能只以資料清單、研究方法或圖表介紹開場。次類型時，在相應資料分析段落先提出 insight，不強迫改寫主類型的全文順序。意義須回應使用者問題，不推論未有證據的影響、因果或政策成效；無足夠資料時以可判斷範圍與缺口開場，finding 標 partial/missing，不編造洞察。 finding 後先處理 knowledge_comparison，回答這次發現與既有理解的關係，再展開詳細資料與方法。這與 basis 不同：前者比較已知觀點／研究結論，後者交代數值比較口徑。既有認識必須有來源與歸屬，不能預設全體社會、所有媒體或學界持同一看法。只有政策目標時只能說是目標，不能將目標冒充公眾預期或研究共識；來源早於新資料也不等於足以代表當時的普遍認識。對照結論若由模型整理，使用 inference 並以 based_on 連到既有說法與本次發現的證據。若差異來自口徑或母體，明示不可比，不直接宣稱舊說被推翻。缺乏既有認識材料時標 missing；只有局部材料時標 partial，說明無法判斷新意，不以常識補寫。短答可與 finding 合併一段，仍先洞察後對照；主類型不能將此核心角色標不適用，次類型僅在閱讀任務確實無需對照時可說明不適用。",
+      "presentation_hints": [
+        {
+          "roles": [
+            "finding",
+            "patterns"
+          ],
+          "minimum_chart_count": 1,
+          "applies_when": "主或次類型含 data_analysis，且至少一組相關資料符合圖種契約。",
+          "eligible_components": [
+            "line_chart",
+            "bar_chart",
+            "stacked_chart",
+            "scatter_plot",
+            "bubble_chart",
+            "unit_chart",
+            "map",
+            "treemap"
+          ],
+          "reader_task": "用圖表檢視核心洞察的數據依據，必要時再展開趨勢、群體差異、組成或關係。",
+          "selection_rule": "先呈現 insight 與既有認識對照的文字，再展開支持發現的數量圖表；兩者可共用一節。資料符合門檻時至少一張，依獨立閱讀問題增加，不設固定上限、不重複畫相同發現；多張圖各自以 section_ids、evidence_ids、decision_reason 說明用途。缺少既有認識不妨礙呈現已有數據，但須明示對照缺口。資料充分時不能只用 text_sufficient 略過圖表。",
+          "evidence_requirements": [
+            "分析階段將可繪圖數字整理成 measurement；組成與空間資料另需 partition 或 location，不能只把數字留在 fact/body。",
+            "每張圖符合元件契約，保留單位、期間、母體、統計方法、來源與缺值；不可混用不同口徑、實測與預測、目標與成果來製造趨勢。",
+            "折線圖至少三個同口徑、同精度且期間連續的非缺值；只有單點或缺少中間期間時，重新選型，不補點湊圖。"
+          ],
+          "fallback": {
+            "component": "text",
+            "decision": "insufficient_data",
+            "reason": "無任何相關數量圖表符合資料門檻時，保留可支持的洞察或明示無法判定，說明具體缺少的資料／口徑。可附來源表格，但表格、引文、時間軸不充作數量圖表配額。來源已有數字但尚未結構化時，先交回分析階段補整理，不把漏抽當成來源缺資料。"
+          }
+        }
+      ]
+    },
+    {
+      "type": "comparative_analysis",
+      "name": "對象與方案比較",
+      "narrative_logic": "界定比較問題、對象與共同維度，以比較表並列，再解讀關鍵差異、適用條件與不可比之處。",
+      "slots": [
+        {
+          "id": "comparison_scope",
+          "role": "比較範圍",
+          "reader_question": "比較誰，回答什麼問題？",
+          "priority": "core",
+          "evidence_requirements": "對象、時間與比較目的",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            },
+            {
+              "module_id": "photo",
+              "use_when": "有可追溯照片能呈現人物、現場、物件或文件細節時；目前僅供規劃，不能生成 photo block。"
+            }
+          ]
+        },
+        {
+          "id": "dimensions",
+          "role": "共同維度",
+          "reader_question": "在相同維度下，各對象如何？",
+          "priority": "core",
+          "evidence_requirements": "共同欄位、單位、基準與明示缺值",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            }
+          ]
+        },
+        {
+          "id": "differences",
+          "role": "關鍵差異",
+          "reader_question": "哪些同異最影響理解或選擇？",
+          "priority": "core",
+          "evidence_requirements": "對照資料；不任意加權排名",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            },
+            {
+              "module_id": "bar_chart",
+              "use_when": "同口徑的數量差異有助回答本角色問題，且類別可比較時。"
+            }
+          ]
+        },
+        {
+          "id": "applicability",
+          "role": "適用與不可比",
+          "reader_question": "哪些情況適用，哪些不能直接比較？",
+          "priority": "conditional",
+          "evidence_requirements": "對象差異、例外與適用條件",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            }
+          ]
+        }
+      ],
+      "presentation_hints": [
+        {
+          "roles": [
+            "dimensions",
+            "differences"
+          ],
+          "preferred_component": "table",
+          "reader_task": "在共同維度上並列對象或方案，辨認影響選擇的差異與取捨。",
+          "selection_rule": "主或次類型含 comparative_analysis 時，通常產出至少一張比較表。預設每列一個對象、每欄一個共同維度，首欄明示對象；維度較多時可轉置或按主題拆表，保持同一維度的值可直接對照。表格前交代比較範圍，表格後保留關鍵差異、適用情境與限制的文字解讀，不由表格自行推定最佳方案。",
+          "evidence_requirements": [
+            "至少兩個有來源的比較對象，以及至少一個對問題有用的共同維度；第一階段以 sections/evidence 保留逐項內容、條件、版本與來源。",
+            "每格附支持的 evidence_ids。來源有說明不適用或不可比時分別標記並引用；單純未取得資料標「未知／資料未提供」，不當成零、沒有或不適用，也不替空格捏造引用。",
+            "數值保留單位、期間與統計口徑；質性條件保留文字，不任意打分、加權、排名或量化。"
+          ],
+          "fallback": {
+            "component": "text",
+            "decision": "insufficient_data",
+            "reason": "缺少第二個有來源的對象或任何有意義的共同維度時，先列已知內容與缺口，不造空殼比較表。部分欄位缺漏仍可表格比較已知內容，明示未知與涵蓋範圍。"
+          },
+          "text_only_exception": "只有單一維度、極短而完整的比較，文字已可直接並列且表格沒有額外閱讀價值時，可用 text_sufficient 明示理由；不得將資料缺漏當作此例外。"
+        }
+      ]
+    },
+    {
+      "type": "accountability",
+      "name": "調查揭露與問責",
+      "narrative_logic": "先以必要背景與調查摘要建立脈絡，接著指出從何處發現異常、對照應有標準並提出質疑，再展開證據鏈、權責與回應，最後交代尚待追查之處。",
+      "slots": [
+        {
+          "id": "background",
+          "role": "必要背景",
+          "reader_question": "原本的制度、承諾或事件背景是什麼，誰在什麼期間受到影響？",
+          "priority": "core",
+          "evidence_requirements": "有來源的制度或事件背景、適用期間、相關對象與原定標準；背景缺漏明示，不由常識補寫",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "timeline",
+              "use_when": "已知事件的先後有助理解此角色，且至少兩個 event 有可靠日期時。"
+            },
+            {
+              "module_id": "map",
+              "use_when": "地理位置或空間差異是理解此角色的必要資訊，且有位置證據時。"
+            },
+            {
+              "module_id": "photo",
+              "use_when": "有可追溯照片能呈現人物、現場、物件或文件細節時；目前僅供規劃，不能生成 photo block。"
+            }
+          ]
+        },
+        {
+          "id": "investigation_summary",
+          "role": "調查摘要",
+          "reader_question": "這次調查發現什麼問題、為何值得關注，目前能確認到哪裡？",
+          "priority": "core",
+          "evidence_requirements": "後文證據鏈可支持的主要發現與相關範圍；明確區分已確認事實、具歸屬的指控、模型推論及待釐清事項；不把調查摘要寫成有罪判決",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            },
+            {
+              "module_id": "photo",
+              "use_when": "有可追溯照片能呈現人物、現場、物件或文件細節時；目前僅供規劃，不能生成 photo block。"
+            }
+          ]
+        },
+        {
+          "id": "accountability_question",
+          "role": "問題起點與質疑",
+          "reader_question": "從哪份資料、哪個現象或哪組說法發現問題？和原定標準有何落差，因此要追問什麼？",
+          "priority": "core",
+          "evidence_requirements": "具來源的發現線索或異常現象、可核對的承諾／標準／對照說法，以及兩者如何形成落差或矛盾；由此提出具體且可查證的質疑。若只有檢舉或指控，保留提出者與未核實狀態；無法確認調查起因時明示，不能把本次 RAG 的排序寫成記者發現問題的過程。",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            },
+            {
+              "module_id": "photo",
+              "use_when": "有可追溯照片能呈現人物、現場、物件或文件細節時；目前僅供規劃，不能生成 photo block。"
+            },
+            {
+              "module_id": "bar_chart",
+              "use_when": "同口徑的數量差異有助回答本角色問題，且類別可比較時。"
+            }
+          ]
+        },
+        {
+          "id": "evidence_chain",
+          "role": "調查內容與證據鏈",
+          "reader_question": "查了哪些材料、如何核對，哪些證據能支持或削弱質疑，能證明到什麼程度？",
+          "priority": "core",
+          "evidence_requirements": "有來源的文件、紀錄、數據、訪談與已報導的查證方法；逐項連結質疑、支持證據、交叉核對結果、反證與證明界線。事實用 fact／measurement 等，受訪者說法用 claim，模型推論用 inference 並列 based_on；未提供查證方法時明說，不虛構實地調查或獨立驗證。",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            },
+            {
+              "module_id": "timeline",
+              "use_when": "已知事件的先後有助理解此角色，且至少兩個 event 有可靠日期時。"
+            },
+            {
+              "module_id": "network_graph",
+              "use_when": "需要理解有證據的對象關係、權責或往來，且有逐筆連結時。"
+            },
+            {
+              "module_id": "flowchart",
+              "use_when": "需要理解有來源的程序、步驟或分支，且有逐筆節點與連結時。"
+            },
+            {
+              "module_id": "line_chart",
+              "use_when": "時間趨勢有助回答本角色問題，且數據符合折線圖門檻時。"
+            },
+            {
+              "module_id": "bar_chart",
+              "use_when": "同口徑的數量差異有助回答本角色問題，且類別可比較時。"
+            },
+            {
+              "module_id": "photo",
+              "use_when": "有可追溯照片能呈現人物、現場、物件或文件細節時；目前僅供規劃，不能生成 photo block。"
+            }
+          ]
+        },
+        {
+          "id": "responsibility_response",
+          "role": "權責與回應",
+          "reader_question": "誰有權責，各方如何回應？",
+          "priority": "core",
+          "evidence_requirements": "權責依據、當事方回應；未取得就明說",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            },
+            {
+              "module_id": "quote",
+              "use_when": "原話的措辭或歸屬本身有閱讀價值，且有可核對的逐字主張時。"
+            },
+            {
+              "module_id": "network_graph",
+              "use_when": "需要理解有證據的對象關係、權責或往來，且有逐筆連結時。"
+            }
+          ]
+        },
+        {
+          "id": "unresolved",
+          "role": "尚待追查",
+          "reader_question": "哪些責任或事實仍未釐清？",
+          "priority": "conditional",
+          "evidence_requirements": "未解處；不把關係推定為違法",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            }
+          ]
+        }
+      ],
+      "composition_guidance": "accountability 為主類型時，開場先寫精簡的必要背景，再摘要調查發現及確定程度，之後進入詳細證據；背景與摘要可合併成同一開場 section/node，但保留 background 與 investigation_summary 兩個角色映射。頂層 summary 也概述背景及主要發現，不能代替正文的開場角色。短答不需長篇歷史；只保留理解問題必要的脈絡。缺乏背景或確認性證據時標 partial/missing，指控帶歸屬，不虛構制度、影響或回應。作為次類型時，可與主類型的背景／摘要角色合併，避免重複敘述。 accountability_question 保留原 ID，明確串起「問題線索／來源 → 預期與實際的落差或說法矛盾 → 待查問題」，不只列一個抽象問責標題。報導未說明真正的調查起因時，只描述現有材料呈現的疑點，不虛構記者如何接獲消息或展開調查；質疑是待驗證問題，後續 evidence_chain 同時呈現支持、反證與替代解釋。",
+      "presentation_hints": [
+        {
+          "roles": [
+            "accountability_question",
+            "evidence_chain",
+            "responsibility_response"
+          ],
+          "reader_task": "讓讀者檢視疑點、調查材料、核對方式與發現之間的關係，理解證據支持到哪裡。",
+          "selection_rule": "資訊圖表為可選的證據呈現方式，不是新的 block type。依實際證據選一至多個既有元件，各圖解答一個查證問題；完整文字保留查證方法、來源歸屬、反證與限制，不把圖示關係當成結論。",
+          "component_options": [
+            {
+              "component": "table",
+              "use_when": "對照承諾與實際、不同文件或各方說法，逐格標示來源與查證狀態。"
+            },
+            {
+              "component": "timeline",
+              "use_when": "至少兩個有可靠日期的 event 可呈現事件先後或有來源的調查進程；不推論因果。"
+            },
+            {
+              "component": "network_graph",
+              "use_when": "有逐筆 entity／relationship 可呈現權責、持股或資金往來；權重必須有專屬 measurement，不由同時出現推定關係。"
+            },
+            {
+              "component": "flowchart",
+              "use_when": "原文已交代程序或查證步驟，且可抽取 process_step／process_link 並符合流程契約；不虛構記者的調查流程。"
+            },
+            {
+              "component": "bar_chart",
+              "use_when": "同口徑數量對照能呈現可核對的落差，保留目標、實際或其他數值的性質。"
+            },
+            {
+              "component": "line_chart",
+              "use_when": "同口徑且符合連續期間門檻的數據可呈現趨勢；不得把前後差異當成因果證明。"
+            }
+          ],
+          "evidence_requirements": [
+            "逐項抽取元件所需的結構化證據，所有圖表內容可由 section_ids／evidence_ids 追到來源。",
+            "圖說及圖例區分文件紀錄、具歸屬的說法、模型推論與未知；重要反證、衝突及證明界線不能只藏在註記或略去。",
+            "只使用已定義的元件與資料契約，不輸出 infographic 類型、任意 HTML 或自造節點／箭頭。"
+          ],
+          "fallback": {
+            "component": "text",
+            "decision": "insufficient_data",
+            "reason": "值得視覺化但缺少日期、數據或逐筆關係／程序證據時，以文字交代已知證據與缺口，可用有來源的表格整理，不能補造連結或調查步驟。"
+          },
+          "text_only_exception": "證據鏈簡短、文字已清楚呈現核對關係時可採 text_sufficient，不強制製圖。"
+        }
+      ]
+    },
+    {
+      "type": "discourse_analysis",
+      "name": "輿論與媒體敘事分析",
+      "narrative_logic": "界定語料範圍與方法，辨識敘事框架，提出分析結果與可追溯資料，再以適當視覺化對照群體／時期差異，最後交代代表性限制。",
+      "slots": [
+        {
+          "id": "corpus",
+          "role": "語料範圍",
+          "reader_question": "分析的是哪些文本與群體？",
+          "priority": "core",
+          "evidence_requirements": "來源、期間、語言、樣本與選取方法",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            }
+          ]
+        },
+        {
+          "id": "frames",
+          "role": "敘事框架",
+          "reader_question": "這批文本反覆使用哪些框架或主張？",
+          "priority": "core",
+          "evidence_requirements": "原句、主題或詞頻與分類方法",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "quote",
+              "use_when": "原話的措辭或歸屬本身有閱讀價值，且有可核對的逐字主張時。"
+            },
+            {
+              "module_id": "word_cloud",
+              "use_when": "觀察語料用詞／主題有助回答此角色，且方法與語料範圍可交代時。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            }
+          ]
+        },
+        {
+          "id": "analysis_results",
+          "role": "分析結果與資料",
+          "reader_question": "分析得到哪些框架、用語、分布或差異？哪些資料與例句支持這些結果？",
+          "priority": "core",
+          "evidence_requirements": "具來源的框架／主題分類、代表性原句、所屬群體與期間；量化時另附計數單位、分類方法、樣本數／分母、可比的次數或比例。區分來源既有統計與模型對摘錄的質性編碼，未取得完整語料或可靠計數時不推算頻率、趨勢或整體支持度。",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "說明分析發現、來源歸屬、方法與可判斷範圍。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "並列框架／主題、群體、代表性例句、來源，以及已有的計數或比例；無量化資料時仍可做質性對照。"
+            },
+            {
+              "module_id": "quote",
+              "use_when": "具代表性的原句有可核對逐字 claim，可顯示用語與框架差異時。"
+            },
+            {
+              "module_id": "bar_chart",
+              "use_when": "有同口徑的框架／用詞計數或比例可比較時；樣本不同不可直接拿次數當支持度。"
+            },
+            {
+              "module_id": "line_chart",
+              "use_when": "有同定義、同抽樣方法與可比母體的連續期間統計，符合折線圖門檻時。"
+            },
+            {
+              "module_id": "stacked_chart",
+              "use_when": "分類互斥且涵蓋完整語料，有可核對總量與分項時；多標籤重疊框架不可直接堆成整體比例。"
+            },
+            {
+              "module_id": "word_cloud",
+              "use_when": "有 text_term 與語料方法可補充用詞概覽時；不取代脈絡解讀或分析結果表。"
+            }
+          ]
+        },
+        {
+          "id": "group_differences",
+          "role": "群體差異",
+          "reader_question": "不同群體或時期如何使用語言？",
+          "priority": "conditional",
+          "evidence_requirements": "可比樣本與群體標記",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            },
+            {
+              "module_id": "bar_chart",
+              "use_when": "同口徑的數量差異有助回答本角色問題，且類別可比較時。"
+            },
+            {
+              "module_id": "word_cloud",
+              "use_when": "觀察語料用詞／主題有助回答此角色，且方法與語料範圍可交代時。"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "role": "代表性限制",
+          "reader_question": "這批文本不能代表哪些人或立場？",
+          "priority": "core",
+          "evidence_requirements": "選樣偏差；用詞不等於支持比例",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            }
+          ]
+        }
+      ],
+      "composition_guidance": "analysis_results 必須交代分析後得到什麼，不能只列原始語料或泛稱媒體看法不同。至少用可追溯的質性編碼／例句對照整理結果；若連分類材料也不足，明示 partial/missing。模型歸納的框架是 inference，連回 based_on 的原句／主張，不冒充來源既有分類。量化只用來源或上游已提供且可核對方法的統計，不由有限 RAG 摘錄假造全體語料詞頻。框架可能重疊，除非分類完整互斥，不作總和 100% 的分配。",
+      "presentation_hints": [
+        {
+          "roles": [
+            "frames",
+            "analysis_results",
+            "group_differences"
+          ],
+          "preferred_component": "table",
+          "reader_task": "檢視分析框架、用語例句、群體或時期差異及其資料依據。",
+          "selection_rule": "通常以結果表呈現框架／主題、群體／時期、例句與來源，量化資料充分時另用長條圖、折線圖或堆疊圖呈現分布與變化。文字雲只能補充用詞概覽，不能取代敘事分析與脈絡解讀。",
+          "evidence_requirements": [
+            "每筆分析結果可追到語料，明示來源既有分類或模型質性推論。",
+            "頻率與比例須有計數單位、樣本數、分母、期間及方法；不同樣本與方法不得直接比較，媒體報導數量不是民意支持度。",
+            "多重編碼允許重疊，不強制加總到100%；僅有片段時採質性表與引文，不補造數量圖。"
+          ],
+          "fallback": {
+            "component": "text",
+            "decision": "insufficient_data",
+            "reason": "缺乏量化統計時保留有來源的質性分析與結果表，說明不能判斷頻率／比例／趨勢；連質性對照也不足時只交代已知與缺口。"
+          }
+        }
+      ]
+    },
+    {
+      "type": "impact_scenarios",
+      "name": "影響、風險與情境分析",
+      "narrative_logic": "先限定對象與時間，再說明影響途徑及條件分歧。",
+      "slots": [
+        {
+          "id": "affected_scope",
+          "role": "影響範圍",
+          "reader_question": "誰在什麼時間範圍受到影響？",
+          "priority": "core",
+          "evidence_requirements": "受影響者、時間、已發生與預期的區分",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "map",
+              "use_when": "地理位置或空間差異是理解此角色的必要資訊，且有位置證據時。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            },
+            {
+              "module_id": "photo",
+              "use_when": "有可追溯照片能呈現人物、現場、物件或文件細節時；目前僅供規劃，不能生成 photo block。"
+            }
+          ]
+        },
+        {
+          "id": "pathways",
+          "role": "影響途徑",
+          "reader_question": "影響透過什麼途徑發生？",
+          "priority": "core",
+          "evidence_requirements": "有依據的機制或帶歸屬的評估",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "flowchart",
+              "use_when": "需要理解有來源的程序、步驟或分支，且有逐筆節點與連結時。"
+            },
+            {
+              "module_id": "network_graph",
+              "use_when": "需要理解有證據的對象關係、權責或往來，且有逐筆連結時。"
+            }
+          ]
+        },
+        {
+          "id": "scenarios",
+          "role": "條件情境",
+          "reader_question": "哪些假設改變結果？",
+          "priority": "conditional",
+          "evidence_requirements": "有來源的假設、情境與預測區間",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            },
+            {
+              "module_id": "line_chart",
+              "use_when": "時間趨勢有助回答本角色問題，且數據符合折線圖門檻時。"
+            },
+            {
+              "module_id": "bar_chart",
+              "use_when": "同口徑的數量差異有助回答本角色問題，且類別可比較時。"
+            }
+          ]
+        },
+        {
+          "id": "uncertainty",
+          "role": "不確定性",
+          "reader_question": "哪些風險能確認、哪些仍未知？",
+          "priority": "core",
+          "evidence_requirements": "推估限制與不可支持的推論",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "policy_evaluation",
+      "name": "政策執行與成效檢視",
+      "narrative_logic": "以目標為基準，對照執行與結果，界定成效歸因。",
+      "slots": [
+        {
+          "id": "goals",
+          "role": "目標與基準",
+          "reader_question": "政策原先承諾什麼、如何衡量？",
+          "priority": "core",
+          "evidence_requirements": "原定目標、期間、對象與衡量方式",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            },
+            {
+              "module_id": "bar_chart",
+              "use_when": "同口徑的數量差異有助回答本角色問題，且類別可比較時。"
+            }
+          ]
+        },
+        {
+          "id": "implementation",
+          "role": "投入與執行",
+          "reader_question": "投入與措施實際完成多少？",
+          "priority": "core",
+          "evidence_requirements": "投入、措施、進度與執行證據",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "timeline",
+              "use_when": "已知事件的先後有助理解此角色，且至少兩個 event 有可靠日期時。"
+            },
+            {
+              "module_id": "flowchart",
+              "use_when": "需要理解有來源的程序、步驟或分支，且有逐筆節點與連結時。"
+            },
+            {
+              "module_id": "photo",
+              "use_when": "有可追溯照片能呈現人物、現場、物件或文件細節時；目前僅供規劃，不能生成 photo block。"
+            }
+          ]
+        },
+        {
+          "id": "outcomes",
+          "role": "成果與落差",
+          "reader_question": "觀察到什麼結果、與目標差在哪？",
+          "priority": "core",
+          "evidence_requirements": "可比的成果及目標；目標不等於預測",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "bar_chart",
+              "use_when": "同口徑的數量差異有助回答本角色問題，且類別可比較時。"
+            },
+            {
+              "module_id": "line_chart",
+              "use_when": "時間趨勢有助回答本角色問題，且數據符合折線圖門檻時。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            },
+            {
+              "module_id": "map",
+              "use_when": "地理位置或空間差異是理解此角色的必要資訊，且有位置證據時。"
+            }
+          ]
+        },
+        {
+          "id": "attribution",
+          "role": "歸因與限制",
+          "reader_question": "能否將結果歸因於政策？",
+          "priority": "core",
+          "evidence_requirements": "評估設計、背景因素與限制",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            },
+            {
+              "module_id": "quote",
+              "use_when": "原話的措辭或歸屬本身有閱讀價值，且有可核對的逐字主張時。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "claim_verification",
+      "name": "說法查證與證據釐清",
+      "narrative_logic": "先交代事件緣由與查證背景，讓讀者理解說法出現的情境及查證必要性，再界定待查說法、對照證據，提出有限定的結論與判定邊界。",
+      "slots": [
+        {
+          "id": "event_background",
+          "role": "事件緣由與查證背景",
+          "priority": "core",
+          "reader_question": "發生了什麼，這個說法在什麼事件或情境下出現，為何需要釐清？",
+          "evidence_requirements": "有來源的必要事件前情、相關對象、已知時間、說法出現或被提出的情境，以及材料支持的疑點或查證緣由。區分已確認背景與待核實的敘述，不因某方指稱就當成事實；沒有來源時不補造最初傳播者、流傳規模、動機、事件因果或查核者啟動調查的過程。",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "在待查說法之前，以精簡文字交代事件前情、說法出現的情境與為何需要釐清，保留歸屬與未知。"
+            },
+            {
+              "module_id": "timeline",
+              "use_when": "至少兩筆有可靠日期的 event 能幫助理解事件與說法出現的先後時；不將發布時間代填事件時間，不把待查說法內容畫成已確認事件。"
+            }
+          ]
+        },
+        {
+          "id": "claim",
+          "role": "待查說法",
+          "reader_question": "在上述事件背景下，具體要查證哪個說法？誰在何時提出，原文及限定條件是什麼？",
+          "priority": "core",
+          "evidence_requirements": "原始說法、提出者、時間與限定條件",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "quote",
+              "use_when": "原話的措辭或歸屬本身有閱讀價值，且有可核對的逐字主張時。"
+            },
+            {
+              "module_id": "photo",
+              "use_when": "有可追溯照片能呈現人物、現場、物件或文件細節時；目前僅供規劃，不能生成 photo block。"
+            }
+          ]
+        },
+        {
+          "id": "evidence_check",
+          "role": "證據對照",
+          "reader_question": "哪些資料支持、反對或無法驗證？",
+          "priority": "core",
+          "evidence_requirements": "支持／反對證據與來源品質",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            },
+            {
+              "module_id": "timeline",
+              "use_when": "已知事件的先後有助理解此角色，且至少兩個 event 有可靠日期時。"
+            },
+            {
+              "module_id": "photo",
+              "use_when": "有可追溯照片能呈現人物、現場、物件或文件細節時；目前僅供規劃，不能生成 photo block。"
+            },
+            {
+              "module_id": "bar_chart",
+              "use_when": "同口徑的數量差異有助回答本角色問題，且類別可比較時。"
+            }
+          ]
+        },
+        {
+          "id": "assessment",
+          "role": "限定結論",
+          "reader_question": "材料能支持到什麼程度？",
+          "priority": "core",
+          "evidence_requirements": "結論對應證據；不強迫真假二分",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            }
+          ]
+        },
+        {
+          "id": "scope_limits",
+          "role": "判定邊界",
+          "reader_question": "哪些部分仍不能判定？",
+          "priority": "core",
+          "evidence_requirements": "查核範圍、缺漏與尚未排除的解釋",
+          "presentation_modules": [
+            {
+              "module_id": "text",
+              "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+            },
+            {
+              "module_id": "table",
+              "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。"
+            }
+          ]
+        }
+      ],
+      "composition_guidance": "claim_verification 為主類型時，摘要與正文開頭先用精簡背景交代事件緣由及查證情境，再引出具體待查說法，不直接以待查引文或真假判定取代背景。event_background 回答事件如何引出查證，claim 界定具體要核對的命題與範圍，兩者避免重複。短答可合併同一 section/node，但保留兩個角色映射且先背景後說法；為次類型時可共用主類型已交代的背景。只保留理解查證必要的前情，不要求長篇歷史；背景僅有部分來源時標 partial，必要背景完全缺乏時標 missing，說明目前只能確認的情境，繼續核對有來源的主張。缺背景不能視為不適用，更不能反推或編造緣由。若事件本身就是待查內容，開頭須以具歸屬的說法或問題描述，不先宣稱事件已發生。"
+    }
+  ],
+  "fallback": {
+    "type": "unclassified",
+    "name": "未定類型",
+    "narrative_logic": "先交代能回答的內容，再說明缺口。",
+    "slots": [
+      {
+        "id": "answer",
+        "role": "可回答內容",
+        "reader_question": "材料目前能回答什麼？",
+        "priority": "core",
+        "evidence_requirements": "已取得的證據或明確的無法回答聲明",
+        "presentation_modules": [
+          {
+            "module_id": "text",
+            "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+          }
+        ]
+      },
+      {
+        "id": "limits",
+        "role": "資料限制",
+        "reader_question": "還缺什麼？",
+        "priority": "core",
+        "evidence_requirements": "具體缺口",
+        "presentation_modules": [
+          {
+            "module_id": "text",
+            "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。"
+          }
+        ]
+      }
+    ]
+  },
+  "presentation_module_catalog": "schemas/presentation-modules.json",
+  "presentation_selection_policy": "slot.presentation_modules 是候選，不代表全部必選；讀取 module_id 對應的資料條件與 availability。presentation_hints 處理類型層級的優先、數量與例外，不把最低張數套到每個 slot。完整文字按 section 保留，合併角色不用重複出圖；planning_only 不能輸出為 block。實際選擇記在 presentation.blocks 的既有欄位，不把模板候選複製成未定義的 analysis 欄位。候選是引導而非封閉白名單，必要時可選其他 supported 模組，但須符合證據契約並在 decision_reason 說明。"
+}

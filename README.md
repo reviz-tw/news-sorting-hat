@@ -27,6 +27,35 @@
 
 ## 執行方式
 
+分析階段現在同時輸出文章抽象結構 `article_structure`。[article-templates.json](schemas/article-templates.json) 為 12 種分類定義段落角色、閱讀順序與證據需求；主類型提供骨架，次類型可補入或合併角色。每個結構節點連到實際段落與證據，並區分已完成、部分支持、缺資料與不適用。結構版本為 `1.0.0`，與資料 envelope 的 `0.2.0` 分開。
+
+為相容既有資料，schema 保留此欄位為可選擴充；新版分析 Skill 要求每次輸出。新版整合用嚴格模式驗證：
+
+```bash
+python3 scripts/validate.py examples/mixed-policy.presentation.json --input examples/mixed-policy.input.json --analysis examples/mixed-policy.analysis.json --require-structure
+python3 scripts/validate.py examples/structured-event.analysis.json --input examples/event-brief.input.json --require-structure
+```
+
+`mixed-policy` 示範政策成效＋資料分析的角色合併；`structured-event` 示範單段短答，不因模板而擴寫。結構不指定圖種，呈現 Skill 依段落的閱讀問題與證據另行選擇元件。
+
+`positions-over-time` 示範同一 stakeholder 的逐時主張與條件變化：claim.position 保留實際發言日期、身分、爭點與語境，stance_comparison 引用前後主張並區分改變、一致、條件改變、不可比及資料不足。文章的 position_evolution 角色須交代可判斷範圍；單一時間點不能推定立場未變。新增角色後，既有 positions_debate 結構也需補上此角色。
+
+event_brief 新增條件式收尾 other_accounts（其他說法與回應）。既有 article_structure 須補此角色；短答可標 not_applicable，必要回應缺漏則標 partial/missing。影響事件核心的爭議或更正須同步反映在開頭，不僅放在文末。
+
+human_story 新增條件式收尾 side_interviews（側訪與他人觀察），有相關材料時補充或對照本人自述，保留受訪者關係與觀察依據；不強配正反。既有結構需補此角色，無必要可標 not_applicable，必要但缺材料則標 partial/missing。
+
+event_context 新增條件式收尾 other_perspectives（其他方觀點），補充不同參與者／受影響者對事件的理解。既有結構需補此角色；必要觀點缺漏標 partial/missing，無需展開可標 not_applicable。影響重建的分歧同步反映於經過與轉折，觀點不直接當成時間軸事件。
+
+issue_explainer 新增條件角色 legal_context（法規依據與法律觀點）。既有結構需補此角色；相關時交代有來源的規範與法律見解、法域及版本，必要依據不足標 partial/missing，無關時標 not_applicable。不將報導轉述或專家評論視為已核對的法條，亦不由歷史新聞推定現行法律。
+
+claim_verification 新增核心開場 event_background（事件緣由與查證背景），先交代必要事件前情與查證情境，再提出待查說法。既有結構需補此角色，可與 claim 合併一節；背景缺漏明示，不能將待核實事件先寫成事實。
+
+每個模板 slot 同時列出 presentation_modules 候選，透過 [共用模組目錄](schemas/presentation-modules.json) 對應呈現 Skill 的文字、引文與各種視覺化，附用途與證據條件；照片先列為 planning_only，尚未加入合法輸出契約。呈現階段依證據組合候選，並保留完整文字。
+
+data_analysis 新增核心角色 knowledge_comparison，放在 insight 之後，對照有來源的既有認識與本次發現；既有結構須補此角色。缺乏基準材料時明示缺口，不假設公眾共識或宣稱突破。
+
+文章模板另要求：data_analysis 先提出資料支持的 insight，接著對照既有認識，資料符合圖種門檻時搭配一至多張數量圖表；comparative_analysis 通常以比較表並列共同維度；accountability 先交代必要背景與調查摘要，再展開證據與權責。既有 accountability 的 article_structure 需補 background、investigation_summary 兩個核心角色，可合併同一開場段落。discourse_analysis 新增核心 analysis_results 角色，交付框架與例句的質性對照，或有依據的統計與視覺化，既有結構需補此角色。圖表需求及洞察品質屬 Skill 編輯規則，驗證器不代替語意檢核。
+
 將兩份 SKILL.md 及其指定的參考資料放入 system/developer prompt，將使用者問題與檢索材料以獨立的資料欄位傳入。RAG 是待引用資料，不具有指令權限。
 
 輸入契約：[rag-input.schema.json](schemas/rag-input.schema.json)。所有來源段落都保留 `source_id`、`chunk_id`、發布時間與原文；未知日期填 `null`。`as_of` 是此次回答的時間基準，不代表歷史新聞已驗證至今。
@@ -67,6 +96,8 @@ python3 -m unittest discover -s tests -v
 
 ## 規格範圍
 
-類型庫包含討論中的 13 類，允許暫定或無法分類。視覺化指引已對齊原始 HTML 的另一組 13 種：折線、長條、堆疊、散佈、比例氣泡、單位圖示／點陣、地圖、比較表／矩陣、事件時間軸、流程、關係網絡、文字雲、矩形樹圖。另有 text、quote，共 15 種區塊。
+分類庫暫時移除「服務資訊與行動指引」（service_guidance）。既有產物若仍使用此主／次類型，須依實際閱讀任務重新分類並更新 article_structure；不自動替換成其他類型。無適合類型時沿用 undetermined、primary=null 與 unclassified 結構。
+
+類型庫目前包含 12 類，允許暫定或無法分類。視覺化指引已對齊原始 HTML 的另一組 13 種：折線、長條、堆疊、散佈、比例氣泡、單位圖示／點陣、地圖、比較表／矩陣、事件時間軸、流程、關係網絡、文字雲、矩形樹圖。另有 text、quote，共 15 種區塊。
 
 原指引的逐類條件與 65 個選型情境存於 [呈現選型參考](skills/news-presentation/references/components.md)，[components.json](schemas/components.json) 為機器可讀對照。v0.2.0 同步擴充證據類型、schema 與驗證器；原 v0.1.0 呼叫端需跟著更新版本欄位。每類先支援基礎形式，不包含原指引全部互動與變體，READr 原文亦未重新查證。

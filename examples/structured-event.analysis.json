@@ -1,0 +1,152 @@
+{
+  "schema_version": "0.2.0",
+  "kind": "analysis",
+  "question": "示例圖書館何時重新開館？",
+  "as_of": "2026-10-28T18:00:00+08:00",
+  "status": "complete",
+  "classification": {
+    "status": "determined",
+    "primary": "event_brief",
+    "secondary": [],
+    "reason": "依問題的主要閱讀任務與實際證據分類。",
+    "evidence_ids": [
+      "e1"
+    ],
+    "tags": {
+      "topic": [
+        "地方"
+      ],
+      "method": [],
+      "angle": [],
+      "temporal": [
+        "歷史回顧"
+      ]
+    }
+  },
+  "title": "合成案例：示例圖書館何時重新開館？",
+  "summary": "依這份合成材料，示例市圖書館於 2024 年 6 月 1 日重新開館。",
+  "sections": [
+    {
+      "id": "sec1",
+      "heading": "可確認的內容",
+      "body": "依這份合成材料，示例市圖書館於 2024 年 6 月 1 日重新開館。",
+      "evidence_ids": [
+        "e1"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "s1",
+      "title": "合成測試材料（非真實新聞）",
+      "url": null,
+      "published_at": null,
+      "updated_at": null,
+      "chunks": [
+        {
+          "id": "c1",
+          "locator": "合成段落 1",
+          "text": "合成資料：示例市圖書館於 2024 年 6 月 1 日重新開館。"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e1",
+      "kind": "event",
+      "text": "示例市圖書館重新開館。",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "date": "2024-06-01"
+    }
+  ],
+  "limitations": [],
+  "article_structure": {
+    "structure_version": "1.0.0",
+    "templates": [
+      "event_brief"
+    ],
+    "composition_reason": "只問開館時間，一節事件核心足夠；不展開無關背景。",
+    "nodes": [
+      {
+        "id": "lead",
+        "roles": [
+          {
+            "type": "event_brief",
+            "slot": "event_lead"
+          }
+        ],
+        "reader_question": "示例圖書館何時重新開館？",
+        "status": "covered",
+        "reason": "來源提供明確日期。",
+        "section_ids": [
+          "sec1"
+        ],
+        "evidence_ids": [
+          "e1"
+        ]
+      },
+      {
+        "id": "outcome",
+        "roles": [
+          {
+            "type": "event_brief",
+            "slot": "outcome"
+          }
+        ],
+        "reader_question": "重新開館後的營運狀況？",
+        "status": "not_applicable",
+        "reason": "本次只問重新開館時間，不需展開此角色。",
+        "section_ids": [],
+        "evidence_ids": []
+      },
+      {
+        "id": "context",
+        "roles": [
+          {
+            "type": "event_brief",
+            "slot": "context"
+          }
+        ],
+        "reader_question": "重新開館的背景？",
+        "status": "not_applicable",
+        "reason": "本次只問重新開館時間，不需展開此角色。",
+        "section_ids": [],
+        "evidence_ids": []
+      },
+      {
+        "id": "unknowns",
+        "roles": [
+          {
+            "type": "event_brief",
+            "slot": "unknowns"
+          }
+        ],
+        "reader_question": "哪些後續仍待確認？",
+        "status": "not_applicable",
+        "reason": "本次只問重新開館時間，不需展開此角色。",
+        "section_ids": [],
+        "evidence_ids": []
+      },
+      {
+        "id": "other_accounts",
+        "roles": [
+          {
+            "type": "event_brief",
+            "slot": "other_accounts"
+          }
+        ],
+        "reader_question": "是否需要補充與開館時間相關的其他說法？",
+        "status": "not_applicable",
+        "reason": "本題僅確認開館日期，材料未呈現日期爭議，不需額外展開其他說法。",
+        "section_ids": [],
+        "evidence_ids": []
+      }
+    ]
+  }
+}

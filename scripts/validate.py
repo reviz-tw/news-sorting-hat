@@ -10,6 +10,9 @@ import sys
 from pathlib import Path
 from urllib.parse import urlsplit
 
+from article_structure import validate_structure
+from positions import validate_positions
+
 from visualizations import validate_extended_block, validate_extended_evidence
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -202,6 +205,7 @@ def validate_analysis(analysis, rag_input=None):
     for eid in evidence:
         visit(eid)
     validate_extended_evidence(evidence, require, date_value)
+    validate_positions(evidence, require, date_value)
     cls = analysis["classification"]
     require((cls["status"] == "undetermined") == (cls["primary"] is None),
             "Classification status and primary disagree")
@@ -217,6 +221,7 @@ def validate_analysis(analysis, rag_input=None):
         refs_exist(limitation["evidence_ids"], "limitation")
     require(analysis["status"] == "complete" or bool(analysis["limitations"]),
             "Partial/insufficient answer must explain limitations")
+    validate_structure(analysis, load_json(SCHEMAS / "article-templates.json"), require)
     return evidence, sections
 
 
@@ -300,7 +305,7 @@ def validate_blocks(document, evidence, sections):
     require(covered == set(sections), "Every section needs its complete text block")
 
 
-def validate(document, rag_input=None, expected_analysis=None):
+def validate(document, rag_input=None, expected_analysis=None, require_structure=False):
     # Validate schemas up front, including unvisited variants.
     for schema_file in SCHEMAS.glob("*.schema.json"):
         check_schema(load_json(schema_file))
@@ -318,6 +323,8 @@ def validate(document, rag_input=None, expected_analysis=None):
         require(rag_input.get("kind") == "rag_input", "--input must be rag_input")
         validate(rag_input)
     analysis = document["analysis"] if kind == "presentation" else document
+    if require_structure:
+        require("article_structure" in analysis, "Article structure is required")
     evidence, sections = validate_analysis(analysis, rag_input)
     if expected_analysis is not None:
         require(kind == "presentation", "--analysis applies only to presentation")
@@ -333,10 +340,11 @@ def main():
     parser.add_argument("document", type=Path)
     parser.add_argument("--input", type=Path, help="Original RAG input to compare")
     parser.add_argument("--analysis", type=Path, help="Original first-stage output to compare")
+    parser.add_argument("--require-structure", action="store_true", help="Require the editorial structure extension")
     args = parser.parse_args()
     try:
         validate(load_json(args.document), load_json(args.input) if args.input else None,
-                 load_json(args.analysis) if args.analysis else None)
+                 load_json(args.analysis) if args.analysis else None, require_structure=args.require_structure)
     except (ValidationError, OSError, ValueError, KeyError, TypeError, RecursionError) as exc:
         print("INVALID: " + str(exc), file=sys.stderr)
         return 1

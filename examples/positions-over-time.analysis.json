@@ -1,0 +1,218 @@
+{
+  "schema_version": "0.2.0",
+  "kind": "analysis",
+  "question": "示例協會對交通方案的立場是否改變？",
+  "as_of": "2026-10-28T18:00:00+08:00",
+  "status": "partial",
+  "classification": {
+    "status": "determined",
+    "primary": "positions_debate",
+    "secondary": [],
+    "reason": "比較同一對象在兩個時間點的主張及條件。",
+    "evidence_ids": [
+      "c1",
+      "c2"
+    ],
+    "tags": {
+      "topic": [
+        "地方"
+      ],
+      "method": [],
+      "angle": [],
+      "temporal": [
+        "歷史回顧"
+      ]
+    }
+  },
+  "title": "合成案例：附條件的立場變化",
+  "summary": "本題關注交通方案試辦的安全評估與監測公開條件。兩次表述涉及協會所述安全評估狀態的變化；六月為附條件支持，不能簡化為無條件轉向。",
+  "sections": [
+    {
+      "id": "sec1",
+      "heading": "議題背景與兩個時間點的立場",
+      "body": "本次比較圍繞交通方案是否試辦，以及協會提出的安全評估與監測公開條件，觀察範圍是2024年1月至6月的兩份聲明。材料未交代方案細節與爭議起因。示例協會1月10日表示，在安全評估完成前反對；6月20日表示評估已完成，支持試辦，但要求公開監測結果。這是條件與主張一同改變的兩筆紀錄，不能據此獨立確認評估結果，或斷言其他時間及其他利害關係人的立場。",
+      "evidence_ids": [
+        "c1",
+        "c2",
+        "cmp"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "s1",
+      "title": "合成立場紀錄",
+      "url": null,
+      "published_at": "2024-07-01T00:00:00+08:00",
+      "updated_at": null,
+      "chunks": [
+        {
+          "id": "c1",
+          "locator": "一月聲明",
+          "text": "合成資料：示例協會會長代表協會於2024-01-10表示：安全評估完成前，反對交通方案。"
+        },
+        {
+          "id": "c2",
+          "locator": "六月聲明",
+          "text": "合成資料：同一協會會長代表協會於2024-06-20表示：安全評估已完成，支持交通方案試辦，但須公開監測結果。"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "c1",
+      "kind": "claim",
+      "text": "安全評估完成前反對交通方案。",
+      "speaker": "示例協會會長",
+      "verbatim": false,
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        }
+      ],
+      "position": {
+        "stakeholder_id": "org1",
+        "stakeholder_name": "示例協會",
+        "identity_basis": "來源明示同一協會會長代表協會發言。",
+        "issue_id": "transport",
+        "issue": "交通方案是否試辦",
+        "statement_date": "2024-01-10",
+        "context": "會長代表協會的正式聲明；合成交通方案。",
+        "stance": "安全評估完成前反對交通方案。",
+        "conditions": [
+          "安全評估尚未完成"
+        ],
+        "reasons": []
+      }
+    },
+    {
+      "id": "c2",
+      "kind": "claim",
+      "text": "安全評估完成後支持試辦，但須公開監測結果。",
+      "speaker": "示例協會會長",
+      "verbatim": false,
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c2"
+        }
+      ],
+      "position": {
+        "stakeholder_id": "org1",
+        "stakeholder_name": "示例協會",
+        "identity_basis": "來源明示同一協會會長代表協會發言。",
+        "issue_id": "transport",
+        "issue": "交通方案是否試辦",
+        "statement_date": "2024-06-20",
+        "context": "會長代表協會的正式聲明；合成交通方案。",
+        "stance": "安全評估完成後支持試辦，但須公開監測結果。",
+        "conditions": [
+          "安全評估已完成",
+          "須公開監測結果"
+        ],
+        "reasons": []
+      }
+    },
+    {
+      "id": "cmp",
+      "kind": "stance_comparison",
+      "text": "兩次表述涉及協會所述安全評估狀態的變化；六月為附條件支持，不能簡化為無條件轉向。",
+      "refs": [
+        {
+          "source_id": "s1",
+          "chunk_id": "c1"
+        },
+        {
+          "source_id": "s1",
+          "chunk_id": "c2"
+        }
+      ],
+      "stakeholder_id": "org1",
+      "issue_id": "transport",
+      "claim_ids": [
+        "c1",
+        "c2"
+      ],
+      "assessment": "conditional"
+    }
+  ],
+  "limitations": [
+    {
+      "code": "missing_data",
+      "text": "未取得其他stakeholder或中間時期的說法。",
+      "evidence_ids": []
+    },
+    {
+      "code": "missing_data",
+      "text": "材料未提供交通方案細節與爭議起因，僅能由兩份聲明確認其討論問題及條件。",
+      "evidence_ids": []
+    }
+  ],
+  "article_structure": {
+    "structure_version": "1.0.0",
+    "templates": [
+      "positions_debate"
+    ],
+    "composition_reason": "先交代可確認的共同問題與背景缺口，再以兩筆聲明回答時間變化，保留未取得各方材料的限制。",
+    "nodes": [
+      {
+        "id": "main",
+        "roles": [
+          {
+            "type": "positions_debate",
+            "slot": "issue"
+          },
+          {
+            "type": "positions_debate",
+            "slot": "positions"
+          },
+          {
+            "type": "positions_debate",
+            "slot": "position_evolution"
+          }
+        ],
+        "reader_question": "示例協會對交通方案的立場是否改變？",
+        "status": "partial",
+        "reason": "合併背景、主張與變化；同一協會有兩筆聲明，但缺方案細節、爭議起因、其他時期及各方說法。",
+        "section_ids": [
+          "sec1"
+        ],
+        "evidence_ids": [
+          "c1",
+          "c2",
+          "cmp"
+        ]
+      },
+      {
+        "id": "fault_lines",
+        "roles": [
+          {
+            "type": "positions_debate",
+            "slot": "fault_lines"
+          }
+        ],
+        "reader_question": "各方分歧與共同點為何？",
+        "status": "missing",
+        "reason": "缺少其他stakeholder材料，無法比較各方分歧。",
+        "section_ids": [],
+        "evidence_ids": []
+      },
+      {
+        "id": "unresolved",
+        "roles": [
+          {
+            "type": "positions_debate",
+            "slot": "unresolved"
+          }
+        ],
+        "reader_question": "哪些跨方爭議仍待釐清？",
+        "status": "missing",
+        "reason": "缺少其他stakeholder材料，無法比較各方分歧。",
+        "section_ids": [],
+        "evidence_ids": []
+      }
+    ]
+  }
+}

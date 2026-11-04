@@ -46,7 +46,6 @@
             "discourse_analysis",
             "impact_scenarios",
             "policy_evaluation",
-            "service_guidance",
             "claim_verification",
             null
           ]
@@ -267,6 +266,72 @@
               },
               "verbatim": {
                 "type": "boolean"
+              },
+              "position": {
+                "type": "object",
+                "properties": {
+                  "stakeholder_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "stakeholder_name": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "identity_basis": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "issue_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "issue": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "statement_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "context": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "stance": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "conditions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "reasons": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                },
+                "required": [
+                  "stakeholder_id",
+                  "stakeholder_name",
+                  "identity_basis",
+                  "issue_id",
+                  "issue",
+                  "statement_date",
+                  "context",
+                  "stance",
+                  "conditions",
+                  "reasons"
+                ],
+                "additionalProperties": false
               }
             },
             "required": [
@@ -1029,6 +1094,81 @@
               "unit"
             ],
             "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "kind": {
+                "const": "stance_comparison"
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "refs": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "source_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "chunk_id": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "source_id",
+                    "chunk_id"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 1
+              },
+              "stakeholder_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "issue_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "claim_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 2,
+                "uniqueItems": true
+              },
+              "assessment": {
+                "enum": [
+                  "changed",
+                  "consistent",
+                  "conditional",
+                  "not_comparable",
+                  "insufficient"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "kind",
+              "text",
+              "refs",
+              "stakeholder_id",
+              "issue_id",
+              "claim_ids",
+              "assessment"
+            ],
+            "additionalProperties": false
           }
         ]
       },
@@ -1069,6 +1209,9 @@
         "additionalProperties": false
       },
       "minItems": 0
+    },
+    "article_structure": {
+      "$ref": "article-structure.schema.json"
     }
   },
   "required": [
