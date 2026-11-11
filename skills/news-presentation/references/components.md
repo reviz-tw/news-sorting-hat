@@ -28,7 +28,7 @@ comparative_analysis 通常採 table 並列對象與共同維度，各格附來�
 
 line_chart 至少三個可比較的非缺值，期間須連續且同精度；未取得的中間年份改表格或文字，不補造 null evidence。bar_chart 維持共同母體與期間，跨地區可用表格或地圖。兩者數值精確複製 measurement。
 
-stacked_chart 與 unit_chart 引用第一階段已核對的 partition；treemap 每一層父子引用 partition，總數與分項 measurement 必須可加總。總量與分項在資料中都保留，但 renderer 不把父類小計重複畫成額外葉節點。stacked_chart 的 percentage 由已有分項與總量換算，不推算未知總量。unit_chart 支援整數單位與明示餘數；比例模式須有來源支持的 100% 完整分項，附換算註記。
+stacked_chart 與 unit_chart 引用內容整理步驟已核對的 partition；treemap 每一層父子引用 partition，總數與分項 measurement 必須可加總。總量與分項在資料中都保留，但 renderer 不把父類小計重複畫成額外葉節點。stacked_chart 的 percentage 由已有分項與總量換算，不推算未知總量。unit_chart 支援整數單位與明示餘數；比例模式須有來源支持的 100% 完整分項，附換算註記。
 
 scatter_plot 的 x/y measurement.category 必須配成同對象、同期間、同母體。bubble_chart 基礎版是自由排版比例圓，固定 scale=area；半徑由 renderer 依面積計算，位置無數值意義。
 

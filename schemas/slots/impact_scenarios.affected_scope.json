@@ -1,0 +1,15 @@
+{
+  "type": "impact_scenarios.affected_scope",
+  "id": "affected_scope",
+  "role": "影響範圍",
+  "reader_question": "誰在什麼時間範圍受到影響？",
+  "priority": "core",
+  "evidence_requirements": "受影響者、時間、已發生與預期的區分",
+  "writing_guidance": "辨認直接與間接受影響的對象、地區及時間，分開標示已觀察到的影響與仍屬推估的部分。",
+  "presentation_modules": [
+    "text",
+    "map",
+    "table",
+    "photo"
+  ]
+}

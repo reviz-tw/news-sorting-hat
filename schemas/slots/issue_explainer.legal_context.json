@@ -1,0 +1,21 @@
+{
+  "type": "issue_explainer.legal_context",
+  "id": "legal_context",
+  "role": "法規依據與法律觀點",
+  "priority": "conditional",
+  "reader_question": "哪些法規或法律解釋影響這個議題及其運作？規範要求什麼、適用於誰，哪些解釋仍有分歧？",
+  "evidence_requirements": "已取得材料中的法規名稱與條次（來源有提供才填）、適用法域、版本／生效時間與適用條件，以及具歸屬的主管機關解釋、法院見解或專家意見。區分法條原文、報導轉述、行政解釋、裁判內容與個別評論；保留來源明示的草案／通過／生效狀態及裁判範圍，不自行推定效力、確定狀態或普遍適用性。未知法域、條號或版本明示，不補造法條與案號。",
+  "writing_guidance": "交代法域、版本、生效狀態與適用條件，用出處區分條文、主管機關解釋及專家意見。缺少原文時標明轉述。",
+  "presentation_modules": [
+    "text",
+    "table",
+    "quote",
+    "flowchart"
+  ],
+  "presentation_conditions": {
+    "text": "以白話連結法規依據與議題機制，交代規範內容、來源性質、適用時間、條件及解釋分歧。",
+    "table": "需對照法規規定、適用條件、不同法律見解或版本差異，且每格有來源可核對時。",
+    "quote": "有可核對原文、具發言者歸屬的 verbatim claim 可呈現法律解釋或專家原話時；不得把報導摘要當成法條原文或硬轉成引文。",
+    "flowchart": "來源提供完整適用條件、程序與例外，能抽取符合契約的同法域、同版本 process_step／process_link 時。"
+  }
+}

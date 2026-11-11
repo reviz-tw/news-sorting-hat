@@ -1,0 +1,14 @@
+{
+  "type": "issue_explainer",
+  "name": "議題與機制解釋",
+  "narrative_logic": "由核心解答進入作用機制與理解背景；涉及法律或制度時交代法規依據及法律觀點，再呈現不同意見，最後說明範圍與例外。",
+  "slots": [
+    "issue_explainer.core_answer",
+    "issue_explainer.mechanism",
+    "issue_explainer.context",
+    "issue_explainer.legal_context",
+    "issue_explainer.perspectives",
+    "issue_explainer.boundaries"
+  ],
+  "composition_guidance": "每次先評估不同觀點是否影響讀者理解。有政策選擇、價值分歧、解釋爭議或不同受影響者處境時，納入 perspectives；有部分材料則 partial，缺少必要觀點則 missing。純粹概念或操作機制且觀點差異與問題無關時，可說明 not_applicable。若各方主張與爭點比較是重要次要任務，加入 positions_debate 次類型，將 perspectives 與 positions／fault_lines 合併映射，避免重複段落。 每次評估 legal_context 是否影響理解：涉及權利義務、法律程序、制度權責或法規解釋時，納入有來源的法律依據與觀點，通常放在背景之後、各方觀點之前。法規是機制核心時可與 mechanism 合併，法律見解與 perspectives 重疊時合併映射，避免重複篇幅。法律面向無關時標 not_applicable；必要但材料不足則標 partial/missing，說明欠缺原文、法域、版本或解釋依據。法條、機關解釋、法院見解與專家評論不可當成相同性質或效力；主張要連到依據，不能靠法律頭銜增加未證實結論的可信度。僅取得報導轉述時明示未核對原文；歷史報導不證明現行規定，草案不當作已生效規範，個案裁判不自行推廣到所有情況。只整理已納入 sources 的材料，不為填此角色自行補出法律內容或個案法律判斷。"
+}

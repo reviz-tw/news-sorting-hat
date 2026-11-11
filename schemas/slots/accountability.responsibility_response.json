@@ -1,0 +1,15 @@
+{
+  "type": "accountability.responsibility_response",
+  "id": "responsibility_response",
+  "role": "權責與回應",
+  "reader_question": "誰有權責，各方如何回應？",
+  "priority": "core",
+  "evidence_requirements": "權責依據、當事方回應；未取得就明說",
+  "writing_guidance": "區分各方權責依據與實際作為，依序交代被質疑事項及對應回應，明示材料未涵蓋的回應。",
+  "presentation_modules": [
+    "text",
+    "table",
+    "quote",
+    "network_graph"
+  ]
+}

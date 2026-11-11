@@ -1,0 +1,279 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "map",
+  "label": "地圖",
+  "availability": "supported",
+  "block_type": "map",
+  "reference": "skills/news-presentation/references/forms/07-map.md",
+  "evidence_requirements": "location 與 measurement 配對；座標或有版本的行政區 ID 有來源，地區一致。",
+  "description": "對照可定位的不同地區或地點之數值。",
+  "evidence_kinds": [
+    "location",
+    "measurement"
+  ],
+  "validation": "每一對 location 與 measurement 地區相符。點位核對座標，分區圖核對同一邊界版本和唯一區碼。",
+  "rendering": "依 mode 取座標或用 boundary_id 與 region_code 查圖資，缺值另標示。",
+  "input_mapping": "data.mode 指定點位或分區；features 逐筆提供 location_id 與 measurement_id。對應邊界版本、座標與量值由分析證據提供。",
+  "use_when": "地理位置或空間差異是理解此角色的必要資訊，且有位置證據時。",
+  "$defs": {
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "module_id": {
+          "const": "map"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "enum": [
+                "points",
+                "choropleth"
+              ]
+            },
+            "features": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "location_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "measurement_id": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "location_id",
+                  "measurement_id"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1
+            }
+          },
+          "required": [
+            "mode",
+            "features"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "module_id",
+        "id",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "frontend_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "const": "map"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "mode": {
+          "enum": [
+            "points",
+            "choropleth"
+          ]
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "location_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "measurement_id": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "location_id",
+              "measurement_id"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "mode",
+        "features"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "example": {
+    "input": {
+      "module_id": "map",
+      "id": "map",
+      "title": "合成示例：map",
+      "section_ids": [
+        "sec1"
+      ],
+      "evidence_ids": [
+        "loc1",
+        "loc2",
+        "vloc1",
+        "vloc2"
+      ],
+      "decision": "visual_selected",
+      "decision_reason": "僅展示對應的合成資料契約。",
+      "notes": [
+        "虛構測試資料，未做畫面驗收。"
+      ],
+      "data": {
+        "mode": "points",
+        "features": [
+          {
+            "location_id": "loc1",
+            "measurement_id": "vloc1"
+          },
+          {
+            "location_id": "loc2",
+            "measurement_id": "vloc2"
+          }
+        ]
+      }
+    },
+    "output": {
+      "id": "map",
+      "type": "map",
+      "title": "合成示例：map",
+      "section_ids": [
+        "sec1"
+      ],
+      "evidence_ids": [
+        "loc1",
+        "loc2",
+        "vloc1",
+        "vloc2"
+      ],
+      "decision": "visual_selected",
+      "decision_reason": "僅展示對應的合成資料契約。",
+      "notes": [
+        "虛構測試資料，未做畫面驗收。"
+      ],
+      "mode": "points",
+      "features": [
+        {
+          "location_id": "loc1",
+          "measurement_id": "vloc1"
+        },
+        {
+          "location_id": "loc2",
+          "measurement_id": "vloc2"
+        }
+      ]
+    }
+  }
+}

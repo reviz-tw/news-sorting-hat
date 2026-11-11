@@ -1,0 +1,9 @@
+{
+  "type": "unclassified",
+  "name": "未定類型",
+  "narrative_logic": "先交代能回答的內容，再說明缺口。",
+  "slots": [
+    "unclassified.answer",
+    "unclassified.limits"
+  ]
+}

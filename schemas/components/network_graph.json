@@ -1,0 +1,250 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "network_graph",
+  "label": "關係網絡圖",
+  "availability": "supported",
+  "block_type": "network_graph",
+  "reference": "skills/news-presentation/references/forms/11-network-graph.md",
+  "evidence_requirements": "逐筆 entity/relationship，同一觀察期間；權重另需 measurement，不由同名或共現推定連結。",
+  "description": "呈現可追溯的實體與其間有來源的關係。",
+  "evidence_kinds": [
+    "entity",
+    "relationship",
+    "measurement"
+  ],
+  "validation": "所有端點已納入節點，期間一致；每條帶權重的邊各有證據。",
+  "rendering": "依逐筆關係顯示方向與標籤，只有具權重證據的關係才按數值調整線寬。",
+  "input_mapping": "data.node_ids 指向 entity，edge_ids 指向 relationship；方向、關係及選填權重來自對應證據。",
+  "use_when": "需要理解有證據的對象關係、權責或往來，且有逐筆連結時。",
+  "$defs": {
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "module_id": {
+          "const": "network_graph"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "node_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 2
+            },
+            "edge_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            }
+          },
+          "required": [
+            "node_ids",
+            "edge_ids"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "module_id",
+        "id",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "frontend_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "const": "network_graph"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "node_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 2
+        },
+        "edge_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "node_ids",
+        "edge_ids"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "example": {
+    "input": {
+      "module_id": "network_graph",
+      "id": "network_graph",
+      "title": "合成示例：network_graph",
+      "section_ids": [
+        "sec1"
+      ],
+      "evidence_ids": [
+        "n1",
+        "n2",
+        "rel"
+      ],
+      "decision": "visual_selected",
+      "decision_reason": "僅展示對應的合成資料契約。",
+      "notes": [
+        "虛構測試資料，未做畫面驗收。"
+      ],
+      "data": {
+        "node_ids": [
+          "n1",
+          "n2"
+        ],
+        "edge_ids": [
+          "rel"
+        ]
+      }
+    },
+    "output": {
+      "id": "network_graph",
+      "type": "network_graph",
+      "title": "合成示例：network_graph",
+      "section_ids": [
+        "sec1"
+      ],
+      "evidence_ids": [
+        "n1",
+        "n2",
+        "rel"
+      ],
+      "decision": "visual_selected",
+      "decision_reason": "僅展示對應的合成資料契約。",
+      "notes": [
+        "虛構測試資料，未做畫面驗收。"
+      ],
+      "node_ids": [
+        "n1",
+        "n2"
+      ],
+      "edge_ids": [
+        "rel"
+      ]
+    }
+  }
+}

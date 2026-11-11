@@ -1,8 +1,8 @@
 # Slot 的呈現模組候選
 
-[文章模板](../../../schemas/article-templates.json) 的每個 slot 都有 `presentation_modules`，每筆含 `module_id` 與 `use_when`。這是「可如何呈現」的候選，不是已選定的區塊，也不是每個模組都必須出現。
+按文章類別檔的 `slots` ID 陣列讀取 `schemas/slots/<slot_type>.json`，從各 slot 檔的 `presentation_modules` 取得候選元件 ID 與順序。各 ID 預設沿用元件檔的 `use_when`，slot 檔的 `presentation_conditions[模組 ID]` 可指定專屬條件。類型整體的選型規則放在[呈現規則](../../../schemas/presentation-modules.json)的 `article_rules[類型].presentation_hints`。執行 `workflow.py resolve` 後，每個 slot 的 `presentation_modules` 都包含完整的 ID 與適用條件。
 
-[模組目錄](../../../schemas/presentation-modules.json) 是共用查詢入口，列出標籤、`availability`、`block_type`、證據門檻與呈現 Skill 的參考文件。沿 `module_id` 查到圖種指引後，再依實際證據選型。完整欄位與嚴格限制仍以 presentation schema 及逐類指引為準。
+依[元件索引](../../../schemas/components.json)的 `files[module_id]` 查元件檔。每份檔案列出使用條件、資料需求與驗證，並以 `$defs.input_schema`、`$defs.frontend_schema` 定義完整輸入與輸出。已支援元件附成對實例 `example.input`、`example.output`；例如[長條圖](../../../schemas/components/bar_chart.json)從 measurement_ids 取得可渲染的 points。
 
 ## 從文章角色到區塊
 

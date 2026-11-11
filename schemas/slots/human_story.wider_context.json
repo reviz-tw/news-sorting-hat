@@ -1,0 +1,15 @@
+{
+  "type": "human_story.wider_context",
+  "id": "wider_context",
+  "role": "經驗的邊界",
+  "reader_question": "此經驗能說明什麼、不能代表誰？",
+  "priority": "conditional",
+  "evidence_requirements": "背景材料與樣本代表性限制",
+  "writing_guidance": "將個案放回有來源的群體或制度脈絡，說明此人的經驗可以解釋到哪裡，以及推廣到其他人的限制。",
+  "presentation_modules": [
+    "text",
+    "table",
+    "bar_chart",
+    "map"
+  ]
+}

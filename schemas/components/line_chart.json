@@ -1,0 +1,298 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "line_chart",
+  "label": "折線圖",
+  "availability": "supported",
+  "block_type": "line_chart",
+  "reference": "skills/news-presentation/references/forms/01-line-chart.md",
+  "evidence_requirements": "measurement：至少三個可比較非缺值，同指標、地區、統計口徑及日期精度，期間連續；缺值不得補造。",
+  "description": "顯示同一指標隨時間的變化。",
+  "evidence_kinds": [
+    "measurement"
+  ],
+  "validation": "至少三個非空值；期間連續且同精度、類別及口徑一致，缺值有註記。",
+  "rendering": "依資料順序連線，null 處斷線，顯示單位、期間及 notes。",
+  "input_mapping": "data.measurement_ids 依統計期間排列。程式以 period 作為 points[].x，逐筆複製 value 與 evidence_id，由第一筆取共用軸資訊並核對其餘各筆。",
+  "use_when": "時間趨勢有助回答本角色問題，且數據符合折線圖門檻時。",
+  "$defs": {
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "module_id": {
+          "const": "line_chart"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "measurement_ids": {
+              "type": "array",
+              "uniqueItems": true,
+              "minItems": 3,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "required": [
+            "measurement_ids"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "module_id",
+        "id",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "frontend_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "const": "line_chart"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "metric": {
+          "type": "string",
+          "minLength": 1
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "region": {
+          "type": "string",
+          "minLength": 1
+        },
+        "statistic": {
+          "type": "string",
+          "minLength": 1
+        },
+        "points": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "x": {
+                "type": "string",
+                "minLength": 1
+              },
+              "value": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "evidence_id": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "x",
+              "value",
+              "evidence_id"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 3
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "metric",
+        "unit",
+        "region",
+        "statistic",
+        "points"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "example": {
+    "input": {
+      "module_id": "line_chart",
+      "id": "b2",
+      "title": "合成地區 PM2.5 年平均",
+      "section_ids": [
+        "sec1"
+      ],
+      "evidence_ids": [
+        "m2020",
+        "m2021",
+        "m2022",
+        "m2023",
+        "m2024"
+      ],
+      "decision": "visual_selected",
+      "decision_reason": "五個同口徑年度數值可呈現時間變化。",
+      "notes": [
+        "合成資料，單位 µg/m³；同地區、同測站集合、同加權方式的年平均。",
+        "只描述變化，不推定政策因果。"
+      ],
+      "data": {
+        "measurement_ids": [
+          "m2020",
+          "m2021",
+          "m2022",
+          "m2023",
+          "m2024"
+        ]
+      }
+    },
+    "output": {
+      "id": "b2",
+      "type": "line_chart",
+      "title": "合成地區 PM2.5 年平均",
+      "section_ids": [
+        "sec1"
+      ],
+      "evidence_ids": [
+        "m2020",
+        "m2021",
+        "m2022",
+        "m2023",
+        "m2024"
+      ],
+      "decision": "visual_selected",
+      "decision_reason": "五個同口徑年度數值可呈現時間變化。",
+      "notes": [
+        "合成資料，單位 µg/m³；同地區、同測站集合、同加權方式的年平均。",
+        "只描述變化，不推定政策因果。"
+      ],
+      "metric": "PM2.5",
+      "unit": "µg/m³",
+      "region": "合成地區",
+      "statistic": "實測年平均；相同測站集合、相同加權方式",
+      "points": [
+        {
+          "x": "2020",
+          "value": 20,
+          "evidence_id": "m2020"
+        },
+        {
+          "x": "2021",
+          "value": 18,
+          "evidence_id": "m2021"
+        },
+        {
+          "x": "2022",
+          "value": 17,
+          "evidence_id": "m2022"
+        },
+        {
+          "x": "2023",
+          "value": 16,
+          "evidence_id": "m2023"
+        },
+        {
+          "x": "2024",
+          "value": 15,
+          "evidence_id": "m2024"
+        }
+      ]
+    }
+  }
+}

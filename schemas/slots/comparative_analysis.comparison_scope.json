@@ -1,0 +1,14 @@
+{
+  "type": "comparative_analysis.comparison_scope",
+  "id": "comparison_scope",
+  "role": "比較範圍",
+  "reader_question": "比較誰，回答什麼問題？",
+  "priority": "core",
+  "evidence_requirements": "對象、時間與比較目的",
+  "writing_guidance": "說明比較的對象、選入理由與版本日期，界定讀者希望用比較回答的問題。",
+  "presentation_modules": [
+    "text",
+    "table",
+    "photo"
+  ]
+}

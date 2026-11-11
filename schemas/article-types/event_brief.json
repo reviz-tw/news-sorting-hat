@@ -1,0 +1,13 @@
+{
+  "type": "event_brief",
+  "name": "事件事實敘述",
+  "narrative_logic": "先交代事件核心、已知結果與必要背景，說明未明事項；有助理解事件的其他說法與回應，於收尾交代。",
+  "slots": [
+    "event_brief.event_lead",
+    "event_brief.outcome",
+    "event_brief.context",
+    "event_brief.unknowns",
+    "event_brief.other_accounts"
+  ],
+  "composition_guidance": "other_accounts 為條件式收尾，補充事件相關的不同說法、當事方回應及更正，不泛收所有意見。短答或相關性不足時標 not_applicable，不增加空段落；若事件含直接指控、關鍵事實有爭議或問題要求多方回應，而必要說法未取得，標 partial/missing 並交代缺口，不能當成不適用。只有單方來源不代表已掌握全貌，也不自動需要假設存在反方。影響事件核心的爭議或更正須在 event_lead／outcome 同步反映，不能等到文末才推翻前文確定敘述；收尾補充歸屬與細節。unknowns 處理尚不能確認的事項，other_accounts 處理具歸屬的說法，重疊時可合併節點。其他說法仍是 claim，不能當成同等確定的事實；若立場比較成為重要任務，搭配 positions_debate，或依主要閱讀任務改以它為主類型。"
+}

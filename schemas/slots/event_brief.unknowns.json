@@ -1,0 +1,12 @@
+{
+  "type": "event_brief.unknowns",
+  "id": "unknowns",
+  "role": "未明事項",
+  "reader_question": "哪些原因或後續仍不能確認？",
+  "priority": "conditional",
+  "evidence_requirements": "已知缺口與未確認範圍",
+  "writing_guidance": "指出影響讀者理解、截至材料時間仍待確認的細節，說明哪一部分已有來源，哪一部分仍待查。",
+  "presentation_modules": [
+    "text"
+  ]
+}

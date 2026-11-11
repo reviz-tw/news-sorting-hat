@@ -1,0 +1,14 @@
+{
+  "type": "accountability",
+  "name": "調查揭露與問責",
+  "narrative_logic": "先以必要背景與調查摘要建立脈絡，接著指出從何處發現異常、對照應有標準並提出質疑，再展開證據鏈、權責與回應，最後交代尚待追查之處。",
+  "slots": [
+    "accountability.background",
+    "accountability.investigation_summary",
+    "accountability.accountability_question",
+    "accountability.evidence_chain",
+    "accountability.responsibility_response",
+    "accountability.unresolved"
+  ],
+  "composition_guidance": "accountability 為主類型時，開場先寫精簡的必要背景，再摘要調查發現及確定程度，之後進入詳細證據；背景與摘要可合併成同一開場 section/node，但保留 background 與 investigation_summary 兩個角色映射。頂層 summary 也概述背景及主要發現，不能代替正文的開場角色。短答不需長篇歷史；只保留理解問題必要的脈絡。缺乏背景或確認性證據時標 partial/missing，指控帶歸屬，不虛構制度、影響或回應。作為次類型時，可與主類型的背景／摘要角色合併，避免重複敘述。 accountability_question 保留原 ID，明確串起「問題線索／來源 → 預期與實際的落差或說法矛盾 → 待查問題」，不只列一個抽象問責標題。報導未說明真正的調查起因時，只描述現有材料呈現的疑點，不虛構記者如何接獲消息或展開調查；質疑是待驗證問題，後續 evidence_chain 同時呈現支持、反證與替代解釋。"
+}

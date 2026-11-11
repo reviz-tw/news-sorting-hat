@@ -1,0 +1,14 @@
+{
+  "type": "policy_evaluation.goals",
+  "id": "goals",
+  "role": "目標與基準",
+  "reader_question": "政策原先承諾什麼、如何衡量？",
+  "priority": "core",
+  "evidence_requirements": "原定目標、期間、對象與衡量方式",
+  "writing_guidance": "記錄政策原先承諾的對象、指標、基準與期限，明示採用哪一版本的目標。",
+  "presentation_modules": [
+    "text",
+    "table",
+    "bar_chart"
+  ]
+}

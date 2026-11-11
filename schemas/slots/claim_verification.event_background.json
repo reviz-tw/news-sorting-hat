@@ -1,0 +1,17 @@
+{
+  "type": "claim_verification.event_background",
+  "id": "event_background",
+  "role": "事件緣由與查證背景",
+  "priority": "core",
+  "reader_question": "發生了什麼，這個說法在什麼事件或情境下出現，為何需要釐清？",
+  "evidence_requirements": "有來源的必要事件前情、相關對象、已知時間、說法出現或被提出的情境，以及材料支持的疑點或查證緣由。區分已確認背景與待核實的敘述，不因某方指稱就當成事實；沒有來源時不補造最初傳播者、流傳規模、動機、事件因果或查核者啟動調查的過程。",
+  "writing_guidance": "說明查證從何事件或疑問開始，交代可確認前情；若事件本身待核實，先註明是誰的說法。",
+  "presentation_modules": [
+    "text",
+    "timeline"
+  ],
+  "presentation_conditions": {
+    "text": "在待查說法之前，以精簡文字交代事件前情、說法出現的情境與為何需要釐清，保留歸屬與未知。",
+    "timeline": "至少兩筆有可靠日期的 event 能幫助理解事件與說法出現的先後時；不將發布時間代填事件時間，不把待查說法內容畫成已確認事件。"
+  }
+}

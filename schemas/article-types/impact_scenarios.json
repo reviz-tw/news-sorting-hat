@@ -1,0 +1,11 @@
+{
+  "type": "impact_scenarios",
+  "name": "影響、風險與情境分析",
+  "narrative_logic": "先限定對象與時間，再說明影響途徑及條件分歧。",
+  "slots": [
+    "impact_scenarios.affected_scope",
+    "impact_scenarios.pathways",
+    "impact_scenarios.scenarios",
+    "impact_scenarios.uncertainty"
+  ]
+}

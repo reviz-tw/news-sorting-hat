@@ -1,0 +1,13 @@
+{
+  "type": "data_analysis.basis",
+  "id": "basis",
+  "role": "資料與比較基準",
+  "reader_question": "比較哪些指標、期間、母體與分母？",
+  "priority": "core",
+  "evidence_requirements": "單位、期間、範圍、方法、分母與缺值",
+  "writing_guidance": "交代資料來源、分母、指標定義、期間與比較基期，說明文中關鍵數值如何取得。",
+  "presentation_modules": [
+    "text",
+    "table"
+  ]
+}

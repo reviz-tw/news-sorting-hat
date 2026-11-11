@@ -1,0 +1,13 @@
+{
+  "type": "discourse_analysis.limits",
+  "id": "limits",
+  "role": "代表性限制",
+  "reader_question": "這批文本不能代表哪些人或立場？",
+  "priority": "core",
+  "evidence_requirements": "選樣偏差；用詞不等於支持比例",
+  "writing_guidance": "說明樣本選擇、平台與語言造成的盲點，界定哪些結果僅適用於本次語料。",
+  "presentation_modules": [
+    "text",
+    "table"
+  ]
+}

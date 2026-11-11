@@ -1,0 +1,187 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "text",
+  "label": "完整文字",
+  "availability": "supported",
+  "block_type": "text",
+  "reference": "skills/news-presentation/references/components.md",
+  "evidence_requirements": "原樣保留 analysis.sections 的完整文字、來源與限制；同一段落可承接多個角色。",
+  "description": "逐節呈現完整回答及資料限制，也是圖表不足時的文字呈現。",
+  "evidence_kinds": [],
+  "validation": "每塊對應一個 section，正文與證據集合須與原節相符。",
+  "rendering": "依 section_ids 取回 body，保留換行並以純文字顯示。",
+  "input_mapping": "data 為空物件，section_ids 只給一節，evidence_ids 沿用該節完整證據集合。程式從 sections 取出原文 body。",
+  "use_when": "交代本角色的回答、來源歸屬與限制；即使搭配其他模組仍保留完整文字。",
+  "$defs": {
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "module_id": {
+          "const": "text"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "data": {
+          "type": "object",
+          "properties": {},
+          "required": [],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "module_id",
+        "id",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "frontend_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "const": "text"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "body": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "body"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "example": {
+    "input": {
+      "module_id": "text",
+      "id": "bs_goal",
+      "title": "原定目標",
+      "section_ids": [
+        "s_goal"
+      ],
+      "evidence_ids": [
+        "goal"
+      ],
+      "decision": "text_sufficient",
+      "decision_reason": "文字可保留本段角色與條件。",
+      "notes": [],
+      "data": {}
+    },
+    "output": {
+      "id": "bs_goal",
+      "type": "text",
+      "title": "原定目標",
+      "section_ids": [
+        "s_goal"
+      ],
+      "evidence_ids": [
+        "goal"
+      ],
+      "decision": "text_sufficient",
+      "decision_reason": "文字可保留本段角色與條件。",
+      "notes": [],
+      "body": "2024年目標新增100個服務名額；比較基準為同一制度下可提供服務的核定名額。"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "accountability.unresolved",
+  "id": "unresolved",
+  "role": "尚待追查",
+  "reader_question": "哪些責任或事實仍未釐清？",
+  "priority": "conditional",
+  "evidence_requirements": "未解處；不把關係推定為違法",
+  "writing_guidance": "列出尚待查證的責任或事實問題，指出需要何種文件或證詞才能推進，以及目前結論的界線。",
+  "presentation_modules": [
+    "text",
+    "table"
+  ]
+}

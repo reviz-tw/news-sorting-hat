@@ -1,0 +1,13 @@
+{
+  "type": "issue_explainer.boundaries",
+  "id": "boundaries",
+  "role": "範圍與例外",
+  "reader_question": "何時適用、何時不能如此解釋？",
+  "priority": "core",
+  "evidence_requirements": "適用對象、版本、條件、例外與未知",
+  "writing_guidance": "以有來源的例外說明哪些人或情況適用不同規則，並交代現有資料無法回答的邊界。",
+  "presentation_modules": [
+    "text",
+    "table"
+  ]
+}

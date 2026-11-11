@@ -1,0 +1,13 @@
+{
+  "type": "claim_verification.assessment",
+  "id": "assessment",
+  "role": "限定結論",
+  "reader_question": "材料能支持到什麼程度？",
+  "priority": "core",
+  "evidence_requirements": "結論對應證據；不強迫真假二分",
+  "writing_guidance": "對每個命題寫出材料支持到何種程度，把結論連回具體證據，保留附帶條件。",
+  "presentation_modules": [
+    "text",
+    "table"
+  ]
+}

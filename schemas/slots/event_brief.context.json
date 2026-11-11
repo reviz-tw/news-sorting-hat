@@ -1,0 +1,13 @@
+{
+  "type": "event_brief.context",
+  "id": "context",
+  "role": "必要背景",
+  "reader_question": "哪個背景是理解此事必需的？",
+  "priority": "conditional",
+  "evidence_requirements": "與問題直接相關的前情",
+  "writing_guidance": "挑出一項能解釋本次事件的前情，交代它與本次發展的關係。讀者單靠開頭就能理解時可略過。",
+  "presentation_modules": [
+    "text",
+    "timeline"
+  ]
+}

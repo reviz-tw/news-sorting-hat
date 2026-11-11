@@ -1,0 +1,15 @@
+{
+  "type": "discourse_analysis.frames",
+  "id": "frames",
+  "role": "敘事框架",
+  "reader_question": "這批文本反覆使用哪些框架或主張？",
+  "priority": "core",
+  "evidence_requirements": "原句、主題或詞頻與分類方法",
+  "writing_guidance": "定義各敘事框架的分類依據，以可引用的原句示範判準，說明一段文本能否同時屬於多個框架。",
+  "presentation_modules": [
+    "text",
+    "quote",
+    "word_cloud",
+    "table"
+  ]
+}

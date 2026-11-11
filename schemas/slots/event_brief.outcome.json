@@ -1,0 +1,14 @@
+{
+  "type": "event_brief.outcome",
+  "id": "outcome",
+  "role": "已知結果",
+  "reader_question": "目前確認的結果或狀態是什麼？",
+  "priority": "conditional",
+  "evidence_requirements": "結果或最新狀態及資訊日期",
+  "writing_guidance": "寫出截至回答時間已發生的直接結果，分開交代已執行、已宣布與尚待執行的事項。",
+  "presentation_modules": [
+    "text",
+    "table",
+    "photo"
+  ]
+}

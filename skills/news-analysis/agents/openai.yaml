@@ -1,4 +1,4 @@
 interface:
   display_name: "新聞分析與內容整理"
-  short_description: "依問題統整新聞，產出主次分類、文章角色與順序、完整回答及可追溯來源證據"
-  default_prompt: "使用 $news-analysis 整理新聞材料，輸出含分類、article_structure、完整回答與證據的 analysis JSON。"
+  short_description: "依既有分類統整新聞、文章角色與順序、完整回答及可追溯來源證據"
+  default_prompt: "使用 $news-analysis 依第一關分類及描述檔整理新聞，輸出含分類、article_structure、完整回答與證據的 analysis JSON。"

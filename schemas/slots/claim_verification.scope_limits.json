@@ -1,0 +1,13 @@
+{
+  "type": "claim_verification.scope_limits",
+  "id": "scope_limits",
+  "role": "判定邊界",
+  "reader_question": "哪些部分仍不能判定？",
+  "priority": "core",
+  "evidence_requirements": "查核範圍、缺漏與尚未排除的解釋",
+  "writing_guidance": "列出未檢驗的部分、缺失來源及仍合理的其他解釋，交代結論適用的時間與範圍。",
+  "presentation_modules": [
+    "text",
+    "table"
+  ]
+}

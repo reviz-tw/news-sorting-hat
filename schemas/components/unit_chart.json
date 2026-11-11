@@ -1,0 +1,235 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "unit_chart",
+  "label": "單位圖示／點陣圖",
+  "availability": "supported",
+  "block_type": "unit_chart",
+  "reference": "skills/news-presentation/references/forms/06-unit-chart.md",
+  "evidence_requirements": "partition：有完整分母、整數分項及單位值，明示餘數與換算方式。",
+  "description": "用可數的圖示表示一個整體內的分項數量。",
+  "evidence_kinds": [
+    "partition",
+    "measurement"
+  ],
+  "validation": "整數分項、正整數 unit_value；採百分比時核對來源分母為 100% 並附換算註記。",
+  "rendering": "每個圖示代表 unit_value，呈現不能整除的餘數。",
+  "input_mapping": "data.partition_id 指定分配證據，unit_value 表示每個圖示代表的數量，representation 表示彙總數量或百分比。",
+  "use_when": "以固定單位呈現數量或完整比例能幫助讀者理解時。",
+  "$defs": {
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "module_id": {
+          "const": "unit_chart"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "partition_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "unit_value": {
+              "type": "number"
+            },
+            "representation": {
+              "enum": [
+                "aggregate_count",
+                "percentage"
+              ]
+            }
+          },
+          "required": [
+            "partition_id",
+            "unit_value",
+            "representation"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "module_id",
+        "id",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "frontend_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "const": "unit_chart"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "partition_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "unit_value": {
+          "type": "number"
+        },
+        "representation": {
+          "enum": [
+            "aggregate_count",
+            "percentage"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "partition_id",
+        "unit_value",
+        "representation"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "example": {
+    "input": {
+      "module_id": "unit_chart",
+      "id": "unit_chart",
+      "title": "合成示例：unit_chart",
+      "section_ids": [
+        "sec1"
+      ],
+      "evidence_ids": [
+        "part",
+        "total",
+        "a",
+        "b"
+      ],
+      "decision": "visual_selected",
+      "decision_reason": "僅展示對應的合成資料契約。",
+      "notes": [
+        "虛構測試資料，未做畫面驗收。"
+      ],
+      "data": {
+        "partition_id": "part",
+        "unit_value": 10,
+        "representation": "aggregate_count"
+      }
+    },
+    "output": {
+      "id": "unit_chart",
+      "type": "unit_chart",
+      "title": "合成示例：unit_chart",
+      "section_ids": [
+        "sec1"
+      ],
+      "evidence_ids": [
+        "part",
+        "total",
+        "a",
+        "b"
+      ],
+      "decision": "visual_selected",
+      "decision_reason": "僅展示對應的合成資料契約。",
+      "notes": [
+        "虛構測試資料，未做畫面驗收。"
+      ],
+      "partition_id": "part",
+      "unit_value": 10,
+      "representation": "aggregate_count"
+    }
+  }
+}

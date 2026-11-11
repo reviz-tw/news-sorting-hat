@@ -1,0 +1,306 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "table",
+  "label": "比較表／矩陣",
+  "availability": "supported",
+  "block_type": "table",
+  "reference": "skills/news-presentation/references/forms/08-table.md",
+  "evidence_requirements": "有共同維度的比較材料，各格保留條件及來源；未知、不適用、不可比須區分。",
+  "description": "依共同維度並列選項、事實或質性條件，讓讀者逐格核對。",
+  "evidence_kinds": [],
+  "validation": "各列與欄名等寬；每格至少一筆證據，並包含於區塊引用。",
+  "rendering": "按 columns、rows 的原順序排版，以各格 evidence_ids 連回來源。",
+  "input_mapping": "data.columns 依顯示順序列欄名。rows 為列陣列，每列按欄位順序提供各格的 text 及 evidence_ids。",
+  "use_when": "共同維度、說法、條件或證據可並列，對照有助回答本角色問題時。",
+  "$defs": {
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "module_id": {
+          "const": "table"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "columns": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 2
+            },
+            "rows": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "evidence_ids": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "uniqueItems": true,
+                      "minItems": 1
+                    }
+                  },
+                  "required": [
+                    "text",
+                    "evidence_ids"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 2
+              },
+              "minItems": 1
+            }
+          },
+          "required": [
+            "columns",
+            "rows"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "module_id",
+        "id",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "frontend_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "const": "table"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "columns": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 2
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "evidence_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "uniqueItems": true,
+                  "minItems": 1
+                }
+              },
+              "required": [
+                "text",
+                "evidence_ids"
+              ],
+              "additionalProperties": false
+            },
+            "minItems": 2
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "columns",
+        "rows"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "example": {
+    "input": {
+      "module_id": "table",
+      "id": "b1",
+      "title": "開放時段",
+      "section_ids": [
+        "s1"
+      ],
+      "evidence_ids": [
+        "e1"
+      ],
+      "decision": "visual_selected",
+      "decision_reason": "並列場館及其開放時段。",
+      "notes": [],
+      "data": {
+        "columns": [
+          "場館",
+          "開放時段"
+        ],
+        "rows": [
+          [
+            {
+              "text": "里民中心",
+              "evidence_ids": [
+                "e1"
+              ]
+            },
+            {
+              "text": "上午",
+              "evidence_ids": [
+                "e1"
+              ]
+            }
+          ]
+        ]
+      }
+    },
+    "output": {
+      "id": "b1",
+      "type": "table",
+      "title": "開放時段",
+      "section_ids": [
+        "s1"
+      ],
+      "evidence_ids": [
+        "e1"
+      ],
+      "decision": "visual_selected",
+      "decision_reason": "並列場館及其開放時段。",
+      "notes": [],
+      "columns": [
+        "場館",
+        "開放時段"
+      ],
+      "rows": [
+        [
+          {
+            "text": "里民中心",
+            "evidence_ids": [
+              "e1"
+            ]
+          },
+          {
+            "text": "上午",
+            "evidence_ids": [
+              "e1"
+            ]
+          }
+        ]
+      ]
+    }
+  }
+}

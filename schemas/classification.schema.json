@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["status", "primary", "secondary"],
+  "properties": {
+    "status": {"enum": ["determined", "tentative", "undetermined"]},
+    "primary": {"oneOf": [{"$ref": "common.schema.json#/$defs/category"}, {"type": "null"}]},
+    "secondary": {"type": "array", "uniqueItems": true, "items": {"$ref": "common.schema.json#/$defs/category"}}
+  }
+}

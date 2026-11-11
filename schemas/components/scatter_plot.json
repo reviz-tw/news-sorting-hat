@@ -1,0 +1,392 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "scatter_plot",
+  "label": "散佈圖",
+  "availability": "supported",
+  "block_type": "scatter_plot",
+  "reference": "skills/news-presentation/references/forms/04-scatter-plot.md",
+  "evidence_requirements": "同對象、期間及母體的兩項 measurement 成對對照；相關不等於因果。",
+  "description": "觀察同批對象在兩個數值指標上的分布。",
+  "evidence_kinds": [
+    "measurement"
+  ],
+  "validation": "逐點核對對象、期間、地區與兩軸口徑，兩軸證據不同且不得缺值。",
+  "rendering": "以 points 中的兩個證據 ID 取 x/y 數值，軸標顯示 metric 與 unit。",
+  "input_mapping": "data.x_axis、y_axis 各提供 metric、unit、statistic。每個 point 提供對象 label 與兩軸的 x_evidence_id、y_evidence_id。",
+  "use_when": "需要檢視兩個數值指標之間的關係且有成對資料時。",
+  "$defs": {
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "module_id": {
+          "const": "scatter_plot"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "x_axis": {
+              "type": "object",
+              "properties": {
+                "metric": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "unit": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "statistic": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "metric",
+                "unit",
+                "statistic"
+              ],
+              "additionalProperties": false
+            },
+            "y_axis": {
+              "type": "object",
+              "properties": {
+                "metric": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "unit": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "statistic": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "metric",
+                "unit",
+                "statistic"
+              ],
+              "additionalProperties": false
+            },
+            "points": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "label": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "x_evidence_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "y_evidence_id": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "label",
+                  "x_evidence_id",
+                  "y_evidence_id"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 2
+            }
+          },
+          "required": [
+            "x_axis",
+            "y_axis",
+            "points"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "module_id",
+        "id",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "frontend_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "const": "scatter_plot"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "x_axis": {
+          "type": "object",
+          "properties": {
+            "metric": {
+              "type": "string",
+              "minLength": 1
+            },
+            "unit": {
+              "type": "string",
+              "minLength": 1
+            },
+            "statistic": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "metric",
+            "unit",
+            "statistic"
+          ],
+          "additionalProperties": false
+        },
+        "y_axis": {
+          "type": "object",
+          "properties": {
+            "metric": {
+              "type": "string",
+              "minLength": 1
+            },
+            "unit": {
+              "type": "string",
+              "minLength": 1
+            },
+            "statistic": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "metric",
+            "unit",
+            "statistic"
+          ],
+          "additionalProperties": false
+        },
+        "points": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1
+              },
+              "x_evidence_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "y_evidence_id": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "label",
+              "x_evidence_id",
+              "y_evidence_id"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 2
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "x_axis",
+        "y_axis",
+        "points"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "example": {
+    "input": {
+      "module_id": "scatter_plot",
+      "id": "scatter_plot",
+      "title": "合成示例：scatter_plot",
+      "section_ids": [
+        "sec1"
+      ],
+      "evidence_ids": [
+        "a",
+        "b",
+        "ya",
+        "yb"
+      ],
+      "decision": "visual_selected",
+      "decision_reason": "僅展示對應的合成資料契約。",
+      "notes": [
+        "虛構測試資料，未做畫面驗收。"
+      ],
+      "data": {
+        "x_axis": {
+          "metric": "案件數",
+          "unit": "件",
+          "statistic": "互斥案件分類"
+        },
+        "y_axis": {
+          "metric": "平均滿意度",
+          "unit": "分",
+          "statistic": "十分制平均"
+        },
+        "points": [
+          {
+            "label": "類別甲",
+            "x_evidence_id": "a",
+            "y_evidence_id": "ya"
+          },
+          {
+            "label": "類別乙",
+            "x_evidence_id": "b",
+            "y_evidence_id": "yb"
+          }
+        ]
+      }
+    },
+    "output": {
+      "id": "scatter_plot",
+      "type": "scatter_plot",
+      "title": "合成示例：scatter_plot",
+      "section_ids": [
+        "sec1"
+      ],
+      "evidence_ids": [
+        "a",
+        "b",
+        "ya",
+        "yb"
+      ],
+      "decision": "visual_selected",
+      "decision_reason": "僅展示對應的合成資料契約。",
+      "notes": [
+        "虛構測試資料，未做畫面驗收。"
+      ],
+      "x_axis": {
+        "metric": "案件數",
+        "unit": "件",
+        "statistic": "互斥案件分類"
+      },
+      "y_axis": {
+        "metric": "平均滿意度",
+        "unit": "分",
+        "statistic": "十分制平均"
+      },
+      "points": [
+        {
+          "label": "類別甲",
+          "x_evidence_id": "a",
+          "y_evidence_id": "ya"
+        },
+        {
+          "label": "類別乙",
+          "x_evidence_id": "b",
+          "y_evidence_id": "yb"
+        }
+      ]
+    }
+  }
+}

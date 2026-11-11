@@ -1,0 +1,89 @@
+{
+  "modules": [
+    {
+      "module_id": "text",
+      "id": "bs_goal",
+      "title": "原定目標",
+      "section_ids": [
+        "s_goal"
+      ],
+      "evidence_ids": [
+        "goal"
+      ],
+      "decision": "text_sufficient",
+      "decision_reason": "文字可保留本段角色與條件。",
+      "notes": [],
+      "data": {}
+    },
+    {
+      "module_id": "text",
+      "id": "bs_execution",
+      "title": "執行進度",
+      "section_ids": [
+        "s_execution"
+      ],
+      "evidence_ids": [
+        "execution"
+      ],
+      "decision": "text_sufficient",
+      "decision_reason": "文字可保留本段角色與條件。",
+      "notes": [],
+      "data": {}
+    },
+    {
+      "module_id": "text",
+      "id": "bs_result",
+      "title": "成果與目標",
+      "section_ids": [
+        "s_result"
+      ],
+      "evidence_ids": [
+        "goal",
+        "result"
+      ],
+      "decision": "text_sufficient",
+      "decision_reason": "文字可保留本段角色與條件。",
+      "notes": [],
+      "data": {}
+    },
+    {
+      "module_id": "bar_chart",
+      "id": "b_goal_result",
+      "title": "2024 年服務名額：目標與實際開放",
+      "section_ids": [
+        "s_result"
+      ],
+      "evidence_ids": [
+        "goal",
+        "result"
+      ],
+      "decision": "visual_selected",
+      "decision_reason": "對照同年度、同制度的目標與實際開放名額，支持尚未達標的發現。",
+      "notes": [
+        "合成資料；兩欄分別為目標與實際開放，並非時間序列。",
+        "名額不代表實際使用人數或居民生活改善。"
+      ],
+      "data": {
+        "measurement_ids": [
+          "goal",
+          "result"
+        ]
+      }
+    },
+    {
+      "module_id": "text",
+      "id": "bs_limits",
+      "title": "成效判定範圍",
+      "section_ids": [
+        "s_limits"
+      ],
+      "evidence_ids": [
+        "limit"
+      ],
+      "decision": "text_sufficient",
+      "decision_reason": "文字可保留本段角色與條件。",
+      "notes": [],
+      "data": {}
+    }
+  ]
+}

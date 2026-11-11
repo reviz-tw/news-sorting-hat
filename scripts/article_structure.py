@@ -1,15 +1,14 @@
 """Validate editorial role mappings independently of visual block selection."""
 
 
-def validate_structure(analysis, catalog, require):
+def validate_structure(analysis, profiles, require):
     structure = analysis.get("article_structure")
     if structure is None:
         return  # Legacy 0.2.0 documents; callers can require the extension.
     cls = analysis["classification"]
     selected = ([cls["primary"]] + cls["secondary"]) if cls["primary"] else ["unclassified"]
     require(structure["templates"] == selected, "Structure templates disagree with classification")
-    templates = {t["type"]: t for t in catalog["templates"] + [catalog["fallback"]]}
-    expected = {(typ, slot["id"]): slot for typ in selected for slot in templates[typ]["slots"]}
+    expected = {(profile["type"], slot["id"]): slot for profile in profiles for slot in profile["slots"]}
     sections = {s["id"]: s for s in analysis["sections"]}
     evidence = {e["id"] for e in analysis["evidence"]}
     seen_roles, seen_nodes, covered_sections, active_types = set(), set(), set(), set()

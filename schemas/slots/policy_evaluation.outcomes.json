@@ -1,0 +1,16 @@
+{
+  "type": "policy_evaluation.outcomes",
+  "id": "outcomes",
+  "role": "成果與落差",
+  "reader_question": "觀察到什麼結果、與目標差在哪？",
+  "priority": "core",
+  "evidence_requirements": "可比的成果及目標；目標不等於預測",
+  "writing_guidance": "在同一期間與統計口徑下對照實績和目標，說明落差涉及投入、服務產出或最終效果。",
+  "presentation_modules": [
+    "text",
+    "bar_chart",
+    "line_chart",
+    "table",
+    "map"
+  ]
+}

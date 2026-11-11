@@ -1,0 +1,13 @@
+{
+  "type": "data_analysis",
+  "name": "資料現況與趨勢分析",
+  "narrative_logic": "以資料支持的核心洞察開場，接著對照有來源的既有認識，說明這項發現印證、補充、修正或挑戰了什麼，再以圖表與數據展開證據、比較口徑、差異及解讀限制。",
+  "slots": [
+    "data_analysis.finding",
+    "data_analysis.knowledge_comparison",
+    "data_analysis.basis",
+    "data_analysis.patterns",
+    "data_analysis.limits"
+  ],
+  "composition_guidance": "保留 finding 作為 insight 角色的穩定 ID。data_analysis 為主類型時，summary 與第一節先用一至兩句提出資料支持的發現，再展開數值及口徑；不能只以資料清單、研究方法或圖表介紹開場。次類型時，在相應資料分析段落先提出 insight，不強迫改寫主類型的全文順序。意義須回應使用者問題，不推論未有證據的影響、因果或政策成效；無足夠資料時以可判斷範圍與缺口開場，finding 標 partial/missing，不編造洞察。 finding 後先處理 knowledge_comparison，回答這次發現與既有理解的關係，再展開詳細資料與方法。這與 basis 不同：前者比較已知觀點／研究結論，後者交代數值比較口徑。既有認識必須有來源與歸屬，不能預設全體社會、所有媒體或學界持同一看法。只有政策目標時只能說是目標，不能將目標冒充公眾預期或研究共識；來源早於新資料也不等於足以代表當時的普遍認識。對照結論若由模型整理，使用 inference 並以 based_on 連到既有說法與本次發現的證據。若差異來自口徑或母體，明示不可比，不直接宣稱舊說被推翻。缺乏既有認識材料時標 missing；只有局部材料時標 partial，說明無法判斷新意，不以常識補寫。短答可與 finding 合併一段，仍先洞察後對照；主類型不能將此核心角色標不適用，次類型僅在閱讀任務確實無需對照時可說明不適用。"
+}

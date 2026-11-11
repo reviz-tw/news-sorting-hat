@@ -1,0 +1,12 @@
+{
+  "type": "unclassified.limits",
+  "id": "limits",
+  "role": "資料限制",
+  "reader_question": "還缺什麼？",
+  "priority": "core",
+  "evidence_requirements": "具體缺口",
+  "writing_guidance": "具體列出要回答原問題還需要哪些資料，例如日期、當事方說法或統計口徑，交代缺口影響。",
+  "presentation_modules": [
+    "text"
+  ]
+}

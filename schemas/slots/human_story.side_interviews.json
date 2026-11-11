@@ -1,0 +1,19 @@
+{
+  "type": "human_story.side_interviews",
+  "id": "side_interviews",
+  "role": "側訪與他人觀察",
+  "reader_question": "家人、同事、同行或其他相關人士如何觀察當事人的經歷與選擇？哪些內容印證、補充或不同於本人自述？",
+  "priority": "conditional",
+  "evidence_requirements": "只整理已取得報導中的側訪，保留發言者、與當事人的關係、已知觀察／發言時間、觀察依據及來源；區分親身觀察、轉述與評價。說法以具歸屬的 claim 保留，印證程度依證據判斷，不因多人附和就當成獨立查證，也不替當事人推定內心。",
+  "writing_guidance": "交代側訪者與當事人的關係、親見事項及觀察時間，寫出哪些細節補充自述，哪些說法仍有歧異。",
+  "presentation_modules": [
+    "text",
+    "quote",
+    "table"
+  ],
+  "presentation_conditions": {
+    "text": "在人物故事收尾交代相關側訪、受訪者關係及其對自述的補充或差異，保留完整文字與限制。",
+    "quote": "側訪原話本身有閱讀價值，且有可核對的逐字 claim，可保留觀察者的語氣與歸屬時。",
+    "table": "多位受訪者針對同一經歷或選擇提供可對照內容，需要並列觀察角度、依據及異同時。"
+  }
+}

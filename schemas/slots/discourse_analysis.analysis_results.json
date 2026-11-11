@@ -1,0 +1,27 @@
+{
+  "type": "discourse_analysis.analysis_results",
+  "id": "analysis_results",
+  "role": "分析結果與資料",
+  "reader_question": "分析得到哪些框架、用語、分布或差異？哪些資料與例句支持這些結果？",
+  "priority": "core",
+  "evidence_requirements": "具來源的框架／主題分類、代表性原句、所屬群體與期間；量化時另附計數單位、分類方法、樣本數／分母、可比的次數或比例。區分來源既有統計與模型對摘錄的質性編碼，未取得完整語料或可靠計數時不推算頻率、趨勢或整體支持度。",
+  "writing_guidance": "並列框架、代表例句與來源；有可靠計數時補上次數、分母或比例，保留從例句到判讀的依據。",
+  "presentation_modules": [
+    "text",
+    "table",
+    "quote",
+    "bar_chart",
+    "line_chart",
+    "stacked_chart",
+    "word_cloud"
+  ],
+  "presentation_conditions": {
+    "text": "說明分析發現、來源歸屬、方法與可判斷範圍。",
+    "table": "並列框架／主題、群體、代表性例句、來源，以及已有的計數或比例；無量化資料時仍可做質性對照。",
+    "quote": "具代表性的原句有可核對逐字 claim，可顯示用語與框架差異時。",
+    "bar_chart": "有同口徑的框架／用詞計數或比例可比較時；樣本不同不可直接拿次數當支持度。",
+    "line_chart": "有同定義、同抽樣方法與可比母體的連續期間統計，符合折線圖門檻時。",
+    "stacked_chart": "分類互斥且涵蓋完整語料，有可核對總量與分項時；多標籤重疊框架不可直接堆成整體比例。",
+    "word_cloud": "有 text_term 與語料方法可補充用詞概覽時；不取代脈絡解讀或分析結果表。"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "impact_scenarios.uncertainty",
+  "id": "uncertainty",
+  "role": "不確定性",
+  "reader_question": "哪些風險能確認、哪些仍未知？",
+  "priority": "core",
+  "evidence_requirements": "推估限制與不可支持的推論",
+  "writing_guidance": "指出會改變情境結果的關鍵未知，說明目前能否判斷其規模與發生機率。",
+  "presentation_modules": [
+    "text",
+    "table"
+  ]
+}

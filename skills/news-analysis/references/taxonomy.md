@@ -23,5 +23,5 @@
 
 例如，只問「何時宣布停辦」用 event_brief；問「制度為何保護不了師生」可能用 issue_explainer + accountability。來源是調查專題，也不改變前者的簡答任務。
 
-另用 tags 保留四個獨立軸：topic（教育、交通）、method（訪談、文件比對、統計）、angle（權利保障、空間差異）、temporal（歷史回顧、事件當時、未來情境）。這些不增加主要類型。
+後續 analysis 另用 tags 保留四個獨立軸：topic（教育、交通）、method（訪談、文件比對、統計）、angle（權利保障、空間差異）、temporal（歷史回顧、事件當時、未來情境）。這些不增加主要類型。
 

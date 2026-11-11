@@ -1,0 +1,16 @@
+{
+  "type": "claim_verification.evidence_check",
+  "id": "evidence_check",
+  "role": "證據對照",
+  "reader_question": "哪些資料支持、反對或無法驗證？",
+  "priority": "core",
+  "evidence_requirements": "支持／反對證據與來源品質",
+  "writing_guidance": "以同一命題逐項對照支持、反駁和無法判斷的材料，說明原始來源、版本及證據強弱。",
+  "presentation_modules": [
+    "text",
+    "table",
+    "timeline",
+    "photo",
+    "bar_chart"
+  ]
+}

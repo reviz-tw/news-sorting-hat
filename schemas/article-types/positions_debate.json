@@ -1,0 +1,13 @@
+{
+  "type": "positions_debate",
+  "name": "立場與爭點分析",
+  "narrative_logic": "先交代議題背景、爭議起點與共同問題，限定討論版本及觀察期間，再整理各方逐時主張、同一對象的立場變化、分歧與未解處。",
+  "slots": [
+    "positions_debate.issue",
+    "positions_debate.positions",
+    "positions_debate.position_evolution",
+    "positions_debate.fault_lines",
+    "positions_debate.unresolved"
+  ],
+  "composition_guidance": "issue 保留既有角色 ID，明確作為「議題背景與共同問題」開場。positions_debate 為主類型時，先讓讀者知道發生什麼、為何形成爭議及大家在爭什麼，再進入各方主張，不直接以支持／反對名單開場。只交代理解爭點必要的背景；短答可與 positions 合併一節，但仍先背景後主張，保留兩個角色映射。作為次類型時，可共用主類型已有的背景段落，避免重複。必要背景不足時標 partial/missing，指出可確認範圍與缺口，不補造爭議起因，也不預設不同主張正在回答同一問題。觀察期間屬於 issue；positions 保留逐時主張，position_evolution 比較同一 stakeholder。人物與機構、個人意見與代組織發言分開識別；同名不足以合併。政策版本或情境不同先判斷可比性，不因措辭不同判定轉向。不把最晚檢索到的一筆說法稱為目前立場。"
+}

@@ -1,0 +1,19 @@
+{
+  "type": "event_context.other_perspectives",
+  "id": "other_perspectives",
+  "role": "其他方觀點",
+  "reader_question": "其他參與者、受影響者或相關人士如何理解事件經過、關鍵轉折與影響？有哪些補充或分歧？",
+  "priority": "conditional",
+  "evidence_requirements": "與事件脈絡直接相關、具來源及歸屬的主張與解釋，保留發言者身分、與事件的關係、已知發言時間及觀察依據。區分親歷敘述、事後評價與因果主張，交代補充、共通點或分歧；未知資訊不補造，觀點不能直接升格為已確認的經過或原因。",
+  "writing_guidance": "讓相關參與者或受影響者說明如何理解同一事件，保留身分、時間與說法歸屬；關鍵分歧也反映在重建段落。",
+  "presentation_modules": [
+    "text",
+    "quote",
+    "table"
+  ],
+  "presentation_conditions": {
+    "text": "收尾交代其他方對事件經過、轉折或影響的理解及其來源與限制。",
+    "quote": "原話措辭有閱讀價值，且有具歸屬、可核對的逐字 claim 時。",
+    "table": "多方對同一事件或轉折有可對照的觀點，適合並列發言者、已知時間、主張與依據時。"
+  }
+}

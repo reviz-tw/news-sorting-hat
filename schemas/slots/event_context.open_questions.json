@@ -1,0 +1,14 @@
+{
+  "type": "event_context.open_questions",
+  "id": "open_questions",
+  "role": "脈絡缺口",
+  "reader_question": "哪段時間或說法尚有爭議？",
+  "priority": "conditional",
+  "evidence_requirements": "缺漏紀錄、相異說法與歸屬",
+  "writing_guidance": "明列妨礙重建的時間空白或互相衝突的記載，指出哪些事件相對順序仍無法確定。",
+  "presentation_modules": [
+    "text",
+    "table",
+    "quote"
+  ]
+}

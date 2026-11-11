@@ -1,0 +1,14 @@
+{
+  "type": "policy_evaluation.attribution",
+  "id": "attribution",
+  "role": "歸因與限制",
+  "reader_question": "能否將結果歸因於政策？",
+  "priority": "core",
+  "evidence_requirements": "評估設計、背景因素與限制",
+  "writing_guidance": "檢視評估方法及可能干擾因素，說明資料能否把結果歸因於政策，列出缺少的對照或追蹤。",
+  "presentation_modules": [
+    "text",
+    "table",
+    "quote"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "photo",
+  "label": "照片",
+  "availability": "planning_only",
+  "block_type": null,
+  "reference": "skills/news-presentation/references/presentation-modules.md",
+  "evidence_requirements": "只有已提供、可追溯的真實照片資產才可規劃；須有出處、授權／使用條件、拍攝時間與地點的已知範圍、圖說、替代文字及驗證狀態。照片只能支持畫面可確認的內容，不能用生成或示意影像充作調查證據；未知資訊不補造。目前 RAG／presentation 尚無照片資產契約，不能輸出 photo block。",
+  "description": "規劃能提供現場或文件細節的有來源照片。",
+  "evidence_kinds": [],
+  "validation": "現有契約無照片資產輸入；收到 photo 模組計畫即拒絕輸出。",
+  "rendering": "僅供規劃，沒有前端區塊。",
+  "input_mapping": "尚無可提交的模組輸入。",
+  "use_when": "有可追溯照片能呈現人物、現場、物件或文件細節時；目前僅供規劃，不能生成 photo block。",
+  "$defs": {
+    "input_schema": false,
+    "frontend_schema": false
+  }
+}

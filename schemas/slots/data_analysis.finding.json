@@ -1,0 +1,20 @@
+{
+  "type": "data_analysis.finding",
+  "id": "finding",
+  "role": "核心洞察（insight）",
+  "reader_question": "資料最值得注意的發現是什麼，對本次問題有何意義？",
+  "priority": "core",
+  "evidence_requirements": "由可比較數據支持的趨勢、差距、集中、轉折或例外，附關鍵數值、對象與期間；推論連到依據，不把相關性寫成因果；不足時明示無法形成可靠洞察",
+  "writing_guidance": "以一至兩句提出能回答問題的核心發現，附關鍵數值、期間與比較對象；把解釋限制在資料涵蓋的人群與範圍。",
+  "presentation_modules": [
+    "text",
+    "line_chart",
+    "bar_chart",
+    "stacked_chart",
+    "scatter_plot",
+    "bubble_chart",
+    "unit_chart",
+    "map",
+    "treemap"
+  ]
+}

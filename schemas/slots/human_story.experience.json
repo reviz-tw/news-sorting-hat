@@ -1,0 +1,15 @@
+{
+  "type": "human_story.experience",
+  "id": "experience",
+  "role": "經歷與選擇",
+  "reader_question": "在上述背景與處境下，當事人經歷了什麼、面臨哪些選項，又作了什麼選擇？",
+  "priority": "core",
+  "evidence_requirements": "有來源的實際經歷、選項與行動，帶歸屬的原話及理由；動機只依當事人陳述或有來源的材料交代，不能從背景替當事人推定心理或選擇原因。",
+  "writing_guidance": "按當事人經歷的順序寫出具體情境、可選的做法與實際選擇。將自述的動機歸屬給本人。",
+  "presentation_modules": [
+    "text",
+    "quote",
+    "photo",
+    "timeline"
+  ]
+}

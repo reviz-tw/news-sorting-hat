@@ -1,0 +1,13 @@
+{
+  "type": "comparative_analysis.dimensions",
+  "id": "dimensions",
+  "role": "共同維度",
+  "reader_question": "在相同維度下，各對象如何？",
+  "priority": "core",
+  "evidence_requirements": "共同欄位、單位、基準與明示缺值",
+  "writing_guidance": "逐一設定共同維度、單位與基準，為每個對象填入可追溯的數值或條件，註明未知及不適用項。",
+  "presentation_modules": [
+    "text",
+    "table"
+  ]
+}

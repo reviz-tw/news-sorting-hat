@@ -33,7 +33,7 @@ class VisualizationTests(unittest.TestCase):
                     "word_cloud", "treemap"}
         self.assertEqual({x["id"] for x in catalog["visualizations"]}, expected)
         variants = load_json(ROOT / "schemas/presentation.schema.json")["properties"]["blocks"]["items"]["oneOf"]
-        actual = [x["properties"]["type"]["const"] for x in variants]
+        actual = [Path(x["$ref"].split("#")[0]).stem for x in variants]
         self.assertEqual(set(actual), expected | {"text", "quote"})
         self.assertEqual(len(actual), 15)
         skill = (ROOT / "skills/news-presentation/SKILL.md").read_text()

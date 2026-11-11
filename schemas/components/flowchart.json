@@ -1,0 +1,257 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "flowchart",
+  "label": "流程圖",
+  "availability": "supported",
+  "block_type": "flowchart",
+  "reference": "skills/news-presentation/references/forms/10-flowchart.md",
+  "evidence_requirements": "process_step/process_link：有來源的步驟與連結，同範圍、版本與程序性質，一入口且所有節點可到出口。",
+  "description": "說明同一版本程序中的步驟、選擇與出口。",
+  "evidence_kinds": [
+    "process_step",
+    "process_link"
+  ],
+  "validation": "核對單一入口、可達出口、分支條件、端點、版本及規則性質。",
+  "rendering": "依 node_ids/edge_ids 取步驟與連結，顯示條件、例外和適用範圍。",
+  "input_mapping": "data.node_ids 指向 process_step，edge_ids 指向 process_link；來源連結的 from_id、to_id 決定箭頭端點。",
+  "use_when": "需要理解有來源的程序、步驟或分支，且有逐筆節點與連結時。",
+  "$defs": {
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "module_id": {
+          "const": "flowchart"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "node_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 2
+            },
+            "edge_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            }
+          },
+          "required": [
+            "node_ids",
+            "edge_ids"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "module_id",
+        "id",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "frontend_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "const": "flowchart"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "node_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 2
+        },
+        "edge_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "node_ids",
+        "edge_ids"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "example": {
+    "input": {
+      "module_id": "flowchart",
+      "id": "flowchart",
+      "title": "合成示例：flowchart",
+      "section_ids": [
+        "sec1"
+      ],
+      "evidence_ids": [
+        "start",
+        "check",
+        "end",
+        "p1",
+        "p2"
+      ],
+      "decision": "visual_selected",
+      "decision_reason": "僅展示對應的合成資料契約。",
+      "notes": [
+        "虛構測試資料，未做畫面驗收。"
+      ],
+      "data": {
+        "node_ids": [
+          "start",
+          "check",
+          "end"
+        ],
+        "edge_ids": [
+          "p1",
+          "p2"
+        ]
+      }
+    },
+    "output": {
+      "id": "flowchart",
+      "type": "flowchart",
+      "title": "合成示例：flowchart",
+      "section_ids": [
+        "sec1"
+      ],
+      "evidence_ids": [
+        "start",
+        "check",
+        "end",
+        "p1",
+        "p2"
+      ],
+      "decision": "visual_selected",
+      "decision_reason": "僅展示對應的合成資料契約。",
+      "notes": [
+        "虛構測試資料，未做畫面驗收。"
+      ],
+      "node_ids": [
+        "start",
+        "check",
+        "end"
+      ],
+      "edge_ids": [
+        "p1",
+        "p2"
+      ]
+    }
+  }
+}

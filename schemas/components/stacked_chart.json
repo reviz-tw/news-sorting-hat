@@ -1,0 +1,239 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "stacked_chart",
+  "label": "堆疊圖",
+  "availability": "supported",
+  "block_type": "stacked_chart",
+  "reference": "skills/news-presentation/references/forms/03-stacked-chart.md",
+  "evidence_requirements": "partition：有來源的完整互斥分項與總量，數值可加總且比較口徑一致。",
+  "description": "對照多組整體的構成或各分項的占比。",
+  "evidence_kinds": [
+    "partition",
+    "measurement"
+  ],
+  "validation": "總量為正；分項互斥完整且可加總；總量、分項與 partition 都在區塊引用內。",
+  "rendering": "依 mode 顯示絕對量或以各組有來源的總量換算百分比。",
+  "input_mapping": "data.partition_ids 依組別排列，mode 指定絕對量或百分比。每個 partition 的 total_id 與 member_ids 從 analysis.evidence 取值。",
+  "use_when": "需要同時觀察總量與分項組成，且分項完整互斥時。",
+  "$defs": {
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "module_id": {
+          "const": "stacked_chart"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "enum": [
+                "absolute",
+                "percentage"
+              ]
+            },
+            "partition_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            }
+          },
+          "required": [
+            "mode",
+            "partition_ids"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "module_id",
+        "id",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "frontend_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "const": "stacked_chart"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "mode": {
+          "enum": [
+            "absolute",
+            "percentage"
+          ]
+        },
+        "partition_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "mode",
+        "partition_ids"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "example": {
+    "input": {
+      "module_id": "stacked_chart",
+      "id": "stacked_chart",
+      "title": "合成示例：stacked_chart",
+      "section_ids": [
+        "sec1"
+      ],
+      "evidence_ids": [
+        "part",
+        "total",
+        "a",
+        "b"
+      ],
+      "decision": "visual_selected",
+      "decision_reason": "僅展示對應的合成資料契約。",
+      "notes": [
+        "虛構測試資料，未做畫面驗收。"
+      ],
+      "data": {
+        "mode": "absolute",
+        "partition_ids": [
+          "part"
+        ]
+      }
+    },
+    "output": {
+      "id": "stacked_chart",
+      "type": "stacked_chart",
+      "title": "合成示例：stacked_chart",
+      "section_ids": [
+        "sec1"
+      ],
+      "evidence_ids": [
+        "part",
+        "total",
+        "a",
+        "b"
+      ],
+      "decision": "visual_selected",
+      "decision_reason": "僅展示對應的合成資料契約。",
+      "notes": [
+        "虛構測試資料，未做畫面驗收。"
+      ],
+      "mode": "absolute",
+      "partition_ids": [
+        "part"
+      ]
+    }
+  }
+}

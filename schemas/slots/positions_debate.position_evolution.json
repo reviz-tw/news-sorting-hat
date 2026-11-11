@@ -1,0 +1,14 @@
+{
+  "type": "positions_debate.position_evolution",
+  "id": "position_evolution",
+  "role": "立場的時間與變化",
+  "reader_question": "同一 stakeholder 對同一爭點的立場是否隨時間改變？改變的是結論、條件、理由還是討論對象？",
+  "priority": "core",
+  "evidence_requirements": "同一 stakeholder、同一爭點的逐時主張與來源；區分改變、一致、條件改變、不可比與資料不足。只有單一時間點或日期不明時，明說無法判定，不把沉默當一致。",
+  "writing_guidance": "取同一對象針對同一爭點的主張，核對發言日期及條件後再評估變化。只有一個時間點時交代比較缺口。",
+  "presentation_modules": [
+    "text",
+    "table",
+    "timeline"
+  ]
+}

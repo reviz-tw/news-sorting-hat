@@ -1,0 +1,13 @@
+{
+  "type": "claim_verification",
+  "name": "說法查證與證據釐清",
+  "narrative_logic": "先交代事件緣由與查證背景，讓讀者理解說法出現的情境及查證必要性，再界定待查說法、對照證據，提出有限定的結論與判定邊界。",
+  "slots": [
+    "claim_verification.event_background",
+    "claim_verification.claim",
+    "claim_verification.evidence_check",
+    "claim_verification.assessment",
+    "claim_verification.scope_limits"
+  ],
+  "composition_guidance": "claim_verification 為主類型時，摘要與正文開頭先用精簡背景交代事件緣由及查證情境，再引出具體待查說法，不直接以待查引文或真假判定取代背景。event_background 回答事件如何引出查證，claim 界定具體要核對的命題與範圍，兩者避免重複。短答可合併同一 section/node，但保留兩個角色映射且先背景後說法；為次類型時可共用主類型已交代的背景。只保留理解查證必要的前情，不要求長篇歷史；背景僅有部分來源時標 partial，必要背景完全缺乏時標 missing，說明目前只能確認的情境，繼續核對有來源的主張。缺背景不能視為不適用，更不能反推或編造緣由。若事件本身就是待查內容，開頭須以具歸屬的說法或問題描述，不先宣稱事件已發生。"
+}

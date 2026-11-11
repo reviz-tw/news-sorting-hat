@@ -1,0 +1,279 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "bar_chart",
+  "label": "長條圖",
+  "availability": "supported",
+  "block_type": "bar_chart",
+  "reference": "skills/news-presentation/references/forms/02-bar-chart.md",
+  "evidence_requirements": "measurement：至少兩個同期間、同地區與統計口徑的類別數值；零基線，明示目標／實際等性質。",
+  "description": "比較同期間不同類別的量值。",
+  "evidence_kinds": [
+    "measurement"
+  ],
+  "validation": "至少兩個非空值，類別不重複，期間、指標、地區、單位及口徑一致。",
+  "rendering": "使用零基線，依 points 順序列出類別、數值與單位。",
+  "input_mapping": "data.measurement_ids 依類別顯示順序排列。程式取 category 作為 points[].x，取原量測值並補 zero_baseline=true。",
+  "use_when": "同口徑的數量差異有助回答本角色問題，且類別可比較時。",
+  "$defs": {
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "module_id": {
+          "const": "bar_chart"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "measurement_ids": {
+              "type": "array",
+              "uniqueItems": true,
+              "minItems": 2,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "required": [
+            "measurement_ids"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "module_id",
+        "id",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "frontend_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "const": "bar_chart"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "metric": {
+          "type": "string",
+          "minLength": 1
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "region": {
+          "type": "string",
+          "minLength": 1
+        },
+        "statistic": {
+          "type": "string",
+          "minLength": 1
+        },
+        "zero_baseline": {
+          "const": true
+        },
+        "points": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "x": {
+                "type": "string",
+                "minLength": 1
+              },
+              "value": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "evidence_id": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "x",
+              "value",
+              "evidence_id"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 2
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "metric",
+        "unit",
+        "region",
+        "statistic",
+        "zero_baseline",
+        "points"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "example": {
+    "input": {
+      "module_id": "bar_chart",
+      "id": "b_goal_result",
+      "title": "2024 年服務名額：目標與實際開放",
+      "section_ids": [
+        "s_result"
+      ],
+      "evidence_ids": [
+        "goal",
+        "result"
+      ],
+      "decision": "visual_selected",
+      "decision_reason": "對照同年度、同制度的目標與實際開放名額，支持尚未達標的發現。",
+      "notes": [
+        "合成資料；兩欄分別為目標與實際開放，並非時間序列。",
+        "名額不代表實際使用人數或居民生活改善。"
+      ],
+      "data": {
+        "measurement_ids": [
+          "goal",
+          "result"
+        ]
+      }
+    },
+    "output": {
+      "id": "b_goal_result",
+      "type": "bar_chart",
+      "title": "2024 年服務名額：目標與實際開放",
+      "section_ids": [
+        "s_result"
+      ],
+      "evidence_ids": [
+        "goal",
+        "result"
+      ],
+      "decision": "visual_selected",
+      "decision_reason": "對照同年度、同制度的目標與實際開放名額，支持尚未達標的發現。",
+      "notes": [
+        "合成資料；兩欄分別為目標與實際開放，並非時間序列。",
+        "名額不代表實際使用人數或居民生活改善。"
+      ],
+      "zero_baseline": true,
+      "points": [
+        {
+          "x": "年度目標",
+          "value": 100,
+          "evidence_id": "goal"
+        },
+        {
+          "x": "年底實際開放",
+          "value": 80,
+          "evidence_id": "result"
+        }
+      ],
+      "metric": "服務名額",
+      "unit": "個",
+      "region": "示例市",
+      "statistic": "同一制度下可提供服務的核定名額"
+    }
+  }
+}

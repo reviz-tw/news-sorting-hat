@@ -1,0 +1,238 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "word_cloud",
+  "label": "文字雲",
+  "availability": "supported",
+  "block_type": "word_cloud",
+  "reference": "skills/news-presentation/references/forms/12-word-cloud.md",
+  "evidence_requirements": "text_term：語料範圍、方法與群體已知；沒有計數只能等大字，不視為民意比例。",
+  "description": "概覽已界定語料的用詞或主題。",
+  "evidence_kinds": [
+    "text_term"
+  ],
+  "validation": "詞項唯一且出現於語料；核對期間、語言、樣本及方法。加權模式需要正權重與已知樣本數。",
+  "rendering": "presence 使用等大字級，加權模式依同單位數值呈現，附語料說明。",
+  "input_mapping": "data.term_ids 指向 text_term；依 mode 選擇呈現有無、詞頻或主題權重，方法、樣本和單位取自證據。",
+  "use_when": "觀察語料用詞／主題有助回答此角色，且方法與語料範圍可交代時。",
+  "$defs": {
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "module_id": {
+          "const": "word_cloud"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "enum": [
+                "frequency",
+                "presence",
+                "topic"
+              ]
+            },
+            "term_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 2
+            }
+          },
+          "required": [
+            "mode",
+            "term_ids"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "module_id",
+        "id",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "frontend_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "const": "word_cloud"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "mode": {
+          "enum": [
+            "frequency",
+            "presence",
+            "topic"
+          ]
+        },
+        "term_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 2
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "mode",
+        "term_ids"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "example": {
+    "input": {
+      "module_id": "word_cloud",
+      "id": "word_cloud",
+      "title": "合成示例：word_cloud",
+      "section_ids": [
+        "sec1"
+      ],
+      "evidence_ids": [
+        "t1",
+        "t2"
+      ],
+      "decision": "visual_selected",
+      "decision_reason": "僅展示對應的合成資料契約。",
+      "notes": [
+        "虛構測試資料，未做畫面驗收。"
+      ],
+      "data": {
+        "mode": "frequency",
+        "term_ids": [
+          "t1",
+          "t2"
+        ]
+      }
+    },
+    "output": {
+      "id": "word_cloud",
+      "type": "word_cloud",
+      "title": "合成示例：word_cloud",
+      "section_ids": [
+        "sec1"
+      ],
+      "evidence_ids": [
+        "t1",
+        "t2"
+      ],
+      "decision": "visual_selected",
+      "decision_reason": "僅展示對應的合成資料契約。",
+      "notes": [
+        "虛構測試資料，未做畫面驗收。"
+      ],
+      "mode": "frequency",
+      "term_ids": [
+        "t1",
+        "t2"
+      ]
+    }
+  }
+}

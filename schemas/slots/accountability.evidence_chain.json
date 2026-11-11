@@ -1,0 +1,19 @@
+{
+  "type": "accountability.evidence_chain",
+  "id": "evidence_chain",
+  "role": "調查內容與證據鏈",
+  "reader_question": "查了哪些材料、如何核對，哪些證據能支持或削弱質疑，能證明到什麼程度？",
+  "priority": "core",
+  "evidence_requirements": "有來源的文件、紀錄、數據、訪談與已報導的查證方法；逐項連結質疑、支持證據、交叉核對結果、反證與證明界線。事實用 fact／measurement 等，受訪者說法用 claim，模型推論用 inference 並列 based_on；未提供查證方法時明說，不虛構實地調查或獨立驗證。",
+  "writing_guidance": "按查核順序列材料與交叉核對方式，交代每一步證明了什麼、是否有反證，以及哪一環仍缺材料。",
+  "presentation_modules": [
+    "text",
+    "table",
+    "timeline",
+    "network_graph",
+    "flowchart",
+    "line_chart",
+    "bar_chart",
+    "photo"
+  ]
+}

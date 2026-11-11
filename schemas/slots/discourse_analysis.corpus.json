@@ -1,0 +1,13 @@
+{
+  "type": "discourse_analysis.corpus",
+  "id": "corpus",
+  "role": "語料範圍",
+  "reader_question": "分析的是哪些文本與群體？",
+  "priority": "core",
+  "evidence_requirements": "來源、期間、語言、樣本與選取方法",
+  "writing_guidance": "界定語料來源、期間、語言、抽樣方法與分析單位，交代重複文本和收錄範圍如何影響解讀。",
+  "presentation_modules": [
+    "text",
+    "table"
+  ]
+}

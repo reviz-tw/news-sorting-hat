@@ -1,0 +1,4 @@
+interface:
+  display_name: "新聞文章架構分類"
+  short_description: "依問題與檢索材料判定文章主次類型"
+  default_prompt: "使用 $news-classification 回傳分類 JSON。"

@@ -1,28 +1,17 @@
 ---
 name: news-presentation
-description: 依已統整且可追溯來源的新聞 analysis，按原始選型指引的 13 種視覺化與文字、引文基本區塊，輸出前端 presentation JSON。用於新聞問答呈現規劃、證據驅動的視覺化選型，以及純文字或資料不足時的降級。
+description: 依已統整且可追溯來源的新聞 analysis，按原始選型指引的 13 種視覺化與文字、引文基本區塊，產生供程式編譯為前端 presentation 的模組輸入計畫。用於新聞問答呈現規劃、證據驅動的視覺化選型，以及純文字或資料不足時的降級。
 ---
 
 # 新聞呈現規劃
 
-先讀 [Slot 呈現模組](references/presentation-modules.md)、[共用模組目錄](../../schemas/presentation-modules.json)、[元件選型](references/components.md)、[共用契約](../../references/contract.md) 與 [presentation schema](../../schemas/presentation.schema.json)。先取得 news-analysis 的有效產物；不要從零散原文直接挑圖。
+取得已通過分類與來源比對的 analysis、`workflow.py resolve` 合併後的 profiles 與[元件索引](../../schemas/components.json)。輸出模組計畫，交由本地程式編譯成前端資料。
 
-## 流程
-
-1. 原樣保留輸入 analysis，不改分類、文字、數值、證據或來源。若發現矛盾或缺少證據，交回第一階段修正，不在呈現階段偷偷改稿。
-2. 先讀 analysis.article_structure（若有）的角色、reader_question 與缺口，再辨識各節閱讀任務，決定「圖比文字多提供什麼」。保留文章結構原樣，以任務組織 blocks，允許多段合成表格或一段拆成文字加圖；文章角色不直接決定圖種。
-3. 選型只用 [元件清單](../../schemas/components.json) 的 13 種視覺化，另保留 text、quote，共 15 種。題材或主類型只能提供方向；實際證據結構、比較口徑及資料品質才決定能畫什麼。選中圖種前，讀下方對應的原指引擷取。
-   依節點 roles 查對應 slot 的 presentation_modules，按 module_id 讀取模組目錄的門檻與 availability，合併重疊候選後選擇。候選不全選，planning_only（如 photo）不可輸出為 block；保留完整文字並說明目前呈現限制。
-   同時讀取 [文章模板](../../schemas/article-templates.json) 的 presentation_hints（若有）。event_context 的 sequence／turning_points 優先對應 timeline：事件先後有閱讀價值且至少有兩筆具可靠日期的 event 時，產出時間軸並保留文字。證據不足時以 text + insufficient_data 說明缺口；文字已足夠時記錄 text_sufficient 與原因，不因類型名稱硬補事件或日期。other_perspectives 收尾依候選採文字、引文或比較表，觀點與已確認事件分開呈現；影響事件重建的分歧也須保留在相關段落，不將 claim 直接填入 timeline。
-   主／次類型含 data_analysis 時，依模板的 minimum_chart_count 規則，先呈現 insight 與 knowledge_comparison 的文字（可合併一節；缺對照來源則明示），再安排至少一張符合資料門檻、支持該發現的數量圖表；有多個獨立閱讀問題時可用多張，各自說明用途與證據。資料充分不能以 text_sufficient 全文略過圖表。無適用圖種時用 text + insufficient_data 說明具體缺口，可輔以表格；不能用無關圖或表格湊數。原文有數字但 analysis 未抽取 measurement 時，交回第一階段補整理。
-   主／次類型含 comparative_analysis 時，依模板優先製作比較表：對象為列、共同維度為欄，各格帶來源與條件，區分未知、不適用與不可比；依需要轉置或拆表。保留範圍介紹、關鍵差異與適用條件的完整文字。只有極短且文字足夠的比較才以 text_sufficient 說明不製表；缺乏對象或維度則用 insufficient_data。
-   accountability 的 evidence_chain 可搭配資訊圖表：依模板選 table、timeline、network_graph、flowchart 或數量圖表，說明調查材料及核對關係。只使用既有元件，逐項帶來源；不虛構調查步驟、不以箭頭暗示未證實因果、不由關係圖推定違法，保留反證與證明界線。
-   discourse_analysis 通常以 table 展示框架、群體／時期、例句與來源的分析結果；量化資料符合門檻時另用長條、折線或堆疊圖。缺可靠統計時保留質性表與引文，明示不能量化；文字雲只補充概覽，不取代脈絡分析。
-4. 為每個區塊填 section_ids、evidence_ids、decision 與 decision_reason。用 text_sufficient 表示文字足夠，visual_selected 表示採用圖表／表格／時間軸，insufficient_data 表示值得視覺化但證據不足。引文屬文字呈現。
-5. 保留每一節的完整文字：至少以一個 text 區塊原樣對應該節，圖表作補充。文字是可獨立閱讀的完整回答；避免只剩圖表而遺漏限定條件。
-6. 依選中圖種的資料契約引用第一階段證據。折線、長條複製 measurement 的數值；散佈圖配對同對象的兩個 measurement；比例圖引用 partition；流程與網絡引用逐筆節點／連結；地圖引用 location；詞雲引用 text_term。圖所需結構若第一階段未提供，交回補整理或降級文字，不能在第二階段新增事實。表格每格有來源，時間軸保留 event 原日期與文字；quote 保留 verbatim claim 的歸屬與原文。
-7. 缺值用 null，線段斷開並在 notes 說明；不得補點、插值或將未知當零。不要把不同粒度的統計、預測與實測、目標與成果串成同一條線。不能製圖時使用文字並解釋缺少哪些資料。
-8. 輸出 `kind: presentation`、`schema_version: 0.2.0`，包含原樣 analysis 與 blocks。提交程式驗證後才交 Web render；不要把模型自行宣告「已驗證」當成驗證結果。
+1. 依 article_structure.nodes 的 roles 對到 profiles 中的 slots，以 reader_question、use_when、evidence_requirements 與實際材料選型。依類型層級的 presentation_hints 決定主要呈現方式與資料不足時的處理；合併角色可共用同一張圖。完整選型原則見 [slot 呈現模組](references/presentation-modules.md)。
+2. 每一節安排一個完整 text，可加上有證據的圖表或逐字引文。data_analysis 在可繪圖時依提示提供數量圖表；comparative_analysis 優先以表格並列共同維度。呈現順序保留洞察、前情及限制。
+3. 依元件索引的 files[MODULE_ID] 開啟獨立 JSON，讀取 $defs 中的輸入與前端 schema 及 example 的成對範例。也可執行 `python3 scripts/workflow.py module MODULE_ID` 讀取該模組的 input_schema、frontend_schema、驗證條件與渲染說明。依 input_schema 填寫 module_id、id、title、section_ids、evidence_ids、decision、decision_reason、notes 和 data。以 visual_selected 標記圖表，以 text_sufficient 或 insufficient_data 區分文字足夠或證據不足。照片目前僅供規劃。
+4. 證據取自所引段落，數值、期間、條件與引文可回查 analysis。折線／長條使用 measurement_ids，時間軸使用 event_ids；text 的 data 填空物件。其餘模組的 data 專屬欄位與前端對應，見[逐模組對照](../../README.md#模組輸入與前端格式)。資料不足時用文字交代具體限制；若 RAG 已有材料而 analysis 遺漏，交回內容整理步驟。
+5. 只輸出依閱讀順序排列的 `{"modules":[…]}`，交給 `workflow.py build`。程式會驗證模組專屬輸入、以原始 analysis 組裝 blocks 並驗證整份 [presentation](../../schemas/presentation.schema.json)。[合成計畫範例](../../examples/mixed-policy.modules.json)可供核對。
 
 ## 按需讀取的原指引
 

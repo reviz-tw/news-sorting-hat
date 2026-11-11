@@ -1,0 +1,14 @@
+{
+  "type": "claim_verification.claim",
+  "id": "claim",
+  "role": "待查說法",
+  "reader_question": "在上述事件背景下，具體要查證哪個說法？誰在何時提出，原文及限定條件是什麼？",
+  "priority": "core",
+  "evidence_requirements": "原始說法、提出者、時間與限定條件",
+  "writing_guidance": "精確界定可查驗的命題，保留提出者、時點、原句與限定條件，必要時拆開多個命題。",
+  "presentation_modules": [
+    "text",
+    "quote",
+    "photo"
+  ]
+}

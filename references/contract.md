@@ -2,20 +2,22 @@
 
 ## 目錄
 
-- 輸入與兩階段輸出
+- 輸入與各步驟輸出
 - 證據與可追溯性
 - 呈現與程式驗證
 - 模型呼叫與維護
 
-## 輸入與兩階段輸出
+## 輸入與各步驟輸出
 
 `schemas/` 採 JSON Schema Draft 2020-12，所有物件拒絕未定義欄位。輸入 `kind: rag_input`，含 question、as_of、sources；source 含 id、title、url、published_at、updated_at、chunks（id、locator、text）。時間未知用 null；source URL 可 null。chunk ID 在同一 source 內唯一。
 
-第一階段 `kind: analysis`，含 question、as_of、status、classification、title、summary、sections、sources、evidence、limitations。status 為 complete、partial、insufficient；complete 表示目前材料足以回答問題，不代表取得所有歷史新聞。classification.status 為 determined、tentative、undetermined；最後一種 primary 必須 null，其餘必須是類型 ID。
+分類端先依 [classification schema](../schemas/classification.schema.json) 只輸出 status、primary、secondary。以 `workflow.py resolve` 載入選取的類型描述檔。
+
+內容整理步驟輸出 `kind: analysis`，含 question、as_of、status、classification、title、summary、sections、sources、evidence、limitations。status 為 complete、partial、insufficient；complete 表示目前材料足以回答問題，不代表取得所有歷史新聞。classification.status 為 determined、tentative、undetermined；最後一種 primary 必須 null，其餘必須是類型 ID。
 
 目前分類清單為 12 類，已移除 service_guidance；主／次分類使用此舊值的文件會被驗證器拒絕。須重新判定分類與角色映射，不能只刪除標籤或固定換成另一類。無法歸入保留類型時，使用 undetermined、primary=null，若有 article_structure 則採 unclassified。
 
-第二階段 `kind: presentation`，含完整且不可變的 analysis 與 blocks。這避免把中間證據另丟掉，也讓前端能由 evidence_id 查來源。兩階段獨立呼叫時，應用程式要比對前後 analysis 相等；CLI 用 `--analysis` 執行此檢查。
+呈現模型輸出 [modules 計畫](../examples/mixed-policy.modules.json)，依各個模組的 input_schema 填資料。本地端用 `workflow.py build` 編譯為 `kind: presentation`，含完整且不可變的 analysis 與 blocks。這避免把中間證據另丟掉，也讓前端能由 evidence_id 查來源。前端另行接收資料時，應用程式要比對前後 analysis 相等；CLI 用 `--analysis` 執行此檢查。
 
 `section_ids` 是區塊涵蓋的原稿節；`evidence_ids` 是區塊用到的證據。每節至少有一個 text 區塊精確保留其 body 與 evidence_ids。其他區塊可涵蓋多節或補充一節。原稿摘要由前端直接讀 analysis.summary，來源查 analysis.sources；不用另產一份無來源摘要。
 
@@ -23,7 +25,7 @@
 
 立場材料的 claim 可帶 position 擴充，保留 stakeholder_id/name、identity_basis、issue_id/issue、statement_date、context、stance、conditions、reasons；新版 positions_debate 分析應提供。statement_date 是實際發言日期，未知為 null，不能代填刊出日期。stance_comparison 是新增證據類型，含共同 stakeholder_id/issue_id、至少兩個 claim_ids 與 assessment（changed/consistent/conditional/not_comparable/insufficient）。text 說明分析及適用範圍，refs 保留所有被比較主張的來源。前三種判斷要求日期已知、可排序且精度區間不重疊；具體規則見分析 Skill 的 positions-over-time.md。舊 claim 可不含 position，維持 0.2.0 相容性。
 
-分析輸出可帶 `article_structure` 擴充（新版分析 Skill 必須產出，舊 0.2.0 文件仍可省略）。格式見 [article-structure.schema.json](../schemas/article-structure.schema.json)，角色定義見 [article-templates.json](../schemas/article-templates.json)。使用 `--require-structure` 強制新版整合輸出此欄位。
+分析輸出可帶 `article_structure` 擴充（新版分析 Skill 必須產出，舊 0.2.0 文件仍可省略）。格式見 [article-structure.schema.json](../schemas/article-structure.schema.json)，角色定義由[分類索引](../schemas/article-templates.json)的 file 指向個別描述檔。使用 `--require-structure` 強制新版整合輸出此欄位。
 
 `templates` 依序對應 primary、secondary；無法分類時使用 unclassified。`nodes` 按閱讀順序排列，每個節點含 roles(type/slot)、reader_question、status、reason、section_ids、evidence_ids。角色可合併或映射多節，但每個所選模板 slot 都要且只要交代一次。主類型 core 不可標不適用，無資料時標 missing。covered/partial 需成稿與證據；missing 不得宣稱有支持證據；not_applicable 沒有映射。所有段落均須被結構涵蓋。
 
@@ -46,7 +48,7 @@
 | process_link | from_id、to_id、label、conditions、exceptions、rule_basis、version | 程序箭頭；rule_basis 區分 regulation／practice／case，不能把個案變成普遍規則 |
 | text_term | term、corpus、period、language、sample_size、sampling、method、group、present、value、unit | 語料與計數／分類方法；僅有出現與否時 value/unit=null，未知樣本數可 null，但不能用權重字級 |
 
-文字內容與數值不能靠 ID 驗證為真；驗證器只確認來源結構與精確的引文包含關係，語意支持程度仍須評估。來源可信度、樣本代表性、因果、日期版本與數值抽取正確性由第一階段判斷。
+文字內容與數值不能靠 ID 驗證為真；驗證器只確認來源結構與精確的引文包含關係，語意支持程度仍須評估。來源可信度、樣本代表性、因果、日期版本與數值抽取正確性由內容整理步驟判斷。
 
 limitations 含 code（missing_data、incomparable、conflicting、historical、uncertain）、text、evidence_ids。不能取得足夠證據時允許空 evidence_ids，但要寫明缺口。sections 在完全無證據且 status=insufficient 時才可空引用，其餘必須有證據。
 
@@ -54,11 +56,11 @@ limitations 含 code（missing_data、incomparable、conflicting、historical、
 
 ## 呈現與程式驗證
 
-模板 slots.presentation_modules 是候選定義，以 module_id 參照 [presentation-modules.json](../schemas/presentation-modules.json)；不新增 analysis 或 block 欄位。15 個 supported 模組對應現有 block type；photo 為 planning_only，沒有合法 block_type。呈現階段只能輸出 supported 模組，不把候選數量視為必要區塊數量。
+文章類型檔的 slots 是 slot 類型 ID 陣列，依序讀取 schemas/slots/<slot_type>.json。各 slot 檔的 presentation_modules 是候選元件 ID 陣列，presentation_conditions 保存此 slot 的專屬適用條件。resolve 依順序查[元件索引](../schemas/components.json)與[呈現規則](../schemas/presentation-modules.json)，將元件預設或 slot 專屬的 use_when 展開到 profiles[].slots[].presentation_modules。15 個 supported 模組對應現有 block type；photo 為 planning_only，沒有合法 block_type。呈現階段只能輸出 supported 模組，不把候選數量視為必要區塊數量。
 
 各 blocks 共用 id、type、title、section_ids、evidence_ids、decision、decision_reason、notes。資料欄位由 type 決定：text.body、table.columns/rows、chart.points、timeline.events、quote.evidence_id。schema 以 oneOf 白名單限制元件。
 
-data_analysis 的編輯要求為 insight 先行，資料符合元件門檻時呈現至少一張、可多張數量圖表，詳見 article-templates.json 的 presentation_hints。表格可補充精確數字，但不替代此要求；無適用圖種時以 text 的 insufficient_data 與 decision_reason 明示缺口。這些是 Skill 的語意規則，既有 schema／驗證器不自動判斷洞察品質及圖表需求是否完整。
+data_analysis 的編輯要求為 insight 先行，資料符合元件門檻時呈現至少一張、可多張數量圖表，詳見呈現規則的 article_rules.data_analysis.presentation_hints。表格可補充精確數字，但不替代此要求；無適用圖種時以 text 的 insufficient_data 與 decision_reason 明示缺口。這些是 Skill 的語意規則，既有 schema／驗證器不自動判斷洞察品質及圖表需求是否完整。
 
 原 HTML 的 13 種圖表與欄位映射見 [components.json](../schemas/components.json)、[元件選型](../skills/news-presentation/references/components.md)。加上 text、quote，共 15 種 block type。12 種新聞回答分類與這組圖表分類互相獨立。
 
@@ -74,11 +76,11 @@ data_analysis 的編輯要求為 insight 先行，資料符合元件門檻時呈
 | word_cloud | mode、term_ids | frequency/topic 為可比較的正數權重，presence 為等大字；保留樣本、語言、方法、群體與語料範圍 |
 | treemap | nodes、partition_ids | 每 node 含 id/parent_id/measurement_id；單根、無循環、所有內部節點各有分配，逐層核對子項等於父項 |
 
-新增元件直接引用證據，避免再複製一套可能漂移的數字。partition 本身也需來源，不以加總通過推定分類真的互斥完整。自動檢查能核對算術與連結，不能自動驗證法規分支是否完整、語料方法是否適當或區界是否與報導期間相容；這些仍需第一階段與應用程式核對。
+新增元件直接引用證據，避免再複製一套可能漂移的數字。partition 本身也需來源，不以加總通過推定分類真的互斥完整。自動檢查能核對算術與連結，不能自動驗證法規分支是否完整、語料方法是否適當或區界是否與報導期間相容；這些仍需內容整理步驟與應用程式核對。
 
 可視化必須引用證據子集，區塊的證據也必須來自其 section_ids 的證據聯集。時間軸至少兩個事件；圖表至少三個／兩個非缺值；表格儲存格需有證據；引文需能在 cited chunk 原文找到相同字串。
 
-CLI 使用標準函式庫，實作本 repo 所用的 schema 關鍵字：`$ref`（僅同目錄檔案／$defs）、`type`、`const`、`enum`、`properties`、`required`、`additionalProperties`、`items`、`minItems`、`uniqueItems`、`minLength`、`pattern`、`oneOf`。拒絕未知關鍵字，避免規格擴充後靜默漏驗。它不是通用 JSON Schema 引擎；正式環境可換完整 Draft 2020-12 引擎，仍保留語意驗證。
+CLI 使用標準函式庫，實作本 repo 所用的 schema 關鍵字：`$ref`（限 schemas/ 內相對路徑與 JSON Pointer）、`type`、`const`、`enum`、`properties`、`required`、`additionalProperties`、`items`、`minItems`、`uniqueItems`、`minLength`、`pattern`、`oneOf`。支援布林 schema，例如 planning_only 元件以 false 拒絕輸入輸出。拒絕未知關鍵字，避免規格擴充後靜默漏驗。它不是通用 JSON Schema 引擎；正式環境可換完整 Draft 2020-12 引擎，仍保留語意驗證。
 
 額外檢查所有 ID、日期是否合法、圖表數值是否等於證據、序列的指標／單位／地區／統計方式、時間排序與連續期間、表格欄寬、區塊涵蓋、引用閉合與 inference 無循環。錯誤即拒絕渲染。只接受有限 JSON 數字，不接受 NaN／Infinity。
 
@@ -86,6 +88,6 @@ schema 語法與引用驗證不能代替編輯品質測試；下一步需用真�
 
 ## 模型呼叫與維護
 
-預設一次呼叫，同時載入兩份 Skill，依順序先建立 analysis 再建立 blocks；不要求輸出私有推理過程。複雜情況可兩次呼叫並保留第一階段結果。不要承諾降低固定比例延遲；以實測決定拆分策略。
+先獨立取得分類，再由本地端解析描述檔，分別進行有來源的內容整理與模組選擇。取得各模組輸入和前端 JSON Schema 使用 `workflow.py module MODULE_ID`。實例、命令與逐模組欄位見 [README](../README.md)。
 
-版本改動同時維護 schemas、Skills、驗證器與 fixtures，新增元件後才開放 renderer。尚未定義串流事件協定；開啟 token streaming 不等於能安全逐區塊 render。
+沿用既有 0.2.0 前端契約。變更時同步更新描述檔、schema、模型指令、驗證器與範例。前端以整份驗證通過的 presentation 為渲染單位。

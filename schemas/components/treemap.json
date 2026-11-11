@@ -1,0 +1,317 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "treemap",
+  "label": "矩形樹圖",
+  "availability": "supported",
+  "block_type": "treemap",
+  "reference": "skills/news-presentation/references/forms/13-treemap.md",
+  "evidence_requirements": "partition：單一整體與互斥分項，各層總數可核對，不重複計算父類。",
+  "description": "呈現單一總量與多層子項的構成。",
+  "evidence_kinds": [
+    "partition",
+    "measurement"
+  ],
+  "validation": "樹只有一個根，節點連通無環；每個內部節點的 partition 與直接子項一致，逐層核對加總。",
+  "rendering": "以葉節點量值分配面積，沿 parent_id 分組，避免重複加計父項。",
+  "input_mapping": "data.nodes 逐筆列 id、parent_id、measurement_id，根的 parent_id 填 null。partition_ids 引用每個內部節點的完整分配。",
+  "use_when": "需要呈現單一整體的組成或層級，且各層分項可加總時。",
+  "$defs": {
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "module_id": {
+          "const": "treemap"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "nodes": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "parent_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "measurement_id": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "id",
+                  "parent_id",
+                  "measurement_id"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 3
+            },
+            "partition_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            }
+          },
+          "required": [
+            "nodes",
+            "partition_ids"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "module_id",
+        "id",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "frontend_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "const": "treemap"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "parent_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "measurement_id": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "id",
+              "parent_id",
+              "measurement_id"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 3
+        },
+        "partition_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "nodes",
+        "partition_ids"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "example": {
+    "input": {
+      "module_id": "treemap",
+      "id": "treemap",
+      "title": "合成示例：treemap",
+      "section_ids": [
+        "sec1"
+      ],
+      "evidence_ids": [
+        "part",
+        "total",
+        "a",
+        "b"
+      ],
+      "decision": "visual_selected",
+      "decision_reason": "僅展示對應的合成資料契約。",
+      "notes": [
+        "虛構測試資料，未做畫面驗收。"
+      ],
+      "data": {
+        "nodes": [
+          {
+            "id": "root",
+            "parent_id": null,
+            "measurement_id": "total"
+          },
+          {
+            "id": "childa",
+            "parent_id": "root",
+            "measurement_id": "a"
+          },
+          {
+            "id": "childb",
+            "parent_id": "root",
+            "measurement_id": "b"
+          }
+        ],
+        "partition_ids": [
+          "part"
+        ]
+      }
+    },
+    "output": {
+      "id": "treemap",
+      "type": "treemap",
+      "title": "合成示例：treemap",
+      "section_ids": [
+        "sec1"
+      ],
+      "evidence_ids": [
+        "part",
+        "total",
+        "a",
+        "b"
+      ],
+      "decision": "visual_selected",
+      "decision_reason": "僅展示對應的合成資料契約。",
+      "notes": [
+        "虛構測試資料，未做畫面驗收。"
+      ],
+      "nodes": [
+        {
+          "id": "root",
+          "parent_id": null,
+          "measurement_id": "total"
+        },
+        {
+          "id": "childa",
+          "parent_id": "root",
+          "measurement_id": "a"
+        },
+        {
+          "id": "childb",
+          "parent_id": "root",
+          "measurement_id": "b"
+        }
+      ],
+      "partition_ids": [
+        "part"
+      ]
+    }
+  }
+}

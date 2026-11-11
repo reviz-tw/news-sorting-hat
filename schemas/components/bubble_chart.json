@@ -1,0 +1,230 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "bubble_chart",
+  "label": "比例氣泡圖",
+  "availability": "supported",
+  "block_type": "bubble_chart",
+  "reference": "skills/news-presentation/references/forms/05-bubble-chart.md",
+  "evidence_requirements": "同口徑的非負 measurement，以面積同比縮放；目前基礎版位置無數值意義。",
+  "description": "以面積比較多個類別的量級。",
+  "evidence_kinds": [
+    "measurement"
+  ],
+  "validation": "核對口徑、期間、具名且唯一的類別；數值非負，至少一筆大於零。",
+  "rendering": "以面積同比例換算半徑，標示原始數值與單位。",
+  "input_mapping": "data.measurement_ids 列出各類別數值的證據 ID，scale 使用 area。",
+  "use_when": "比較非負數量規模，面積比較有助理解而不需精確排名時。",
+  "$defs": {
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "module_id": {
+          "const": "bubble_chart"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "scale": {
+              "const": "area"
+            },
+            "measurement_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 2
+            }
+          },
+          "required": [
+            "scale",
+            "measurement_ids"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "module_id",
+        "id",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "frontend_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "const": "bubble_chart"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "scale": {
+          "const": "area"
+        },
+        "measurement_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 2
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "scale",
+        "measurement_ids"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "example": {
+    "input": {
+      "module_id": "bubble_chart",
+      "id": "bubble_chart",
+      "title": "合成示例：bubble_chart",
+      "section_ids": [
+        "sec1"
+      ],
+      "evidence_ids": [
+        "a",
+        "b"
+      ],
+      "decision": "visual_selected",
+      "decision_reason": "僅展示對應的合成資料契約。",
+      "notes": [
+        "虛構測試資料，未做畫面驗收。"
+      ],
+      "data": {
+        "scale": "area",
+        "measurement_ids": [
+          "a",
+          "b"
+        ]
+      }
+    },
+    "output": {
+      "id": "bubble_chart",
+      "type": "bubble_chart",
+      "title": "合成示例：bubble_chart",
+      "section_ids": [
+        "sec1"
+      ],
+      "evidence_ids": [
+        "a",
+        "b"
+      ],
+      "decision": "visual_selected",
+      "decision_reason": "僅展示對應的合成資料契約。",
+      "notes": [
+        "虛構測試資料，未做畫面驗收。"
+      ],
+      "scale": "area",
+      "measurement_ids": [
+        "a",
+        "b"
+      ]
+    }
+  }
+}

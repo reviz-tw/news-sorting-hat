@@ -1,0 +1,14 @@
+{
+  "type": "event_brief.event_lead",
+  "id": "event_lead",
+  "role": "事件核心",
+  "reader_question": "發生了什麼，涉及誰、何時、何地？",
+  "priority": "core",
+  "evidence_requirements": "可追溯的人事時地物；未知項保留未知",
+  "writing_guidance": "首句寫出誰在什麼情境做了什麼，接著補理解事件必需的時間、地點。若事件本身有爭議，首句保留消息歸屬。",
+  "presentation_modules": [
+    "text",
+    "photo",
+    "map"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "type": "human_story.person_context",
+  "id": "person_context",
+  "role": "人物背景與處境",
+  "reader_question": "當事人是誰，故事發生時處於什麼生活或工作情境，為何與這件事有關？",
+  "priority": "core",
+  "evidence_requirements": "有來源且與故事相關的身分／角色、生活或工作背景、時間與處境。只選理解後續經歷及選擇所必需的資訊，不要求完整履歷；沿用來源的姓名、化名或匿名方式，不補造年齡、家庭、職業、場景或內心。區分故事發生時與報導當時的身分，未知背景明示。",
+  "writing_guidance": "用材料可確認的身分、工作或生活處境介紹當事人，聚焦與這段經歷直接相關的背景。",
+  "presentation_modules": [
+    "text",
+    "photo"
+  ],
+  "presentation_conditions": {
+    "text": "在敘述經歷之前，以精簡文字交代當事人背景、當時處境及其與事件的關係；即使搭配照片仍需文字說明。"
+  }
+}

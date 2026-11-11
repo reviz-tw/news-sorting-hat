@@ -1,0 +1,198 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "quote",
+  "label": "引文",
+  "availability": "supported",
+  "block_type": "quote",
+  "reference": "skills/news-presentation/references/components.md",
+  "evidence_requirements": "具 speaker 歸屬、verbatim=true 且可核對原文的 claim；不將模型摘要當引文。",
+  "description": "呈現特定發言者值得保留的原話與措辭。",
+  "evidence_kinds": [
+    "claim"
+  ],
+  "validation": "核對 verbatim、speaker、原文片段與引用歸屬。",
+  "rendering": "以 evidence_id 取得 claim.text、speaker 與 refs，並列發言者及來源。",
+  "input_mapping": "data.evidence_id 指向 analysis.evidence 中的逐字 claim；前端用同一 ID 查 text、speaker 和 refs。",
+  "use_when": "原話的措辭或歸屬本身有閱讀價值，且有可核對的逐字主張時。",
+  "$defs": {
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "module_id": {
+          "const": "quote"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "evidence_id": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "evidence_id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "module_id",
+        "id",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "frontend_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "const": "quote"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "evidence_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "evidence_id"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "example": {
+    "input": {
+      "module_id": "quote",
+      "id": "b1",
+      "title": "居民的說法",
+      "section_ids": [
+        "s1"
+      ],
+      "evidence_ids": [
+        "e1"
+      ],
+      "decision": "text_sufficient",
+      "decision_reason": "保留受訪居民的原話。",
+      "notes": [],
+      "data": {
+        "evidence_id": "e1"
+      }
+    },
+    "output": {
+      "id": "b1",
+      "type": "quote",
+      "title": "居民的說法",
+      "section_ids": [
+        "s1"
+      ],
+      "evidence_ids": [
+        "e1"
+      ],
+      "decision": "text_sufficient",
+      "decision_reason": "保留受訪居民的原話。",
+      "notes": [],
+      "evidence_id": "e1"
+    }
+  }
+}

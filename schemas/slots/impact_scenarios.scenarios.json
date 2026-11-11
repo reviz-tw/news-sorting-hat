@@ -1,0 +1,15 @@
+{
+  "type": "impact_scenarios.scenarios",
+  "id": "scenarios",
+  "role": "條件情境",
+  "reader_question": "哪些假設改變結果？",
+  "priority": "conditional",
+  "evidence_requirements": "有來源的假設、情境與預測區間",
+  "writing_guidance": "逐一列出情境的必要前提、可能變動的條件及相應結果，註明預測或推估的提出者與期間。",
+  "presentation_modules": [
+    "text",
+    "table",
+    "line_chart",
+    "bar_chart"
+  ]
+}

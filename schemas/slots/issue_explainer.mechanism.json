@@ -1,0 +1,14 @@
+{
+  "type": "issue_explainer.mechanism",
+  "id": "mechanism",
+  "role": "作用機制",
+  "reader_question": "制度或現象如何運作？",
+  "priority": "core",
+  "evidence_requirements": "步驟、規則或作用關係；勿由相關推因果",
+  "writing_guidance": "從一個適用情境出發，交代條件、行動者、處理步驟與結果，每個關鍵連結都對應材料。",
+  "presentation_modules": [
+    "text",
+    "flowchart",
+    "network_graph"
+  ]
+}

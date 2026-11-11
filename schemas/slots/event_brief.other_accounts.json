@@ -1,0 +1,19 @@
+{
+  "type": "event_brief.other_accounts",
+  "id": "other_accounts",
+  "role": "其他說法與回應",
+  "reader_question": "關於這件事，還有哪些與理解事實直接相關的不同說法、當事方回應或更正？",
+  "priority": "conditional",
+  "evidence_requirements": "具歸屬與來源的相關主張、回應或更正，保留已知發言時間及其與事件事實的關係。指出相異、補充或待確認之處；沒有相關材料時不編造反方，也不把未檢索到回應寫成當事人拒絕或尚未回應。",
+  "writing_guidance": "以具名或可辨識身分介紹回應者、回應的具體事項與來源。更正涉及核心事實時，同步修正開頭。",
+  "presentation_modules": [
+    "text",
+    "quote",
+    "table"
+  ],
+  "presentation_conditions": {
+    "text": "以簡短收尾交代具歸屬的其他說法、回應及確認程度，保留完整文字。",
+    "quote": "原話措辭本身有閱讀價值，且有可核對的逐字 claim 時。",
+    "table": "有多個與事件直接相關的說法，需要按共同問題並列發言者、時間、內容與確認程度時。"
+  }
+}

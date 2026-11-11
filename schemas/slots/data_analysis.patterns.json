@@ -1,0 +1,20 @@
+{
+  "type": "data_analysis.patterns",
+  "id": "patterns",
+  "role": "差異與例外",
+  "reader_question": "哪些分布、轉折或離群值得說明？",
+  "priority": "conditional",
+  "evidence_requirements": "逐筆或彙總數據及來源",
+  "writing_guidance": "呈現分組差異、趨勢與例外，為每一項判讀附同口徑的數值，說明缺值及其影響。",
+  "presentation_modules": [
+    "text",
+    "line_chart",
+    "bar_chart",
+    "stacked_chart",
+    "scatter_plot",
+    "bubble_chart",
+    "unit_chart",
+    "map",
+    "treemap"
+  ]
+}

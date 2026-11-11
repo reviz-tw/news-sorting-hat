@@ -1,0 +1,14 @@
+{
+  "type": "issue_explainer.perspectives",
+  "id": "perspectives",
+  "role": "不同意見與觀點",
+  "reader_question": "不同當事人或機構如何理解這個議題，主張與理由有何差異？",
+  "priority": "conditional",
+  "evidence_requirements": "帶歸屬的各方主張、理由、支持證據及相關利益或處境；爭議議題須評估此角色，只有單一觀點時明示涵蓋缺口，不補造另一方、不假設各方證據強度相同。",
+  "writing_guidance": "逐一交代各方對同一機制的理解與理由，指出共同點及分歧所依據的前提，標明材料尚未涵蓋的觀點。",
+  "presentation_modules": [
+    "text",
+    "table",
+    "quote"
+  ]
+}

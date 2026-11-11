@@ -1,0 +1,14 @@
+{
+  "type": "issue_explainer.context",
+  "id": "context",
+  "role": "理解背景",
+  "reader_question": "理解機制還需要哪些背景？",
+  "priority": "conditional",
+  "evidence_requirements": "歷史或制度脈絡",
+  "writing_guidance": "補充影響讀者理解制度或問題成因的歷史背景，界定本次解釋所涵蓋的時期與場域。",
+  "presentation_modules": [
+    "text",
+    "timeline",
+    "photo"
+  ]
+}

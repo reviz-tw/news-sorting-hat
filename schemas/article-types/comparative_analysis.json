@@ -1,0 +1,11 @@
+{
+  "type": "comparative_analysis",
+  "name": "對象與方案比較",
+  "narrative_logic": "界定比較問題、對象與共同維度，以比較表並列，再解讀關鍵差異、適用條件與不可比之處。",
+  "slots": [
+    "comparative_analysis.comparison_scope",
+    "comparative_analysis.dimensions",
+    "comparative_analysis.differences",
+    "comparative_analysis.applicability"
+  ]
+}

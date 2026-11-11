@@ -1,0 +1,242 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "timeline",
+  "label": "事件時間軸",
+  "availability": "supported",
+  "block_type": "timeline",
+  "reference": "skills/news-presentation/references/forms/09-timeline.md",
+  "evidence_requirements": "至少兩筆有可靠日期的 event；保留來源日期精度，不用刊出日代填。",
+  "description": "按事件實際發生的時間重建過程與轉折。",
+  "evidence_kinds": [
+    "event"
+  ],
+  "validation": "至少兩個不同的事件 ID，日期可排序，文字和日期必須等於原事件。",
+  "rendering": "依 events 順序顯示原有日期精度、事件文字與來源。",
+  "input_mapping": "data.event_ids 依事件日期排列。程式逐筆複製事件 date、text 與證據 ID。",
+  "use_when": "已知事件的先後有助理解此角色，且至少兩個 event 有可靠日期時。",
+  "$defs": {
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "module_id": {
+          "const": "timeline"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "event_ids": {
+              "type": "array",
+              "uniqueItems": true,
+              "minItems": 2,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "required": [
+            "event_ids"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "module_id",
+        "id",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "frontend_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "const": "timeline"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "text_sufficient",
+            "visual_selected",
+            "insufficient_data"
+          ]
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string",
+                "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?$"
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence_id": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "date",
+              "text",
+              "evidence_id"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 2
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "section_ids",
+        "evidence_ids",
+        "decision",
+        "decision_reason",
+        "notes",
+        "events"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "example": {
+    "input": {
+      "module_id": "timeline",
+      "id": "b1",
+      "title": "場館開放紀錄",
+      "section_ids": [
+        "s1"
+      ],
+      "evidence_ids": [
+        "e1",
+        "e2"
+      ],
+      "decision": "visual_selected",
+      "decision_reason": "依日期整理兩項已確認的事件。",
+      "notes": [],
+      "data": {
+        "event_ids": [
+          "e1",
+          "e2"
+        ]
+      }
+    },
+    "output": {
+      "id": "b1",
+      "type": "timeline",
+      "title": "場館開放紀錄",
+      "section_ids": [
+        "s1"
+      ],
+      "evidence_ids": [
+        "e1",
+        "e2"
+      ],
+      "decision": "visual_selected",
+      "decision_reason": "依日期整理兩項已確認的事件。",
+      "notes": [],
+      "events": [
+        {
+          "evidence_id": "e1",
+          "date": "2024-01",
+          "text": "中心開始整修。"
+        },
+        {
+          "evidence_id": "e2",
+          "date": "2024-03",
+          "text": "中心恢復開放。"
+        }
+      ]
+    }
+  }
+}

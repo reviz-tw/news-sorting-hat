@@ -1,0 +1,14 @@
+{
+  "type": "accountability.investigation_summary",
+  "id": "investigation_summary",
+  "role": "調查摘要",
+  "reader_question": "這次調查發現什麼問題、為何值得關注，目前能確認到哪裡？",
+  "priority": "core",
+  "evidence_requirements": "後文證據鏈可支持的主要發現與相關範圍；明確區分已確認事實、具歸屬的指控、模型推論及待釐清事項；不把調查摘要寫成有罪判決",
+  "writing_guidance": "以短段落說明調查發現、最直接依據及尚不能確定之處，讓讀者先掌握問題的輕重與範圍。",
+  "presentation_modules": [
+    "text",
+    "table",
+    "photo"
+  ]
+}

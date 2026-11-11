@@ -1,0 +1,11 @@
+{
+  "type": "policy_evaluation",
+  "name": "政策執行與成效檢視",
+  "narrative_logic": "以目標為基準，對照執行與結果，界定成效歸因。",
+  "slots": [
+    "policy_evaluation.goals",
+    "policy_evaluation.implementation",
+    "policy_evaluation.outcomes",
+    "policy_evaluation.attribution"
+  ]
+}

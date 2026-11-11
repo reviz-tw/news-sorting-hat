@@ -88,5 +88,23 @@
   "basic_blocks": [
     "text",
     "quote"
-  ]
+  ],
+  "files": {
+    "text": "components/text.json",
+    "quote": "components/quote.json",
+    "line_chart": "components/line_chart.json",
+    "bar_chart": "components/bar_chart.json",
+    "stacked_chart": "components/stacked_chart.json",
+    "scatter_plot": "components/scatter_plot.json",
+    "bubble_chart": "components/bubble_chart.json",
+    "unit_chart": "components/unit_chart.json",
+    "map": "components/map.json",
+    "table": "components/table.json",
+    "timeline": "components/timeline.json",
+    "flowchart": "components/flowchart.json",
+    "network_graph": "components/network_graph.json",
+    "word_cloud": "components/word_cloud.json",
+    "treemap": "components/treemap.json",
+    "photo": "components/photo.json"
+  }
 }

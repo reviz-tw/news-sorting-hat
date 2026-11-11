@@ -50,48 +50,62 @@ def canonical(value):
     return json.dumps(value, ensure_ascii=False, sort_keys=True, allow_nan=False)
 
 
-def check_schema(schema):
+def resolve_schema_ref(schema, filename):
+    if isinstance(schema, bool) or "$ref" not in schema:
+        return schema, filename
+    filepart, _, pointer = schema["$ref"].partition("#")
+    target = (filename.parent / filepart).resolve() if filepart else filename.resolve()
+    require(SCHEMAS.resolve() in target.parents, "Schema references must stay in schemas/")
+    resolved = load_json(target)
+    if pointer:
+        require(pointer.startswith("/"), "Only JSON pointer references are supported")
+        for token in pointer[1:].split("/"):
+            resolved = resolved[token.replace("~1", "/").replace("~0", "~")]
+    return resolved, target
+
+
+def check_schema(schema, filename=None):
     """Fail closed when a schema introduces unsupported keywords, even in unused branches."""
+    if isinstance(schema, bool):
+        return
     require(not (set(schema) - KEYWORDS),
             "Unsupported schema keywords: " + str(set(schema) - KEYWORDS))
+    if "$ref" in schema and filename is not None:
+        check_schema(*resolve_schema_ref(schema, filename))
     for key in ("$defs", "properties"):
         for child in schema.get(key, {}).values():
-            check_schema(child)
+            check_schema(child, filename)
     if "items" in schema:
-        check_schema(schema["items"])
+        check_schema(schema["items"], filename)
     for child in schema.get("oneOf", []):
-        check_schema(child)
+        check_schema(child, filename)
 
 
 def schema_validate(value, schema, filename, path="$"):
+    if isinstance(schema, bool):
+        require(schema, path + ": schema does not accept a value")
+        return
     if "$ref" in schema:
-        filepart, _, pointer = schema["$ref"].partition("#")
-        target = (filename.parent / filepart).resolve() if filepart else filename
-        require(target.parent == SCHEMAS.resolve(), "Schema references must stay in schemas/")
-        resolved = load_json(target)
-        if pointer:
-            require(pointer.startswith("/"), "Only JSON pointer references are supported")
-            for token in pointer[1:].split("/"):
-                resolved = resolved[token.replace("~1", "/").replace("~0", "~")]
+        resolved, target = resolve_schema_ref(schema, filename)
         schema_validate(value, resolved, target, path)
         return
     if "oneOf" in schema:
-        variants = schema["oneOf"]
+        variants = [resolve_schema_ref(v, filename) for v in schema["oneOf"]]
         # Use the discriminant for useful error messages, while still checking uniqueness.
         matches = []
-        for variant in variants:
+        for variant, origin in variants:
             try:
-                schema_validate(value, variant, filename, path)
+                schema_validate(value, variant, origin, path)
                 matches.append(variant)
             except ValidationError:
                 pass
         if len(matches) != 1:
             if isinstance(value, dict):
-                for variant in variants:
-                    props = variant.get("properties", {})
+                for variant, origin in variants:
+                    props = variant.get("properties", {}) if isinstance(variant, dict) else {}
                     for key in ("type", "kind"):
                         if key in props and props[key].get("const") == value.get(key):
-                            schema_validate(value, variant, filename, path)
+                            schema_validate(value, variant, origin, path)
             raise ValidationError(path + ": expected exactly one allowed variant")
         return
     types = schema.get("type", [])
@@ -166,6 +180,40 @@ def validate_sources(document):
     return chunks
 
 
+def check_category_selection(cls):
+    require((cls["status"] == "undetermined") == (cls["primary"] is None),
+            "Classification status and primary disagree")
+    require(cls["primary"] not in cls["secondary"], "Primary repeated in secondary")
+    require(cls["primary"] is not None or not cls["secondary"], "Undetermined must have no secondary")
+
+
+def validate_classification(selection):
+    filename = SCHEMAS / "classification.schema.json"
+    schema_validate(selection, load_json(filename), filename)
+    check_category_selection(selection)
+    return selection
+
+
+def load_slot(slot_type):
+    require(isinstance(slot_type, str) and re.fullmatch(r"[a-z][a-z0-9_]*\.[a-z][a-z0-9_]*", slot_type),
+            "Invalid slot type")
+    slot = load_json(SCHEMAS / "slots" / (slot_type + ".json"))
+    require(slot["type"] == slot_type, "Slot type differs from filename")
+    return slot
+
+
+def selected_profiles(cls):
+    catalog = load_json(SCHEMAS / "article-templates.json")
+    entries = {t["type"]: t for t in [*catalog["templates"], catalog["fallback"]]}
+    types = [cls["primary"], *cls["secondary"]] if cls["primary"] else ["unclassified"]
+    profiles = []
+    for typ in types:
+        profile = load_json(SCHEMAS / entries[typ]["file"])
+        profile["slots"] = [load_slot(slot_type) for slot_type in profile["slots"]]
+        profiles.append(profile)
+    return profiles
+
+
 def validate_analysis(analysis, rag_input=None):
     chunks = validate_sources(analysis)
     if rag_input is not None:
@@ -207,10 +255,7 @@ def validate_analysis(analysis, rag_input=None):
     validate_extended_evidence(evidence, require, date_value)
     validate_positions(evidence, require, date_value)
     cls = analysis["classification"]
-    require((cls["status"] == "undetermined") == (cls["primary"] is None),
-            "Classification status and primary disagree")
-    require(cls["primary"] not in cls["secondary"], "Primary repeated in secondary")
-    require(cls["status"] != "undetermined" or not cls["secondary"], "Undetermined must have no secondary")
+    check_category_selection(cls)
     require(cls["status"] == "undetermined" or bool(cls["evidence_ids"]), "Classification needs evidence")
     refs_exist(cls["evidence_ids"], "classification")
     for section in sections.values():
@@ -221,7 +266,8 @@ def validate_analysis(analysis, rag_input=None):
         refs_exist(limitation["evidence_ids"], "limitation")
     require(analysis["status"] == "complete" or bool(analysis["limitations"]),
             "Partial/insufficient answer must explain limitations")
-    validate_structure(analysis, load_json(SCHEMAS / "article-templates.json"), require)
+    if "article_structure" in analysis:
+        validate_structure(analysis, selected_profiles(cls), require)
     return evidence, sections
 
 
@@ -305,25 +351,36 @@ def validate_blocks(document, evidence, sections):
     require(covered == set(sections), "Every section needs its complete text block")
 
 
-def validate(document, rag_input=None, expected_analysis=None, require_structure=False):
+def validate(document, rag_input=None, expected_analysis=None, require_structure=False,
+             expected_classification=None):
     # Validate schemas up front, including unvisited variants.
     for schema_file in SCHEMAS.glob("*.schema.json"):
-        check_schema(load_json(schema_file))
+        check_schema(load_json(schema_file), schema_file)
     require(isinstance(document, dict), "Document must be an object")
     kind = document.get("kind")
+    if kind is None:
+        require(rag_input is None and expected_analysis is None and expected_classification is None
+                and not require_structure, "Classification validation takes no comparison flags")
+        validate_classification(document)
+        return
     names = {"rag_input": "rag-input", "analysis": "analysis", "presentation": "presentation"}
     require(kind in names, "Unknown document kind")
     filename = SCHEMAS / (names[kind] + ".schema.json")
     schema_validate(document, load_json(filename), filename)
     if kind == "rag_input":
-        require(rag_input is None and expected_analysis is None, "Input validation takes no comparison flags")
+        require(rag_input is None and expected_analysis is None and expected_classification is None,
+                "Input validation takes no comparison flags")
         validate_sources(document)
         return
     if rag_input is not None:
         require(rag_input.get("kind") == "rag_input", "--input must be rag_input")
         validate(rag_input)
     analysis = document["analysis"] if kind == "presentation" else document
-    if require_structure:
+    if expected_classification is not None:
+        validate_classification(expected_classification)
+        require(all(analysis["classification"][key] == value
+                    for key, value in expected_classification.items()), "Analysis changed classification")
+    if require_structure or expected_classification is not None:
         require("article_structure" in analysis, "Article structure is required")
     evidence, sections = validate_analysis(analysis, rag_input)
     if expected_analysis is not None:
@@ -339,12 +396,17 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("document", type=Path)
     parser.add_argument("--input", type=Path, help="Original RAG input to compare")
-    parser.add_argument("--analysis", type=Path, help="Original first-stage output to compare")
+    parser.add_argument("--classification", type=Path, help="Original classification-only response")
+    parser.add_argument("--analysis", type=Path, help="Original analysis to compare")
     parser.add_argument("--require-structure", action="store_true", help="Require the editorial structure extension")
     args = parser.parse_args()
     try:
+        selection = None
+        if args.classification:
+            selection = validate_classification(load_json(args.classification))
         validate(load_json(args.document), load_json(args.input) if args.input else None,
-                 load_json(args.analysis) if args.analysis else None, require_structure=args.require_structure)
+                 load_json(args.analysis) if args.analysis else None, require_structure=args.require_structure,
+                 expected_classification=selection)
     except (ValidationError, OSError, ValueError, KeyError, TypeError, RecursionError) as exc:
         print("INVALID: " + str(exc), file=sys.stderr)
         return 1

@@ -1,0 +1,14 @@
+{
+  "type": "positions_debate.fault_lines",
+  "id": "fault_lines",
+  "role": "分歧與共通點",
+  "reader_question": "分歧是事實、價值還是方案選擇？",
+  "priority": "core",
+  "evidence_requirements": "對照主張的依據；共識不能自行推定",
+  "writing_guidance": "按爭點對齊各方主張，指出共享前提與真正相異的條件，保留無法放在同一尺度比較的觀點。",
+  "presentation_modules": [
+    "text",
+    "table",
+    "quote"
+  ]
+}

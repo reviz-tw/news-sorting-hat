@@ -1,0 +1,13 @@
+{
+  "type": "issue_explainer.core_answer",
+  "id": "core_answer",
+  "role": "核心解答",
+  "reader_question": "這個議題是什麼，為何與問題有關？",
+  "priority": "core",
+  "evidence_requirements": "可支持定義與重點的材料",
+  "writing_guidance": "以讀者提問中的詞彙界定核心概念，先給可獨立理解的短答，再引入理解機制所需的術語。",
+  "presentation_modules": [
+    "text",
+    "photo"
+  ]
+}

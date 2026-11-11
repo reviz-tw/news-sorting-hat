@@ -1,133 +1,185 @@
 {
-  "module_catalog_version": "1.0.0",
-  "modules": [
-    {
-      "id": "text",
-      "label": "完整文字",
-      "availability": "supported",
-      "block_type": "text",
-      "reference": "skills/news-presentation/references/components.md",
-      "evidence_requirements": "原樣保留 analysis.sections 的完整文字、來源與限制；同一段落可承接多個角色。"
+  "module_catalog_version": "3.0.0",
+  "article_rules": {
+    "accountability": {
+      "presentation_hints": [
+        {
+          "roles": [
+            "accountability_question",
+            "evidence_chain",
+            "responsibility_response"
+          ],
+          "reader_task": "讓讀者檢視疑點、調查材料、核對方式與發現之間的關係，理解證據支持到哪裡。",
+          "selection_rule": "資訊圖表為可選的證據呈現方式，不是新的 block type。依實際證據選一至多個既有元件，各圖解答一個查證問題；完整文字保留查證方法、來源歸屬、反證與限制，不把圖示關係當成結論。",
+          "component_options": [
+            {
+              "component": "table",
+              "use_when": "對照承諾與實際、不同文件或各方說法，逐格標示來源與查證狀態。"
+            },
+            {
+              "component": "timeline",
+              "use_when": "至少兩個有可靠日期的 event 可呈現事件先後或有來源的調查進程；不推論因果。"
+            },
+            {
+              "component": "network_graph",
+              "use_when": "有逐筆 entity／relationship 可呈現權責、持股或資金往來；權重必須有專屬 measurement，不由同時出現推定關係。"
+            },
+            {
+              "component": "flowchart",
+              "use_when": "原文已交代程序或查證步驟，且可抽取 process_step／process_link 並符合流程契約；不虛構記者的調查流程。"
+            },
+            {
+              "component": "bar_chart",
+              "use_when": "同口徑數量對照能呈現可核對的落差，保留目標、實際或其他數值的性質。"
+            },
+            {
+              "component": "line_chart",
+              "use_when": "同口徑且符合連續期間門檻的數據可呈現趨勢；不得把前後差異當成因果證明。"
+            }
+          ],
+          "evidence_requirements": [
+            "逐項抽取元件所需的結構化證據，所有圖表內容可由 section_ids／evidence_ids 追到來源。",
+            "圖說及圖例區分文件紀錄、具歸屬的說法、模型推論與未知；重要反證、衝突及證明界線不能只藏在註記或略去。",
+            "只使用已定義的元件與資料契約，不輸出 infographic 類型、任意 HTML 或自造節點／箭頭。"
+          ],
+          "fallback": {
+            "component": "text",
+            "decision": "insufficient_data",
+            "reason": "值得視覺化但缺少日期、數據或逐筆關係／程序證據時，以文字交代已知證據與缺口，可用有來源的表格整理，不能補造連結或調查步驟。"
+          },
+          "text_only_exception": "證據鏈簡短、文字已清楚呈現核對關係時可採 text_sufficient，不強制製圖。"
+        }
+      ]
     },
-    {
-      "id": "quote",
-      "label": "引文",
-      "availability": "supported",
-      "block_type": "quote",
-      "reference": "skills/news-presentation/references/components.md",
-      "evidence_requirements": "具 speaker 歸屬、verbatim=true 且可核對原文的 claim；不將模型摘要當引文。"
+    "comparative_analysis": {
+      "presentation_hints": [
+        {
+          "roles": [
+            "dimensions",
+            "differences"
+          ],
+          "preferred_component": "table",
+          "reader_task": "在共同維度上並列對象或方案，辨認影響選擇的差異與取捨。",
+          "selection_rule": "主或次類型含 comparative_analysis 時，通常產出至少一張比較表。預設每列一個對象、每欄一個共同維度，首欄明示對象；維度較多時可轉置或按主題拆表，保持同一維度的值可直接對照。表格前交代比較範圍，表格後保留關鍵差異、適用情境與限制的文字解讀，不由表格自行推定最佳方案。",
+          "evidence_requirements": [
+            "至少兩個有來源的比較對象，以及至少一個對問題有用的共同維度；第一階段以 sections/evidence 保留逐項內容、條件、版本與來源。",
+            "每格附支持的 evidence_ids。來源有說明不適用或不可比時分別標記並引用；單純未取得資料標「未知／資料未提供」，不當成零、沒有或不適用，也不替空格捏造引用。",
+            "數值保留單位、期間與統計口徑；質性條件保留文字，不任意打分、加權、排名或量化。"
+          ],
+          "fallback": {
+            "component": "text",
+            "decision": "insufficient_data",
+            "reason": "缺少第二個有來源的對象或任何有意義的共同維度時，先列已知內容與缺口，不造空殼比較表。部分欄位缺漏仍可表格比較已知內容，明示未知與涵蓋範圍。"
+          },
+          "text_only_exception": "只有單一維度、極短而完整的比較，文字已可直接並列且表格沒有額外閱讀價值時，可用 text_sufficient 明示理由；不得將資料缺漏當作此例外。"
+        }
+      ]
     },
-    {
-      "id": "line_chart",
-      "label": "折線圖",
-      "availability": "supported",
-      "block_type": "line_chart",
-      "reference": "skills/news-presentation/references/forms/01-line-chart.md",
-      "evidence_requirements": "measurement：至少三個可比較非缺值，同指標、地區、統計口徑及日期精度，期間連續；缺值不得補造。"
+    "data_analysis": {
+      "presentation_hints": [
+        {
+          "roles": [
+            "finding",
+            "patterns"
+          ],
+          "minimum_chart_count": 1,
+          "applies_when": "主或次類型含 data_analysis，且至少一組相關資料符合圖種契約。",
+          "eligible_components": [
+            "line_chart",
+            "bar_chart",
+            "stacked_chart",
+            "scatter_plot",
+            "bubble_chart",
+            "unit_chart",
+            "map",
+            "treemap"
+          ],
+          "reader_task": "用圖表檢視核心洞察的數據依據，必要時再展開趨勢、群體差異、組成或關係。",
+          "selection_rule": "先呈現 insight 與既有認識對照的文字，再展開支持發現的數量圖表；兩者可共用一節。資料符合門檻時至少一張，依獨立閱讀問題增加，不設固定上限、不重複畫相同發現；多張圖各自以 section_ids、evidence_ids、decision_reason 說明用途。缺少既有認識不妨礙呈現已有數據，但須明示對照缺口。資料充分時不能只用 text_sufficient 略過圖表。",
+          "evidence_requirements": [
+            "分析階段將可繪圖數字整理成 measurement；組成與空間資料另需 partition 或 location，不能只把數字留在 fact/body。",
+            "每張圖符合元件契約，保留單位、期間、母體、統計方法、來源與缺值；不可混用不同口徑、實測與預測、目標與成果來製造趨勢。",
+            "折線圖至少三個同口徑、同精度且期間連續的非缺值；只有單點或缺少中間期間時，重新選型，不補點湊圖。"
+          ],
+          "fallback": {
+            "component": "text",
+            "decision": "insufficient_data",
+            "reason": "無任何相關數量圖表符合資料門檻時，保留可支持的洞察或明示無法判定，說明具體缺少的資料／口徑。可附來源表格，但表格、引文、時間軸不充作數量圖表配額。來源已有數字但尚未結構化時，先交回分析階段補整理，不把漏抽當成來源缺資料。"
+          }
+        }
+      ]
     },
-    {
-      "id": "bar_chart",
-      "label": "長條圖",
-      "availability": "supported",
-      "block_type": "bar_chart",
-      "reference": "skills/news-presentation/references/forms/02-bar-chart.md",
-      "evidence_requirements": "measurement：至少兩個同期間、同地區與統計口徑的類別數值；零基線，明示目標／實際等性質。"
+    "discourse_analysis": {
+      "presentation_hints": [
+        {
+          "roles": [
+            "frames",
+            "analysis_results",
+            "group_differences"
+          ],
+          "preferred_component": "table",
+          "reader_task": "檢視分析框架、用語例句、群體或時期差異及其資料依據。",
+          "selection_rule": "通常以結果表呈現框架／主題、群體／時期、例句與來源，量化資料充分時另用長條圖、折線圖或堆疊圖呈現分布與變化。文字雲只能補充用詞概覽，不能取代敘事分析與脈絡解讀。",
+          "evidence_requirements": [
+            "每筆分析結果可追到語料，明示來源既有分類或模型質性推論。",
+            "頻率與比例須有計數單位、樣本數、分母、期間及方法；不同樣本與方法不得直接比較，媒體報導數量不是民意支持度。",
+            "多重編碼允許重疊，不強制加總到100%；僅有片段時採質性表與引文，不補造數量圖。"
+          ],
+          "fallback": {
+            "component": "text",
+            "decision": "insufficient_data",
+            "reason": "缺乏量化統計時保留有來源的質性分析與結果表，說明不能判斷頻率／比例／趨勢；連質性對照也不足時只交代已知與缺口。"
+          }
+        }
+      ]
     },
-    {
-      "id": "stacked_chart",
-      "label": "堆疊圖",
-      "availability": "supported",
-      "block_type": "stacked_chart",
-      "reference": "skills/news-presentation/references/forms/03-stacked-chart.md",
-      "evidence_requirements": "partition：有來源的完整互斥分項與總量，數值可加總且比較口徑一致。"
+    "event_context": {
+      "presentation_hints": [
+        {
+          "roles": [
+            "sequence",
+            "turning_points"
+          ],
+          "preferred_component": "timeline",
+          "reader_task": "理解關鍵事件的先後、轉折及目前進展。",
+          "selection_rule": "當事件先後是本次閱讀任務且證據符合門檻時，優先產出 timeline，並保留文字解釋。",
+          "evidence_requirements": [
+            "至少兩個與問題相關、具來源及可靠事件日期的 event 證據。",
+            "日期精度沿用來源，區分事件發生、公告與報導刊出時間。",
+            "時間軸只能使用對應 sections 引用的事件；有爭議或未知日期另以文字說明。"
+          ],
+          "fallback": {
+            "component": "text",
+            "decision": "insufficient_data",
+            "reason": "日期或事件證據不足時，整理已知脈絡並列出缺口，不補造時間節點。"
+          },
+          "text_only_exception": "若使用者只需單一日期或簡短事實，文字已足夠；重新檢視主類型是否應為 event_brief，並記錄 text_sufficient。"
+        }
+      ]
     },
-    {
-      "id": "scatter_plot",
-      "label": "散佈圖",
-      "availability": "supported",
-      "block_type": "scatter_plot",
-      "reference": "skills/news-presentation/references/forms/04-scatter-plot.md",
-      "evidence_requirements": "同對象、期間及母體的兩項 measurement 成對對照；相關不等於因果。"
-    },
-    {
-      "id": "bubble_chart",
-      "label": "比例氣泡圖",
-      "availability": "supported",
-      "block_type": "bubble_chart",
-      "reference": "skills/news-presentation/references/forms/05-bubble-chart.md",
-      "evidence_requirements": "同口徑的非負 measurement，以面積同比縮放；目前基礎版位置無數值意義。"
-    },
-    {
-      "id": "unit_chart",
-      "label": "單位圖示／點陣圖",
-      "availability": "supported",
-      "block_type": "unit_chart",
-      "reference": "skills/news-presentation/references/forms/06-unit-chart.md",
-      "evidence_requirements": "partition：有完整分母、整數分項及單位值，明示餘數與換算方式。"
-    },
-    {
-      "id": "map",
-      "label": "地圖",
-      "availability": "supported",
-      "block_type": "map",
-      "reference": "skills/news-presentation/references/forms/07-map.md",
-      "evidence_requirements": "location 與 measurement 配對；座標或有版本的行政區 ID 有來源，地區一致。"
-    },
-    {
-      "id": "table",
-      "label": "比較表／矩陣",
-      "availability": "supported",
-      "block_type": "table",
-      "reference": "skills/news-presentation/references/forms/08-table.md",
-      "evidence_requirements": "有共同維度的比較材料，各格保留條件及來源；未知、不適用、不可比須區分。"
-    },
-    {
-      "id": "timeline",
-      "label": "事件時間軸",
-      "availability": "supported",
-      "block_type": "timeline",
-      "reference": "skills/news-presentation/references/forms/09-timeline.md",
-      "evidence_requirements": "至少兩筆有可靠日期的 event；保留來源日期精度，不用刊出日代填。"
-    },
-    {
-      "id": "flowchart",
-      "label": "流程圖",
-      "availability": "supported",
-      "block_type": "flowchart",
-      "reference": "skills/news-presentation/references/forms/10-flowchart.md",
-      "evidence_requirements": "process_step/process_link：有來源的步驟與連結，同範圍、版本與程序性質，一入口且所有節點可到出口。"
-    },
-    {
-      "id": "network_graph",
-      "label": "關係網絡圖",
-      "availability": "supported",
-      "block_type": "network_graph",
-      "reference": "skills/news-presentation/references/forms/11-network-graph.md",
-      "evidence_requirements": "逐筆 entity/relationship，同一觀察期間；權重另需 measurement，不由同名或共現推定連結。"
-    },
-    {
-      "id": "word_cloud",
-      "label": "文字雲",
-      "availability": "supported",
-      "block_type": "word_cloud",
-      "reference": "skills/news-presentation/references/forms/12-word-cloud.md",
-      "evidence_requirements": "text_term：語料範圍、方法與群體已知；沒有計數只能等大字，不視為民意比例。"
-    },
-    {
-      "id": "treemap",
-      "label": "矩形樹圖",
-      "availability": "supported",
-      "block_type": "treemap",
-      "reference": "skills/news-presentation/references/forms/13-treemap.md",
-      "evidence_requirements": "partition：單一整體與互斥分項，各層總數可核對，不重複計算父類。"
-    },
-    {
-      "id": "photo",
-      "label": "照片",
-      "availability": "planning_only",
-      "block_type": null,
-      "reference": "skills/news-presentation/references/presentation-modules.md",
-      "evidence_requirements": "只有已提供、可追溯的真實照片資產才可規劃；須有出處、授權／使用條件、拍攝時間與地點的已知範圍、圖說、替代文字及驗證狀態。照片只能支持畫面可確認的內容，不能用生成或示意影像充作調查證據；未知資訊不補造。目前 RAG／presentation 尚無照片資產契約，不能輸出 photo block。"
+    "positions_debate": {
+      "presentation_hints": [
+        {
+          "roles": [
+            "positions",
+            "position_evolution"
+          ],
+          "preferred_component": "table",
+          "reader_task": "按 stakeholder、發言時間、爭點、主張、理由與條件對照，保留每格來源。",
+          "evidence_requirements": [
+            "claim.position 提供身分、時間與語境；未知日期明示未知。",
+            "stance_comparison 引用可核對的逐時 claims，不只引用文章刊出日期。"
+          ],
+          "alternative_component": "timeline",
+          "alternative_condition": "若先後變化是核心閱讀任務，且已有至少兩筆可靠日期的 event 證據，可另加 timeline；不能把 claim ID 直接填入只接受 event 的時間軸。",
+          "fallback": {
+            "component": "text",
+            "decision": "insufficient_data",
+            "reason": "只取得一筆說法或日期／身分無法核對時，交代目前所知及變化無法判定。"
+          }
+        }
+      ]
     }
-  ]
+  },
+  "component_catalog": "components.json"
 }

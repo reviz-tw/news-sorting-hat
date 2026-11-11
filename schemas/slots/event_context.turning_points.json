@@ -1,0 +1,14 @@
+{
+  "type": "event_context.turning_points",
+  "id": "turning_points",
+  "role": "轉折與連結",
+  "reader_question": "哪個轉折改變後續？",
+  "priority": "conditional",
+  "evidence_requirements": "轉折證據；因果未證實須明示",
+  "writing_guidance": "挑出改變後續局勢的節點，將可觀察的前後差異與來源對原因的解釋分開交代。",
+  "presentation_modules": [
+    "text",
+    "timeline",
+    "table"
+  ]
+}

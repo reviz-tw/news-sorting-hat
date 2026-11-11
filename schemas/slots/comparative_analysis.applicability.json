@@ -1,0 +1,13 @@
+{
+  "type": "comparative_analysis.applicability",
+  "id": "applicability",
+  "role": "適用與不可比",
+  "reader_question": "哪些情況適用，哪些不能直接比較？",
+  "priority": "conditional",
+  "evidence_requirements": "對象差異、例外與適用條件",
+  "writing_guidance": "說明比較結果適用的對象與情境，指出因範圍、版本或口徑而無法直接比較的項目。",
+  "presentation_modules": [
+    "text",
+    "table"
+  ]
+}

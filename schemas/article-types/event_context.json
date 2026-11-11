@@ -1,0 +1,13 @@
+{
+  "type": "event_context",
+  "name": "事件脈絡與重建",
+  "narrative_logic": "先界定截至指定時間的狀態，重建關鍵先後與轉折，交代脈絡缺口，最後補充與事件理解相關的其他方觀點。",
+  "slots": [
+    "event_context.current_state",
+    "event_context.sequence",
+    "event_context.turning_points",
+    "event_context.open_questions",
+    "event_context.other_perspectives"
+  ],
+  "composition_guidance": "other_perspectives 為條件式收尾，納入與理解事件脈絡相關的其他參與者、受影響者或相關人士觀點，不泛收無關意見，不強配正反或等量篇幅。若必要觀點未取得，標 partial/missing 並交代來源涵蓋範圍；本題無需展開時可標 not_applicable，不由單一來源推定各方一致，也不把未取得回應寫成拒絕回應。open_questions 處理尚未釐清的時間與脈絡缺口，other_perspectives 處理具歸屬的理解與評價，重疊時可合併節點並保留兩個角色映射。若不同說法會影響事件經過、轉折或原因的理解，應在 sequence／turning_points 同步標示分歧與確認程度，不能只到文末才揭露。時間軸仍只引用符合契約的 event，觀點保留為 claim，以文字／引文／表格補充，不直接把評論畫成已確認事件。立場比較成為重要閱讀任務時搭配 positions_debate，合併重疊角色；主要問題轉為各方爭點時重新判定主類型。"
+}

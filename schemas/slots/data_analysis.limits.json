@@ -1,0 +1,13 @@
+{
+  "type": "data_analysis.limits",
+  "id": "limits",
+  "role": "解讀限制",
+  "reader_question": "這些資料不能支持哪些結論？",
+  "priority": "core",
+  "evidence_requirements": "樣本、口徑、缺漏、不確定性與因果限制",
+  "writing_guidance": "交代抽樣、測量、期間或代表性的限制，指出這些限制會削弱哪項推論以及可能的其他解釋。",
+  "presentation_modules": [
+    "text",
+    "table"
+  ]
+}

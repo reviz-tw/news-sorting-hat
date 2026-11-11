@@ -1,0 +1,12 @@
+{
+  "type": "unclassified.answer",
+  "id": "answer",
+  "role": "可回答內容",
+  "reader_question": "材料目前能回答什麼？",
+  "priority": "core",
+  "evidence_requirements": "已取得的證據或明確的無法回答聲明",
+  "writing_guidance": "用已取得且可追溯的材料直接回答可確認的部分；完全無來源時，在段落說明目前無法回答的內容。",
+  "presentation_modules": [
+    "text"
+  ]
+}

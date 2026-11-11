@@ -1,0 +1,15 @@
+{
+  "type": "accountability.background",
+  "id": "background",
+  "role": "必要背景",
+  "reader_question": "原本的制度、承諾或事件背景是什麼，誰在什麼期間受到影響？",
+  "priority": "core",
+  "evidence_requirements": "有來源的制度或事件背景、適用期間、相關對象與原定標準；背景缺漏明示，不由常識補寫",
+  "writing_guidance": "交代理解調查所需的制度、事件與權責前情，清楚標記哪些是文件記載，哪些是相關方的陳述。",
+  "presentation_modules": [
+    "text",
+    "timeline",
+    "map",
+    "photo"
+  ]
+}

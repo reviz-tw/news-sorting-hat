@@ -1,0 +1,14 @@
+{
+  "type": "human_story.constraints",
+  "id": "constraints",
+  "role": "處境限制",
+  "reader_question": "哪些制度或資源限制影響選擇？",
+  "priority": "conditional",
+  "evidence_requirements": "具體限制與人物經驗的來源",
+  "writing_guidance": "指出制度、資源或關係如何限制當時的選項，分別交代當事人的感受與可獨立核對的條件。",
+  "presentation_modules": [
+    "text",
+    "quote",
+    "table"
+  ]
+}

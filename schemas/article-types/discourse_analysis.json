@@ -1,0 +1,13 @@
+{
+  "type": "discourse_analysis",
+  "name": "輿論與媒體敘事分析",
+  "narrative_logic": "界定語料範圍與方法，辨識敘事框架，提出分析結果與可追溯資料，再以適當視覺化對照群體／時期差異，最後交代代表性限制。",
+  "slots": [
+    "discourse_analysis.corpus",
+    "discourse_analysis.frames",
+    "discourse_analysis.analysis_results",
+    "discourse_analysis.group_differences",
+    "discourse_analysis.limits"
+  ],
+  "composition_guidance": "analysis_results 必須交代分析後得到什麼，不能只列原始語料或泛稱媒體看法不同。至少用可追溯的質性編碼／例句對照整理結果；若連分類材料也不足，明示 partial/missing。模型歸納的框架是 inference，連回 based_on 的原句／主張，不冒充來源既有分類。量化只用來源或上游已提供且可核對方法的統計，不由有限 RAG 摘錄假造全體語料詞頻。框架可能重疊，除非分類完整互斥，不作總和 100% 的分配。"
+}

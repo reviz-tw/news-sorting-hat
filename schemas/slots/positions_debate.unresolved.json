@@ -1,0 +1,13 @@
+{
+  "type": "positions_debate.unresolved",
+  "id": "unresolved",
+  "role": "未解爭議",
+  "reader_question": "哪些問題仍無法由材料裁定？",
+  "priority": "conditional",
+  "evidence_requirements": "爭議、未回覆與證據不對稱",
+  "writing_guidance": "指出仍缺佐證、尚未獲回應或因版本不同而無法釐清的爭議，交代會影響哪項判斷。",
+  "presentation_modules": [
+    "text",
+    "table"
+  ]
+}

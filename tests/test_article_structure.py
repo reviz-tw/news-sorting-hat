@@ -5,7 +5,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-from validate import ValidationError, load_json, validate
+from validate import ValidationError, load_json, load_slot, validate
 
 
 class ArticleStructureTests(unittest.TestCase):
@@ -32,9 +32,22 @@ class ArticleStructureTests(unittest.TestCase):
         categories = load_json(ROOT / "schemas/common.schema.json")["$defs"]["category"]["enum"]
         self.assertEqual({t["type"] for t in catalog["templates"]}, set(categories))
         self.assertEqual(len(catalog["templates"]), 12)
-        for template in catalog["templates"]:
+        for entry in [*catalog["templates"], catalog["fallback"]]:
+            template = load_json(ROOT / "schemas" / entry["file"])
+            self.assertEqual(template["type"], entry["type"])
+            self.assertTrue(all(isinstance(slot_type, str) for slot_type in template["slots"]))
+            template["slots"] = [load_slot(slot_type) for slot_type in template["slots"]]
+            self.assertTrue(all(s["writing_guidance"].strip() for s in template["slots"]))
             self.assertEqual(len({s["id"] for s in template["slots"]}), len(template["slots"]))
             self.assertTrue(any(s["priority"] == "core" for s in template["slots"]))
+
+    def test_same_named_slots_resolve_to_their_own_requirements(self):
+        data_limits = load_slot("data_analysis.limits")
+        discourse_limits = load_slot("discourse_analysis.limits")
+        self.assertEqual(data_limits["id"], discourse_limits["id"])
+        self.assertNotEqual(data_limits["evidence_requirements"], discourse_limits["evidence_requirements"])
+        with self.assertRaisesRegex(ValidationError, "Invalid slot type"):
+            load_slot("../components/text")
 
     def test_legacy_optional_but_new_output_requires_structure(self):
         del self.analysis["article_structure"]
