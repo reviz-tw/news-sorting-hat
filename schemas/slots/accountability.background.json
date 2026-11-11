@@ -5,7 +5,19 @@
   "reader_question": "原本的制度、承諾或事件背景是什麼，誰在什麼期間受到影響？",
   "priority": "core",
   "evidence_requirements": "有來源的制度或事件背景、適用期間、相關對象與原定標準；背景缺漏明示，不由常識補寫",
-  "writing_guidance": "交代理解調查所需的制度、事件與權責前情，清楚標記哪些是文件記載，哪些是相關方的陳述。",
+  "writing_guidance": {
+    "instruction": "交代理解調查所需的制度、事件與權責前情，清楚標記哪些是文件記載，哪些是相關方的陳述。",
+    "required_elements": [
+      "制度或事件前情",
+      "權責與原定標準",
+      "相關對象及適用期間"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否區分文件記載與相關方陳述，並交代背景與質疑的關係？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "timeline",

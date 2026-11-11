@@ -5,7 +5,20 @@
   "reader_question": "哪些情況適用，哪些不能直接比較？",
   "priority": "conditional",
   "evidence_requirements": "對象差異、例外與適用條件",
-  "writing_guidance": "說明比較結果適用的對象與情境，指出因範圍、版本或口徑而無法直接比較的項目。",
+  "writing_guidance": {
+    "instruction": "說明比較結果適用的對象與情境，指出因範圍、版本或口徑而無法直接比較的項目。",
+    "required_elements": [
+      "適用對象與情境",
+      "比較的期間及版本",
+      "不可比項目及原因",
+      "結論的適用邊界"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否未將特定條件下的優劣寫成普遍排名？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "table"

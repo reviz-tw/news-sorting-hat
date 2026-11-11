@@ -5,7 +5,20 @@
   "reader_question": "材料能支持到什麼程度？",
   "priority": "core",
   "evidence_requirements": "結論對應證據；不強迫真假二分",
-  "writing_guidance": "對每個命題寫出材料支持到何種程度，把結論連回具體證據，保留附帶條件。",
+  "writing_guidance": {
+    "instruction": "對每個命題寫出材料支持到何種程度，把結論連回具體證據，保留附帶條件。",
+    "required_elements": [
+      "逐項待查命題",
+      "各命題的支持程度",
+      "對應的支持或反駁證據",
+      "結論的限定條件"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否允許部分支持或無法判定，避免強迫真假二分？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "table"

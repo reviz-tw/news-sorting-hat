@@ -5,7 +5,20 @@
   "reader_question": "觀察到什麼結果、與目標差在哪？",
   "priority": "core",
   "evidence_requirements": "可比的成果及目標；目標不等於預測",
-  "writing_guidance": "在同一期間與統計口徑下對照實績和目標，說明落差涉及投入、服務產出或最終效果。",
+  "writing_guidance": {
+    "instruction": "在同一期間與統計口徑下對照實績和目標，說明落差涉及投入、服務產出或最終效果。",
+    "required_elements": [
+      "目標與實際成果",
+      "共同期間及統計口徑",
+      "差距及其依據",
+      "投入、服務產出或最終效果的層次"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否目標和實績可比，且未把服務產出當成已證實的政策效果？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "bar_chart",

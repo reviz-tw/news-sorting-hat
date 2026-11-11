@@ -5,7 +5,20 @@
   "reader_question": "哪些資料支持、反對或無法驗證？",
   "priority": "core",
   "evidence_requirements": "支持／反對證據與來源品質",
-  "writing_guidance": "以同一命題逐項對照支持、反駁和無法判斷的材料，說明原始來源、版本及證據強弱。",
+  "writing_guidance": {
+    "instruction": "以同一命題逐項對照支持、反駁和無法判斷的材料，說明原始來源、版本及證據強弱。",
+    "required_elements": [
+      "對照的命題",
+      "支持、反駁及無法判斷的材料",
+      "原始來源與版本",
+      "證據品質及支持範圍"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否以同一命題和條件比對，且未將缺乏證據當成反證？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "table",

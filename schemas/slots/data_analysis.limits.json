@@ -5,7 +5,20 @@
   "reader_question": "這些資料不能支持哪些結論？",
   "priority": "core",
   "evidence_requirements": "樣本、口徑、缺漏、不確定性與因果限制",
-  "writing_guidance": "交代抽樣、測量、期間或代表性的限制，指出這些限制會削弱哪項推論以及可能的其他解釋。",
+  "writing_guidance": {
+    "instruction": "交代抽樣、測量、期間或代表性的限制，指出這些限制會削弱哪項推論以及可能的其他解釋。",
+    "required_elements": [
+      "抽樣、測量或期間限制",
+      "代表性範圍",
+      "受限制影響的具體推論",
+      "材料支持的其他解釋或尚待驗證的可能性"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否說明限制如何影響結論，而非只附上籠統的資料有限？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "table"

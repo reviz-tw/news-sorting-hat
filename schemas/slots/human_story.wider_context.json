@@ -5,7 +5,20 @@
   "reader_question": "此經驗能說明什麼、不能代表誰？",
   "priority": "conditional",
   "evidence_requirements": "背景材料與樣本代表性限制",
-  "writing_guidance": "將個案放回有來源的群體或制度脈絡，說明此人的經驗可以解釋到哪裡，以及推廣到其他人的限制。",
+  "writing_guidance": {
+    "instruction": "將個案放回有來源的群體或制度脈絡，說明此人的經驗可以解釋到哪裡，以及推廣到其他人的限制。",
+    "required_elements": [
+      "有來源的群體或制度背景",
+      "個案能說明的現象",
+      "與更廣脈絡的關係",
+      "代表性及推廣限制"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否未將單一經歷寫成整個群體的普遍經驗？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "table",

@@ -5,7 +5,19 @@
   "reader_question": "理解機制還需要哪些背景？",
   "priority": "conditional",
   "evidence_requirements": "歷史或制度脈絡",
-  "writing_guidance": "補充影響讀者理解制度或問題成因的歷史背景，界定本次解釋所涵蓋的時期與場域。",
+  "writing_guidance": {
+    "instruction": "補充影響讀者理解制度或問題成因的歷史背景，界定本次解釋所涵蓋的時期與場域。",
+    "required_elements": [
+      "必要歷史或制度背景",
+      "相關時期與場域",
+      "與本次問題或機制的關係"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否僅補理解所需前情，且未由背景直接推定原因？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "timeline",

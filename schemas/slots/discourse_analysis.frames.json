@@ -5,7 +5,20 @@
   "reader_question": "這批文本反覆使用哪些框架或主張？",
   "priority": "core",
   "evidence_requirements": "原句、主題或詞頻與分類方法",
-  "writing_guidance": "定義各敘事框架的分類依據，以可引用的原句示範判準，說明一段文本能否同時屬於多個框架。",
+  "writing_guidance": {
+    "instruction": "定義各敘事框架的分類依據，以可引用的原句示範判準，說明一段文本能否同時屬於多個框架。",
+    "required_elements": [
+      "各框架的定義",
+      "分類判準",
+      "可引用的示例與來源",
+      "多框架重疊的處理方式"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否能從例句核對分類理由，且未將主題標籤誤當敘事框架？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "quote",

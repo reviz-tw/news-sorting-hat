@@ -5,7 +5,20 @@
   "reader_question": "這批文本不能代表哪些人或立場？",
   "priority": "core",
   "evidence_requirements": "選樣偏差；用詞不等於支持比例",
-  "writing_guidance": "說明樣本選擇、平台與語言造成的盲點，界定哪些結果僅適用於本次語料。",
+  "writing_guidance": {
+    "instruction": "說明樣本選擇、平台與語言造成的盲點，界定哪些結果僅適用於本次語料。",
+    "required_elements": [
+      "樣本選擇盲點",
+      "平台與語言限制",
+      "結果適用的語料範圍",
+      "不能據此推論的群體或現象"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否避免從文本分布推定整體民意、作者動機或傳播效果？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "table"

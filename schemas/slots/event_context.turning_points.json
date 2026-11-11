@@ -5,7 +5,20 @@
   "reader_question": "哪個轉折改變後續？",
   "priority": "conditional",
   "evidence_requirements": "轉折證據；因果未證實須明示",
-  "writing_guidance": "挑出改變後續局勢的節點，將可觀察的前後差異與來源對原因的解釋分開交代。",
+  "writing_guidance": {
+    "instruction": "挑出改變後續局勢的節點，將可觀察的前後差異與來源對原因的解釋分開交代。",
+    "required_elements": [
+      "關鍵轉折事件",
+      "可觀察的前後差異",
+      "與後續發展的連結",
+      "來源對原因的解釋及不確定性"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否有證據支持轉折的意義，並區分觀察與因果解釋？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "timeline",

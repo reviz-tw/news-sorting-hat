@@ -5,7 +5,20 @@
   "reader_question": "在上述事件背景下，具體要查證哪個說法？誰在何時提出，原文及限定條件是什麼？",
   "priority": "core",
   "evidence_requirements": "原始說法、提出者、時間與限定條件",
-  "writing_guidance": "精確界定可查驗的命題，保留提出者、時點、原句與限定條件，必要時拆開多個命題。",
+  "writing_guidance": {
+    "instruction": "精確界定可查驗的命題，保留提出者、時點、原句與限定條件，必要時拆開多個命題。",
+    "required_elements": [
+      "可查驗的命題",
+      "提出者與發言時間",
+      "原句或明示的轉述",
+      "語境及限定條件"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否保留原意，且多個可分開查驗的命題未被混為一談？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "quote",

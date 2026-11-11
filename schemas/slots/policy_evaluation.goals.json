@@ -5,7 +5,21 @@
   "reader_question": "政策原先承諾什麼、如何衡量？",
   "priority": "core",
   "evidence_requirements": "原定目標、期間、對象與衡量方式",
-  "writing_guidance": "記錄政策原先承諾的對象、指標、基準與期限，明示採用哪一版本的目標。",
+  "writing_guidance": {
+    "instruction": "記錄政策原先承諾的對象、指標、基準與期限，明示採用哪一版本的目標。",
+    "required_elements": [
+      "政策原先承諾",
+      "服務對象",
+      "指標、單位與基準",
+      "目標期限",
+      "採用的政策版本"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否保留原定目標而未以事後修訂取代，且未將目標當成實績？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "table",

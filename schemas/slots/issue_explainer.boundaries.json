@@ -5,7 +5,20 @@
   "reader_question": "何時適用、何時不能如此解釋？",
   "priority": "core",
   "evidence_requirements": "適用對象、版本、條件、例外與未知",
-  "writing_guidance": "以有來源的例外說明哪些人或情況適用不同規則，並交代現有資料無法回答的邊界。",
+  "writing_guidance": {
+    "instruction": "以有來源的例外說明哪些人或情況適用不同規則，並交代現有資料無法回答的邊界。",
+    "required_elements": [
+      "適用對象與條件",
+      "規則版本及期間",
+      "有來源的例外",
+      "資料尚無法回答的情境"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否說明例外如何改變解釋，且未將局部規則泛化？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "table"

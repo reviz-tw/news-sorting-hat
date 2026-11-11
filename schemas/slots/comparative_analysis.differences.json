@@ -5,7 +5,20 @@
   "reader_question": "哪些同異最影響理解或選擇？",
   "priority": "core",
   "evidence_requirements": "對照資料；不任意加權排名",
-  "writing_guidance": "從並列材料找出影響判斷的差異與相似處，引用對象雙方的證據並說明實際意義。",
+  "writing_guidance": {
+    "instruction": "從並列材料找出影響判斷的差異與相似處，引用對象雙方的證據並說明實際意義。",
+    "required_elements": [
+      "共同維度下的差異與相似處",
+      "各對象的對應證據",
+      "差異的實際意義",
+      "影響判斷的條件"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否比較同一尺度，且每項差異都有雙方材料支持？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "table",

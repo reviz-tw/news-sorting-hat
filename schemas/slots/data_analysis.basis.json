@@ -5,7 +5,21 @@
   "reader_question": "比較哪些指標、期間、母體與分母？",
   "priority": "core",
   "evidence_requirements": "單位、期間、範圍、方法、分母與缺值",
-  "writing_guidance": "交代資料來源、分母、指標定義、期間與比較基期，說明文中關鍵數值如何取得。",
+  "writing_guidance": {
+    "instruction": "交代資料來源、分母、指標定義、期間與比較基期，說明文中關鍵數值如何取得。",
+    "required_elements": [
+      "資料來源",
+      "指標定義與單位",
+      "母體及適用的分母",
+      "期間與比較基期",
+      "數值取得或計算方法"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否足以理解數字代表什麼，且比例的分母與比較口徑一致？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "table"

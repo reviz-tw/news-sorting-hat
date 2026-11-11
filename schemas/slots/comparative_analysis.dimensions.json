@@ -5,7 +5,20 @@
   "reader_question": "在相同維度下，各對象如何？",
   "priority": "core",
   "evidence_requirements": "共同欄位、單位、基準與明示缺值",
-  "writing_guidance": "逐一設定共同維度、單位與基準，為每個對象填入可追溯的數值或條件，註明未知及不適用項。",
+  "writing_guidance": {
+    "instruction": "逐一設定共同維度、單位與基準，為每個對象填入可追溯的數值或條件，註明未知及不適用項。",
+    "required_elements": [
+      "共同維度與定義",
+      "單位及比較基準",
+      "各對象的值或條件及來源",
+      "未知與不適用項"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否統一口徑，並將未知、不適用與零值分開？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "table"

@@ -5,7 +5,19 @@
   "reader_question": "哪個背景是理解此事必需的？",
   "priority": "conditional",
   "evidence_requirements": "與問題直接相關的前情",
-  "writing_guidance": "挑出一項能解釋本次事件的前情，交代它與本次發展的關係。讀者單靠開頭就能理解時可略過。",
+  "writing_guidance": {
+    "instruction": "挑出一項能解釋本次事件的前情，交代它與本次發展的關係。讀者單靠開頭就能理解時可略過。",
+    "required_elements": [
+      "必要的一項前情",
+      "前情的來源與已知時間",
+      "與本次事件的關係"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否只補理解事件所需背景；無需展開時是否交代不適用而不硬加段落？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "timeline"

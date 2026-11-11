@@ -5,7 +5,20 @@
   "reader_question": "哪些風險能確認、哪些仍未知？",
   "priority": "core",
   "evidence_requirements": "推估限制與不可支持的推論",
-  "writing_guidance": "指出會改變情境結果的關鍵未知，說明目前能否判斷其規模與發生機率。",
+  "writing_guidance": {
+    "instruction": "指出會改變情境結果的關鍵未知，說明目前能否判斷其規模與發生機率。",
+    "required_elements": [
+      "影響結果的關鍵未知",
+      "已能確認的風險",
+      "規模與機率的可判斷程度",
+      "推估限制"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否將未知機率明示為未知，且未以精確數字包裝不確定性？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "table"

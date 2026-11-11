@@ -4,62 +4,98 @@
     {
       "type": "event_brief",
       "name": "事件事實敘述",
-      "file": "article-types/event_brief.json"
+      "file": "article-types/event_brief.json",
+      "reading_task": "事件事實敘述：發生什麼？",
+      "coverage": "人、事、時、地、相關對象、已知結果；必要時收尾補其他說法與回應",
+      "boundaries": "相關說法帶歸屬；不補造反方，核心爭議或更正也須反映於開頭"
     },
     {
       "type": "human_story",
       "name": "人物與經驗敘事",
-      "file": "article-types/human_story.json"
+      "file": "article-types/human_story.json",
+      "reading_task": "人物與經驗敘事：處境與選擇？",
+      "coverage": "先介紹人物背景與當時處境，再交代經歷、選擇、原話與限制，有相關側訪時收尾補他人觀察",
+      "boundaries": "側訪帶關係與依據，不強配正反；背景只取故事所需，不由身分推定動機；不把個人經驗當全體統計"
     },
     {
       "type": "event_context",
       "name": "事件脈絡與重建",
-      "file": "article-types/event_context.json"
+      "file": "article-types/event_context.json",
+      "reading_task": "事件脈絡與重建：如何走到這裡？",
+      "coverage": "關鍵事件、時間、參與者、轉折與疑點；收尾補相關其他方觀點",
+      "boundaries": "有先後不代表有因果；觀點帶歸屬，關鍵分歧同步標於經過與轉折"
     },
     {
       "type": "issue_explainer",
       "name": "議題與機制解釋",
-      "file": "article-types/issue_explainer.json"
+      "file": "article-types/issue_explainer.json",
+      "reading_task": "議題與機制解釋：是什麼、如何運作、各方如何理解？",
+      "coverage": "概念、背景、機制、相關法規與法律見解、不同觀點與理由、範圍與例外",
+      "boundaries": "區分規範與評論，保留法域及版本；缺依據就明示，不補造對立或法條"
     },
     {
       "type": "positions_debate",
       "name": "立場與爭點分析",
-      "file": "article-types/positions_debate.json"
+      "file": "article-types/positions_debate.json",
+      "reading_task": "立場與爭點分析：各方何時主張什麼，同一對象是否改變？",
+      "coverage": "先交代議題背景、爭議起點與共同問題，再整理 stakeholder 身分、觀察期間、逐時主張、理由、條件、證據與變化",
+      "boundaries": "不強分正反；不把措辭、版本差異或沉默當成立場轉向／不變"
     },
     {
       "type": "data_analysis",
       "name": "資料現況與趨勢分析",
-      "file": "article-types/data_analysis.json"
+      "file": "article-types/data_analysis.json",
+      "reading_task": "資料現況與趨勢：發現什麼、規模與差異有何意義？",
+      "coverage": "核心洞察先行，接既有認識與新發現的對照，再展開數據、口徑與限制；資料足夠時搭配一至多張圖表",
+      "boundaries": "數據為核心問題才作主類型；不為洞察誇大因果，不為圖表補造數據"
     },
     {
       "type": "comparative_analysis",
       "name": "對象與方案比較",
-      "file": "article-types/comparative_analysis.json"
+      "file": "article-types/comparative_analysis.json",
+      "reading_task": "對象與方案比較：同異及意義？",
+      "coverage": "對象、共同維度、基準、比較表與差異解讀、不可比之處",
+      "boundaries": "不強行量化質性差異；區分未知、不適用與不可比"
     },
     {
       "type": "accountability",
       "name": "調查揭露與問責",
-      "file": "article-types/accountability.json"
+      "file": "article-types/accountability.json",
+      "reading_task": "調查揭露與問責：脈絡、發現、落差及責任？",
+      "coverage": "必要背景與調查摘要先行，再交代問題線索、落差與質疑，展開證據、權責、當事方回應、未解處",
+      "boundaries": "區分事實與指控，不預斷責任；缺少背景或回應要揭露，不補寫"
     },
     {
       "type": "discourse_analysis",
       "name": "輿論與媒體敘事分析",
-      "file": "article-types/discourse_analysis.json"
+      "file": "article-types/discourse_analysis.json",
+      "reading_task": "輿論與媒體敘事：如何談論，分析發現什麼？",
+      "coverage": "文本來源、樣本、群體、框架、方法、分析結果與例句／數據對照、適當視覺化",
+      "boundaries": "不從摘錄推全體頻率或支持比例；區分質性編碼與量化統計"
     },
     {
       "type": "impact_scenarios",
       "name": "影響、風險與情境分析",
-      "file": "article-types/impact_scenarios.json"
+      "file": "article-types/impact_scenarios.json",
+      "reading_task": "影響、風險與情境：對誰、什麼條件？",
+      "coverage": "受影響者、途徑、期間、假設、不確定性",
+      "boundaries": "區分已發生影響與未來情境"
     },
     {
       "type": "policy_evaluation",
       "name": "政策執行與成效檢視",
-      "file": "article-types/policy_evaluation.json"
+      "file": "article-types/policy_evaluation.json",
+      "reading_task": "政策執行與成效：承諾做到嗎？",
+      "coverage": "目標、措施、投入、進度、成果、評估限制",
+      "boundaries": "目標不等於預測；前後差異不等於政策效果"
     },
     {
       "type": "claim_verification",
       "name": "說法查證與證據釐清",
-      "file": "article-types/claim_verification.json"
+      "file": "article-types/claim_verification.json",
+      "reading_task": "說法查證與證據釐清：支持程度？",
+      "coverage": "先交代事件緣由與查證背景，再列待查說法、提出者、支持／反對證據與判定範圍",
+      "boundaries": "背景也需來源，待查事件保留歸屬；不強迫真假二分"
     }
   ],
   "fallback": {

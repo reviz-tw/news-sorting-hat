@@ -5,7 +5,20 @@
   "reader_question": "哪些分布、轉折或離群值得說明？",
   "priority": "conditional",
   "evidence_requirements": "逐筆或彙總數據及來源",
-  "writing_guidance": "呈現分組差異、趨勢與例外，為每一項判讀附同口徑的數值，說明缺值及其影響。",
+  "writing_guidance": {
+    "instruction": "呈現分組差異、趨勢與例外，為每一項判讀附同口徑的數值，說明缺值及其影響。",
+    "required_elements": [
+      "分組差異或時間趨勢",
+      "支持各項判讀的數值及單位",
+      "可比期間與統計口徑",
+      "例外及缺值的影響"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否逐項以數據支持趨勢，且未將缺值補成零或忽略反例？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "line_chart",

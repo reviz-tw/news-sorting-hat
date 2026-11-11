@@ -5,7 +5,20 @@
   "reader_question": "哪些問題仍無法由材料裁定？",
   "priority": "conditional",
   "evidence_requirements": "爭議、未回覆與證據不對稱",
-  "writing_guidance": "指出仍缺佐證、尚未獲回應或因版本不同而無法釐清的爭議，交代會影響哪項判斷。",
+  "writing_guidance": {
+    "instruction": "指出仍缺佐證、尚未獲回應或因版本不同而無法釐清的爭議，交代會影響哪項判斷。",
+    "required_elements": [
+      "尚未釐清的具體爭議",
+      "缺少佐證或回應的部分",
+      "版本及證據不對稱問題",
+      "對判斷的影響"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否未把未回應或資料不足當成某方錯誤的證明？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "table"

@@ -5,7 +5,20 @@
   "reader_question": "哪些部分仍不能判定？",
   "priority": "core",
   "evidence_requirements": "查核範圍、缺漏與尚未排除的解釋",
-  "writing_guidance": "列出未檢驗的部分、缺失來源及仍合理的其他解釋，交代結論適用的時間與範圍。",
+  "writing_guidance": {
+    "instruction": "列出未檢驗的部分、缺失來源及仍合理的其他解釋，交代結論適用的時間與範圍。",
+    "required_elements": [
+      "已查與未查範圍",
+      "缺失來源",
+      "尚未排除的解釋",
+      "結論適用時間與條件"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否明確說明哪些部分仍不能判定，避免將局部查核推廣為全面結論？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "table"

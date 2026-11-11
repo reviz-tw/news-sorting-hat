@@ -5,7 +5,20 @@
   "reader_question": "能否將結果歸因於政策？",
   "priority": "core",
   "evidence_requirements": "評估設計、背景因素與限制",
-  "writing_guidance": "檢視評估方法及可能干擾因素，說明資料能否把結果歸因於政策，列出缺少的對照或追蹤。",
+  "writing_guidance": {
+    "instruction": "檢視評估方法及可能干擾因素，說明資料能否把結果歸因於政策，列出缺少的對照或追蹤。",
+    "required_elements": [
+      "評估方法或設計",
+      "可能干擾的背景因素",
+      "歸因可支持的程度",
+      "缺少的對照、追蹤或證據"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否區分政策後發生的變化與政策造成的效果？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "table",

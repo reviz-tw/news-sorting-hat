@@ -5,7 +5,19 @@
   "reader_question": "還缺什麼？",
   "priority": "core",
   "evidence_requirements": "具體缺口",
-  "writing_guidance": "具體列出要回答原問題還需要哪些資料，例如日期、當事方說法或統計口徑，交代缺口影響。",
+  "writing_guidance": {
+    "instruction": "具體列出要回答原問題還需要哪些資料，例如日期、當事方說法或統計口徑，交代缺口影響。",
+    "required_elements": [
+      "具體缺少的資訊",
+      "缺口影響的問題或判斷",
+      "後續需要的資料種類"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否具體說明缺什麼及為何需要，避免只說資料不足？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text"
   ]

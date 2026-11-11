@@ -5,7 +5,20 @@
   "reader_question": "誰在什麼時間範圍受到影響？",
   "priority": "core",
   "evidence_requirements": "受影響者、時間、已發生與預期的區分",
-  "writing_guidance": "辨認直接與間接受影響的對象、地區及時間，分開標示已觀察到的影響與仍屬推估的部分。",
+  "writing_guidance": {
+    "instruction": "辨認直接與間接受影響的對象、地區及時間，分開標示已觀察到的影響與仍屬推估的部分。",
+    "required_elements": [
+      "直接與間接受影響對象",
+      "地區及時間範圍",
+      "已觀察的影響",
+      "推估影響及提出者"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否明確區分已發生影響與預期影響？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "map",

@@ -5,7 +5,20 @@
   "reader_question": "誰有權責，各方如何回應？",
   "priority": "core",
   "evidence_requirements": "權責依據、當事方回應；未取得就明說",
-  "writing_guidance": "區分各方權責依據與實際作為，依序交代被質疑事項及對應回應，明示材料未涵蓋的回應。",
+  "writing_guidance": {
+    "instruction": "區分各方權責依據與實際作為，依序交代被質疑事項及對應回應，明示材料未涵蓋的回應。",
+    "required_elements": [
+      "相關方及權責依據",
+      "實際作為與被質疑事項",
+      "各方對應回應及來源",
+      "未取得的回應"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否區分權責與實際責任，且未把材料沒有回應寫成拒絕回應？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "table",

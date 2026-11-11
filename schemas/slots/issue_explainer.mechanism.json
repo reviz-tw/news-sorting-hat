@@ -5,7 +5,20 @@
   "reader_question": "制度或現象如何運作？",
   "priority": "core",
   "evidence_requirements": "步驟、規則或作用關係；勿由相關推因果",
-  "writing_guidance": "從一個適用情境出發，交代條件、行動者、處理步驟與結果，每個關鍵連結都對應材料。",
+  "writing_guidance": {
+    "instruction": "從一個適用情境出發，交代條件、行動者、處理步驟與結果，每個關鍵連結都對應材料。",
+    "required_elements": [
+      "適用情境與前提",
+      "行動者",
+      "規則及處理步驟",
+      "結果與關鍵連結的證據"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否完整說明如何運作，且未以相關性代替機制證據？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "flowchart",

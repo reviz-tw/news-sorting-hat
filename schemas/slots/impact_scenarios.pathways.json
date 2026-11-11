@@ -5,7 +5,20 @@
   "reader_question": "影響透過什麼途徑發生？",
   "priority": "core",
   "evidence_requirements": "有依據的機制或帶歸屬的評估",
-  "writing_guidance": "沿材料支持的途徑逐步交代影響如何傳遞，標出哪一環有觀察資料、哪一環仰賴假設。",
+  "writing_guidance": {
+    "instruction": "沿材料支持的途徑逐步交代影響如何傳遞，標出哪一環有觀察資料、哪一環仰賴假設。",
+    "required_elements": [
+      "影響起點與結果",
+      "中間傳遞步驟",
+      "各連結的依據",
+      "觀察與假設的區分"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否每個關鍵連結都有依據或明示假設，避免將可能途徑寫成既定因果？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "flowchart",

@@ -6,8 +6,12 @@ import json
 import sys
 from pathlib import Path
 
-from validate import (SCHEMAS, check_schema, load_json, load_slot, require, schema_validate, selected_profiles,
-                      validate, validate_classification)
+if __package__:
+    from .validate import (SCHEMAS, check_schema, load_json, load_slot, require, schema_validate,
+                           selected_profiles, validate, validate_classification)
+else:
+    from validate import (SCHEMAS, check_schema, load_json, load_slot, require, schema_validate,
+                          selected_profiles, validate, validate_classification)
 
 COMMON_FIELDS = ("id", "title", "section_ids", "evidence_ids", "decision", "decision_reason", "notes")
 

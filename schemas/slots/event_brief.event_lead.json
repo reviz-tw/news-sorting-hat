@@ -5,7 +5,21 @@
   "reader_question": "發生了什麼，涉及誰、何時、何地？",
   "priority": "core",
   "evidence_requirements": "可追溯的人事時地物；未知項保留未知",
-  "writing_guidance": "首句寫出誰在什麼情境做了什麼，接著補理解事件必需的時間、地點。若事件本身有爭議，首句保留消息歸屬。",
+  "writing_guidance": {
+    "instruction": "首句寫出誰在什麼情境做了什麼，接著補理解事件必需的時間、地點。若事件本身有爭議，首句保留消息歸屬。",
+    "required_elements": [
+      "主要人物或機構",
+      "發生的行動或事件",
+      "已知時間與地點",
+      "理解事件所需的情境",
+      "有爭議或未核實消息的歸屬"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否首句即可辨識誰做了什麼，且未補造未提供的時間、地點或原因？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "photo",

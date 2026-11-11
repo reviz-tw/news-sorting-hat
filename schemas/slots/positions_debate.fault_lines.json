@@ -5,7 +5,21 @@
   "reader_question": "分歧是事實、價值還是方案選擇？",
   "priority": "core",
   "evidence_requirements": "對照主張的依據；共識不能自行推定",
-  "writing_guidance": "按爭點對齊各方主張，指出共享前提與真正相異的條件，保留無法放在同一尺度比較的觀點。",
+  "writing_guidance": {
+    "instruction": "按爭點對齊各方主張，指出共享前提與真正相異的條件，保留無法放在同一尺度比較的觀點。",
+    "required_elements": [
+      "共同爭點",
+      "對齊的各方主張",
+      "事實、價值或方案層次的分歧",
+      "有依據的共同前提",
+      "不可比條件"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否未強迫正反二分，且共同點確有各方材料支持？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "table",

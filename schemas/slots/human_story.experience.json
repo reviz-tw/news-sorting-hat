@@ -5,7 +5,20 @@
   "reader_question": "在上述背景與處境下，當事人經歷了什麼、面臨哪些選項，又作了什麼選擇？",
   "priority": "core",
   "evidence_requirements": "有來源的實際經歷、選項與行動，帶歸屬的原話及理由；動機只依當事人陳述或有來源的材料交代，不能從背景替當事人推定心理或選擇原因。",
-  "writing_guidance": "按當事人經歷的順序寫出具體情境、可選的做法與實際選擇。將自述的動機歸屬給本人。",
+  "writing_guidance": {
+    "instruction": "按當事人經歷的順序寫出具體情境、可選的做法與實際選擇。將自述的動機歸屬給本人。",
+    "required_elements": [
+      "事件順序及具體情境",
+      "當時選項",
+      "實際選擇與行動",
+      "有來源的理由或原話"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否將動機保留歸屬，且未補造場景、對話或內心活動？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "quote",

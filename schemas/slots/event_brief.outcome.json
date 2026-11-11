@@ -5,7 +5,20 @@
   "reader_question": "目前確認的結果或狀態是什麼？",
   "priority": "conditional",
   "evidence_requirements": "結果或最新狀態及資訊日期",
-  "writing_guidance": "寫出截至回答時間已發生的直接結果，分開交代已執行、已宣布與尚待執行的事項。",
+  "writing_guidance": {
+    "instruction": "寫出截至回答時間已發生的直接結果，分開交代已執行、已宣布與尚待執行的事項。",
+    "required_elements": [
+      "截至回答時間的直接結果",
+      "已執行、已宣布及待執行事項",
+      "受影響對象",
+      "結果的來源及時間截點"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否將已發生結果與計畫、預測分開？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "table",

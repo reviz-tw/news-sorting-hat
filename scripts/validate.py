@@ -10,10 +10,14 @@ import sys
 from pathlib import Path
 from urllib.parse import urlsplit
 
-from article_structure import validate_structure
-from positions import validate_positions
-
-from visualizations import validate_extended_block, validate_extended_evidence
+if __package__:
+    from .article_structure import validate_structure
+    from .positions import validate_positions
+    from .visualizations import validate_extended_block, validate_extended_evidence
+else:
+    from article_structure import validate_structure
+    from positions import validate_positions
+    from visualizations import validate_extended_block, validate_extended_evidence
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMAS = ROOT / "schemas"
@@ -31,7 +35,7 @@ def require(condition, message):
         raise ValidationError(message)
 
 
-def load_json(path):
+def parse_json(text):
     def reject_constant(value):
         raise ValidationError("Non-finite JSON number: " + value)
 
@@ -42,8 +46,12 @@ def load_json(path):
             result[key] = value
         return result
 
-    return json.loads(Path(path).read_text(encoding="utf-8"),
+    return json.loads(text,
                       parse_constant=reject_constant, object_pairs_hook=unique_keys)
+
+
+def load_json(path):
+    return parse_json(Path(path).read_text(encoding="utf-8"))
 
 
 def canonical(value):

@@ -5,7 +5,20 @@
   "reader_question": "問題所指事件目前走到哪一步？",
   "priority": "core",
   "evidence_requirements": "截至指定時間的狀態",
-  "writing_guidance": "交代時間截點，以及事件發展到哪個可確認的狀態，讓讀者知道下文重建的終點。",
+  "writing_guidance": {
+    "instruction": "交代時間截點，以及事件發展到哪個可確認的狀態，讓讀者知道下文重建的終點。",
+    "required_elements": [
+      "觀察時間截點",
+      "最新可確認的狀態",
+      "相關對象及已完成的進展",
+      "重建經過所要解釋的現況"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否區分已確認發展與宣布的後續安排？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "photo",

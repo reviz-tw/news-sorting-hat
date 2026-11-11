@@ -5,7 +5,20 @@
   "reader_question": "哪段時間或說法尚有爭議？",
   "priority": "conditional",
   "evidence_requirements": "缺漏紀錄、相異說法與歸屬",
-  "writing_guidance": "明列妨礙重建的時間空白或互相衝突的記載，指出哪些事件相對順序仍無法確定。",
+  "writing_guidance": {
+    "instruction": "明列妨礙重建的時間空白或互相衝突的記載，指出哪些事件相對順序仍無法確定。",
+    "required_elements": [
+      "缺漏的時間區段或紀錄",
+      "相互衝突的說法及來源",
+      "無法確認的先後順序",
+      "對事件重建的影響"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否保留時間空白與矛盾，避免自行補齊連續故事？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "table",

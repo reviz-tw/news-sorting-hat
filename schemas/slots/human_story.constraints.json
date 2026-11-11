@@ -5,7 +5,20 @@
   "reader_question": "哪些制度或資源限制影響選擇？",
   "priority": "conditional",
   "evidence_requirements": "具體限制與人物經驗的來源",
-  "writing_guidance": "指出制度、資源或關係如何限制當時的選項，分別交代當事人的感受與可獨立核對的條件。",
+  "writing_guidance": {
+    "instruction": "指出制度、資源或關係如何限制當時的選項，分別交代當事人的感受與可獨立核對的條件。",
+    "required_elements": [
+      "具體制度、資源或關係限制",
+      "當時可選的做法",
+      "限制如何影響選項",
+      "當事人感受與可核對條件"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否把感受歸屬給當事人，且未代替當事人推定心理？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "quote",

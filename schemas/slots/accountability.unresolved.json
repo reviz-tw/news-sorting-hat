@@ -5,7 +5,19 @@
   "reader_question": "哪些責任或事實仍未釐清？",
   "priority": "conditional",
   "evidence_requirements": "未解處；不把關係推定為違法",
-  "writing_guidance": "列出尚待查證的責任或事實問題，指出需要何種文件或證詞才能推進，以及目前結論的界線。",
+  "writing_guidance": {
+    "instruction": "列出尚待查證的責任或事實問題，指出需要何種文件或證詞才能推進，以及目前結論的界線。",
+    "required_elements": [
+      "尚待查證的責任或事實",
+      "推進查證所需的文件或證詞",
+      "目前結論的界線"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否未將關聯、沉默或缺少資料直接推定為違法？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "table"

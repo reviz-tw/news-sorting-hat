@@ -5,7 +5,21 @@
   "reader_question": "投入與措施實際完成多少？",
   "priority": "core",
   "evidence_requirements": "投入、措施、進度與執行證據",
-  "writing_guidance": "按措施交代資源是否到位、何時執行、進度如何，分開記載預算編列與實際支出或服務。",
+  "writing_guidance": {
+    "instruction": "按措施交代資源是否到位、何時執行、進度如何，分開記載預算編列與實際支出或服務。",
+    "required_elements": [
+      "具體措施",
+      "資源投入狀態",
+      "執行時間與進度",
+      "實際完成的支出或服務",
+      "來源"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否分開預算編列、資源到位與實際執行，避免重複計算成果？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "timeline",

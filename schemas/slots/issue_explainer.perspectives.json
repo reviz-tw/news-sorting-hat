@@ -5,7 +5,21 @@
   "reader_question": "不同當事人或機構如何理解這個議題，主張與理由有何差異？",
   "priority": "conditional",
   "evidence_requirements": "帶歸屬的各方主張、理由、支持證據及相關利益或處境；爭議議題須評估此角色，只有單一觀點時明示涵蓋缺口，不補造另一方、不假設各方證據強度相同。",
-  "writing_guidance": "逐一交代各方對同一機制的理解與理由，指出共同點及分歧所依據的前提，標明材料尚未涵蓋的觀點。",
+  "writing_guidance": {
+    "instruction": "逐一交代各方對同一機制的理解與理由，指出共同點及分歧所依據的前提，標明材料尚未涵蓋的觀點。",
+    "required_elements": [
+      "各方身分與處境",
+      "對同一機制的主張",
+      "理由及支持材料",
+      "共同點與分歧前提",
+      "尚未涵蓋的觀點"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否保留說法歸屬與證據強弱，且未為求平衡虛構另一方？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "table",

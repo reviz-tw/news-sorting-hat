@@ -5,7 +5,20 @@
   "reader_question": "不同群體或時期如何使用語言？",
   "priority": "conditional",
   "evidence_requirements": "可比樣本與群體標記",
-  "writing_guidance": "在相同的編碼單位與抽樣條件下比較群體或時期，交代差異是否也可能來自語料構成。",
+  "writing_guidance": {
+    "instruction": "在相同的編碼單位與抽樣條件下比較群體或時期，交代差異是否也可能來自語料構成。",
+    "required_elements": [
+      "比較群體或時期",
+      "共同編碼單位及抽樣條件",
+      "差異及對應材料",
+      "語料構成對差異的可能影響"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否先確認比較條件，且未把樣本構成差異直接歸因於群體特性？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "table",

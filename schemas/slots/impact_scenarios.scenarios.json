@@ -5,7 +5,20 @@
   "reader_question": "哪些假設改變結果？",
   "priority": "conditional",
   "evidence_requirements": "有來源的假設、情境與預測區間",
-  "writing_guidance": "逐一列出情境的必要前提、可能變動的條件及相應結果，註明預測或推估的提出者與期間。",
+  "writing_guidance": {
+    "instruction": "逐一列出情境的必要前提、可能變動的條件及相應結果，註明預測或推估的提出者與期間。",
+    "required_elements": [
+      "各情境的必要前提",
+      "可能變動的條件",
+      "相應結果或預測區間",
+      "推估提出者及適用期間"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否保留情境條件，且未將預測當成確定結果或擅自賦予機率？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "table",

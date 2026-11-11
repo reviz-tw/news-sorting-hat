@@ -5,7 +5,20 @@
   "reader_question": "比較誰，回答什麼問題？",
   "priority": "core",
   "evidence_requirements": "對象、時間與比較目的",
-  "writing_guidance": "說明比較的對象、選入理由與版本日期，界定讀者希望用比較回答的問題。",
+  "writing_guidance": {
+    "instruction": "說明比較的對象、選入理由與版本日期，界定讀者希望用比較回答的問題。",
+    "required_elements": [
+      "比較問題",
+      "比較對象",
+      "選入理由",
+      "版本、日期及範圍"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否交代選樣限制，避免讓部分對象看起來代表全部選項？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "table",

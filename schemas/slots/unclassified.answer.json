@@ -5,7 +5,19 @@
   "reader_question": "材料目前能回答什麼？",
   "priority": "core",
   "evidence_requirements": "已取得的證據或明確的無法回答聲明",
-  "writing_guidance": "用已取得且可追溯的材料直接回答可確認的部分；完全無來源時，在段落說明目前無法回答的內容。",
+  "writing_guidance": {
+    "instruction": "用已取得且可追溯的材料直接回答可確認的部分；完全無來源時，在段落說明目前無法回答的內容。",
+    "required_elements": [
+      "目前能確認的回答",
+      "對應材料與來源",
+      "無來源時的無法回答聲明"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否直接回應原問題，且未強行分類或補造證據？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text"
   ]

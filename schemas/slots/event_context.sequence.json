@@ -5,7 +5,20 @@
   "reader_question": "哪些事件依什麼順序發生？",
   "priority": "core",
   "evidence_requirements": "事件時間與來源；區分刊出時間",
-  "writing_guidance": "依事件發生時間整理參與者、動作及結果。日期精度沿用來源，只有刊出日期的材料保留在文字說明。",
+  "writing_guidance": {
+    "instruction": "依事件發生時間整理參與者、動作及結果。日期精度沿用來源，只有刊出日期的材料保留在文字說明。",
+    "required_elements": [
+      "各節點的事件時間及精度",
+      "參與者與行動",
+      "直接結果",
+      "事件來源及可確認順序"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否區分事件時間與刊出時間，且未把先後順序寫成因果？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "timeline",

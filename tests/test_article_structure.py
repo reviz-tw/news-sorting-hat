@@ -37,7 +37,13 @@ class ArticleStructureTests(unittest.TestCase):
             self.assertEqual(template["type"], entry["type"])
             self.assertTrue(all(isinstance(slot_type, str) for slot_type in template["slots"]))
             template["slots"] = [load_slot(slot_type) for slot_type in template["slots"]]
-            self.assertTrue(all(s["writing_guidance"].strip() for s in template["slots"]))
+            for slot in template["slots"]:
+                guidance = slot["writing_guidance"]
+                self.assertTrue(guidance["instruction"].strip())
+                for key in ("required_elements", "output_checks"):
+                    self.assertIsInstance(guidance[key], list)
+                    self.assertTrue(guidance[key])
+                    self.assertTrue(all(isinstance(item, str) and item.strip() for item in guidance[key]))
             self.assertEqual(len({s["id"] for s in template["slots"]}), len(template["slots"]))
             self.assertTrue(any(s["priority"] == "core" for s in template["slots"]))
 

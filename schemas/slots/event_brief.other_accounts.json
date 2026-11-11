@@ -5,7 +5,20 @@
   "reader_question": "關於這件事，還有哪些與理解事實直接相關的不同說法、當事方回應或更正？",
   "priority": "conditional",
   "evidence_requirements": "具歸屬與來源的相關主張、回應或更正，保留已知發言時間及其與事件事實的關係。指出相異、補充或待確認之處；沒有相關材料時不編造反方，也不把未檢索到回應寫成當事人拒絕或尚未回應。",
-  "writing_guidance": "以具名或可辨識身分介紹回應者、回應的具體事項與來源。更正涉及核心事實時，同步修正開頭。",
+  "writing_guidance": {
+    "instruction": "以具名或可辨識身分介紹回應者、回應的具體事項與來源。更正涉及核心事實時，同步修正開頭。",
+    "required_elements": [
+      "回應者及身分",
+      "回應的具體事項",
+      "說法及來源",
+      "與原敘述的差異或更正"
+    ],
+    "output_checks": [
+      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "是否將核心事實的更正同步反映在開頭，且未虛構平衡觀點？",
+      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+    ]
+  },
   "presentation_modules": [
     "text",
     "quote",
