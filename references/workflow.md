@@ -49,7 +49,7 @@ flowchart TD
 
 ## 驗證、重試與模型接入
 
-三個模型階段共用 `generate_validated()`：傳入 instruction、data、response_schema、attempt，呼叫注入的 `generate(request)`，再解析 JSON 並驗證。驗證失敗時，把錯誤與先前回覆放入 repair，只重試當前階段；預設 `max_retries=1`，即首次嘗試後最多再試一次。模型呼叫或連線異常直接停止，不使用內容修復重試。
+三個模型階段共用 `generate_validated()`：先由 `prompts.build_prompt_request()` 載入對應文字模板，填入資料、完整 response_schema、attempt 與 repair，產生可直接送給模型的 `request.prompt`，再呼叫注入的 `generate(request)`、解析 JSON 並驗證。驗證失敗時，把錯誤與先前回覆放入下一次 prompt，只重試當前階段；預設 `max_retries=1`。模型呼叫或連線異常直接停止。模型不需要讀檔，模板欄位見 [prompt template](prompt-templates.md)。
 
 `CommandModel` 可透過外部程式的 stdin/stdout 接入模型。特定供應商的 API adapter 仍是 TODO，亦可由呼叫端自行實作 `generate(request)`。
 
@@ -59,7 +59,7 @@ flowchart TD
 | --- | --- | --- |
 | llm-api | 模型 adapter | 接入實際 LLM API，依 stage 設定模型、token 預算與 timeout |
 | slot-rag | resolve 之後、analysis 之前 | 依 slot 的閱讀問題與證據需求補查 RAG，去重合併來源並驗證；限制補查次數 |
-| slot-writing | analysis 階段 | 視需要逐 slot 呼叫 LLM 撰寫，再合併並驗證段落、證據 ID 與角色映射 |
+| slot-writing | analysis 階段 | 單段模板與 build_slot_request 已可準備請求；逐 slot 呼叫 LLM、合併並驗證段落、證據 ID 與角色映射仍待實作 |
 | chart-rag | 載入候選模組契約之後 | 取回原始完整表格或時間序列，確認期間、單位、統計口徑及來源 |
 | module-data-llm | 圖表資料補查之後 | 由 LLM 抽取與正規化資料，程式執行計算；更新 RAG、段落及證據，重新驗證並重算候選模組，再產生模組輸入 |
 

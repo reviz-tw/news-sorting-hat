@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["kind", "slot_type", "status", "reason", "section", "evidence", "limitations"],
+  "additionalProperties": false,
+  "properties": {
+    "kind": {"const": "slot_draft"},
+    "slot_type": {"type": "string", "minLength": 1},
+    "status": {"enum": ["covered", "partial", "missing", "not_applicable"]},
+    "reason": {"type": "string", "minLength": 1},
+    "section": {
+      "oneOf": [
+        {"$ref": "analysis.schema.json#/properties/sections/items"},
+        {"type": "null"}
+      ]
+    },
+    "evidence": {"$ref": "analysis.schema.json#/properties/evidence"},
+    "limitations": {"$ref": "analysis.schema.json#/properties/limitations"}
+  }
+}

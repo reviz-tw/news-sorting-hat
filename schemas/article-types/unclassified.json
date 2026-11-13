@@ -1,7 +1,7 @@
 {
   "type": "unclassified",
   "name": "未定類型",
-  "narrative_logic": "先交代能回答的內容，再說明缺口。",
+  "narrative_logic": "先回答現有資料能確認的部分，再說明還缺什麼資料，以及哪些問題因此無法回答。",
   "slots": [
     "unclassified.answer",
     "unclassified.limits"

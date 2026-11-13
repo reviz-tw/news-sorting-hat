@@ -1,22 +1,22 @@
 {
   "type": "event_brief.outcome",
   "id": "outcome",
-  "role": "已知結果",
-  "reader_question": "目前確認的結果或狀態是什麼？",
+  "role": "已發生的結果",
+  "reader_question": "截至指定時間，事件已造成什麼結果、影響了誰？哪些措施只是宣布、尚未執行？",
   "priority": "conditional",
   "evidence_requirements": "結果或最新狀態及資訊日期",
   "writing_guidance": {
-    "instruction": "寫出截至回答時間已發生的直接結果，分開交代已執行、已宣布與尚待執行的事項。",
+    "instruction": "寫出截至指定時間已發生的結果及受影響對象。分開交代已完成、已宣布與尚待執行的事項，附上來源。",
     "required_elements": [
       "截至回答時間的直接結果",
       "已執行、已宣布及待執行事項",
       "受影響對象",
-      "結果的來源及時間截點"
+      "結果的來源與資料截至日期"
     ],
     "output_checks": [
-      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "這段該交代的內容是否都寫進正文？事實與說法是否能從該段的 evidence_ids 找到依據？",
       "是否將已發生結果與計畫、預測分開？",
-      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+      "資料不夠時，是否說明還缺什麼、哪些問題不能回答？有部分證據填 partial，沒有證據填 missing，並寫明 reason。本題不需要這段時，才可依角色規則填 not_applicable；不要自行補寫內容。"
     ]
   },
   "presentation_modules": [

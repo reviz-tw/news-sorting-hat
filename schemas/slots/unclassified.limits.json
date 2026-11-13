@@ -1,21 +1,21 @@
 {
   "type": "unclassified.limits",
   "id": "limits",
-  "role": "資料限制",
-  "reader_question": "還缺什麼？",
+  "role": "仍需補查的資料",
+  "reader_question": "要回答原問題，還需要哪段時間的紀錄、哪一方的說法或哪項數據？",
   "priority": "core",
-  "evidence_requirements": "具體缺口",
+  "evidence_requirements": "現有來源未提供、但回答問題所需的日期、文件、當事方說法或指標定義；說明每項缺漏影響哪個問題。",
   "writing_guidance": {
-    "instruction": "具體列出要回答原問題還需要哪些資料，例如日期、當事方說法或統計口徑，交代缺口影響。",
+    "instruction": "逐項列出還缺的日期、文件、當事方說法或數據定義，說明各項資料能幫助確認什麼問題。",
     "required_elements": [
       "具體缺少的資訊",
-      "缺口影響的問題或判斷",
+      "缺少資料後，哪些問題還不能回答",
       "後續需要的資料種類"
     ],
     "output_checks": [
-      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "這段該交代的內容是否都寫進正文？事實與說法是否能從該段的 evidence_ids 找到依據？",
       "是否具體說明缺什麼及為何需要，避免只說資料不足？",
-      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+      "資料不夠時，是否說明還缺什麼、哪些問題不能回答？有部分證據填 partial，沒有證據填 missing，並寫明 reason。本題不需要這段時，才可依角色規則填 not_applicable；不要自行補寫內容。"
     ]
   },
   "presentation_modules": [

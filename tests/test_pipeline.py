@@ -43,6 +43,11 @@ class PipelineTests(unittest.TestCase):
         self.assertNotIn("photo", data["components"])
         for request in self.requests:
             self.assertNotIn('"$ref"', json.dumps(request["response_schema"]))
+            self.assertNotIn('"$ref"', request["prompt"])
+            self.assertNotIn("{{", request["prompt"])
+            self.assertNotIn("skills/", request["prompt"])
+            self.assertNotIn("schemas/", request["prompt"])
+            self.assertIn(json.dumps(request["response_schema"], ensure_ascii=False, separators=(",", ":")), request["prompt"])
 
     def test_invalid_input_stops_before_model_call(self):
         self.rag["sources"][0]["url"] = "invalid"
@@ -63,6 +68,16 @@ class PipelineTests(unittest.TestCase):
         repair = self.requests[2]["repair"]
         self.assertIn("changed classification", repair["validation_error"])
         self.assertEqual(repair["previous_response"]["classification"]["primary"], "event_brief")
+        self.assertIn("changed classification", self.requests[2]["prompt"])
+        self.assertIn("本次嘗試：2", self.requests[2]["prompt"])
+
+    def test_rewritten_question_is_in_prompt_without_changing_original_rag(self):
+        question = "請比較政策承諾與實際結果"
+        output = run_workflow(self.rag, self.generate, rewritten_question=question)
+        for request in self.requests:
+            self.assertIn(question, request["prompt"])
+        self.assertEqual(output["analysis"]["question"], self.rag["question"])
+        self.assertEqual(output["analysis"]["sources"], self.rag["sources"])
 
     def test_persistent_invalid_json_stops_after_bounded_repairs(self):
         def generate(request):

@@ -1,12 +1,12 @@
 {
   "type": "policy_evaluation.implementation",
   "id": "implementation",
-  "role": "投入與執行",
-  "reader_question": "投入與措施實際完成多少？",
+  "role": "經費投入與執行進度",
+  "reader_question": "政策編列多少經費、實際支出多少？哪些措施何時開始，已完成哪些工作或服務？",
   "priority": "core",
-  "evidence_requirements": "投入、措施、進度與執行證據",
+  "evidence_requirements": "預算、支出紀錄、進度報告或服務統計，附措施名稱、執行單位、時間與完成數量；預算不得當作已支出金額。",
   "writing_guidance": {
-    "instruction": "按措施交代資源是否到位、何時執行、進度如何，分開記載預算編列與實際支出或服務。",
+    "instruction": "按措施列出經費或其他資源、開始時間與完成進度。分開記載預算、實際支出及已提供的服務，註明統計日期。",
     "required_elements": [
       "具體措施",
       "資源投入狀態",
@@ -15,9 +15,9 @@
       "來源"
     ],
     "output_checks": [
-      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "這段該交代的內容是否都寫進正文？事實與說法是否能從該段的 evidence_ids 找到依據？",
       "是否分開預算編列、資源到位與實際執行，避免重複計算成果？",
-      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+      "資料不夠時，是否說明還缺什麼、哪些問題不能回答？有部分證據填 partial，沒有證據填 missing，並寫明 reason。本題不需要這段時，才可依角色規則填 not_applicable；不要自行補寫內容。"
     ]
   },
   "presentation_modules": [

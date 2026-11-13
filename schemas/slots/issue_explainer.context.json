@@ -1,21 +1,21 @@
 {
   "type": "issue_explainer.context",
   "id": "context",
-  "role": "理解背景",
-  "reader_question": "理解機制還需要哪些背景？",
+  "role": "議題形成的背景",
+  "reader_question": "哪些歷史事件、制度變動或社會條件有助解釋這個議題？發生於何時、何地或哪些機構？",
   "priority": "conditional",
-  "evidence_requirements": "歷史或制度脈絡",
+  "evidence_requirements": "與本次問題相關的歷史事件紀錄、規定版本或制度變動報導，附時間與涉及地點或機構；不以背景資料直接推定原因。",
   "writing_guidance": {
-    "instruction": "補充影響讀者理解制度或問題成因的歷史背景，界定本次解釋所涵蓋的時期與場域。",
+    "instruction": "補充理解議題所需的歷史事件或制度變動，註明時間、地點或相關機構，說明它與本次問題的關係。",
     "required_elements": [
-      "必要歷史或制度背景",
-      "相關時期與場域",
-      "與本次問題或機制的關係"
+      "相關歷史事件或制度變動",
+      "時間、地點或相關機構",
+      "與本次問題的關係"
     ],
     "output_checks": [
-      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "這段該交代的內容是否都寫進正文？事實與說法是否能從該段的 evidence_ids 找到依據？",
       "是否僅補理解所需前情，且未由背景直接推定原因？",
-      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+      "資料不夠時，是否說明還缺什麼、哪些問題不能回答？有部分證據填 partial，沒有證據填 missing，並寫明 reason。本題不需要這段時，才可依角色規則填 not_applicable；不要自行補寫內容。"
     ]
   },
   "presentation_modules": [

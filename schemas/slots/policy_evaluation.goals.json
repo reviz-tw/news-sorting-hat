@@ -1,12 +1,12 @@
 {
   "type": "policy_evaluation.goals",
   "id": "goals",
-  "role": "目標與基準",
-  "reader_question": "政策原先承諾什麼、如何衡量？",
+  "role": "政策目標與期限",
+  "reader_question": "政策原先承諾為誰完成什麼、何時達成？使用哪些指標、起始數值與政策版本？",
   "priority": "core",
-  "evidence_requirements": "原定目標、期間、對象與衡量方式",
+  "evidence_requirements": "政策原始文件及修訂版本，載明服務對象、目標、指標、起始數值與期限；修訂目標與原目標分開。",
   "writing_guidance": {
-    "instruction": "記錄政策原先承諾的對象、指標、基準與期限，明示採用哪一版本的目標。",
+    "instruction": "列出政策承諾、服務對象、目標數值及期限，交代衡量指標、起始數值與政策版本。修訂過的目標須與原目標分開。",
     "required_elements": [
       "政策原先承諾",
       "服務對象",
@@ -15,9 +15,9 @@
       "採用的政策版本"
     ],
     "output_checks": [
-      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "這段該交代的內容是否都寫進正文？事實與說法是否能從該段的 evidence_ids 找到依據？",
       "是否保留原定目標而未以事後修訂取代，且未將目標當成實績？",
-      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+      "資料不夠時，是否說明還缺什麼、哪些問題不能回答？有部分證據填 partial，沒有證據填 missing，並寫明 reason。本題不需要這段時，才可依角色規則填 not_applicable；不要自行補寫內容。"
     ]
   },
   "presentation_modules": [

@@ -36,12 +36,14 @@ class VisualizationTests(unittest.TestCase):
         actual = [Path(x["$ref"].split("#")[0]).stem for x in variants]
         self.assertEqual(set(actual), expected | {"text", "quote"})
         self.assertEqual(len(actual), 15)
-        skill = (ROOT / "skills/news-presentation/SKILL.md").read_text()
+        template = (ROOT / "skills/news-presentation/SKILL.md").read_text()
         scenarios = 0
         for item in catalog["visualizations"]:
             path = ROOT / item["reference"]
             self.assertTrue(path.is_file(), str(path))
-            self.assertIn("references/forms/" + path.name, skill)
+            # Model-facing templates carry selection rules inline, not file navigation.
+            self.assertIn("| " + item["id"] + " |", template)
+            self.assertNotIn("references/forms/", template)
             text = path.read_text()
             self.assertIn("什麼情況可以用", text)
             self.assertIn("資料不足時", text)

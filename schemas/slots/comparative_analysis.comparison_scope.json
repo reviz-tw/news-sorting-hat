@@ -1,12 +1,12 @@
 {
   "type": "comparative_analysis.comparison_scope",
   "id": "comparison_scope",
-  "role": "比較範圍",
-  "reader_question": "比較誰，回答什麼問題？",
+  "role": "比較對象與問題",
+  "reader_question": "要比較哪些對象或方案、回答什麼問題？為何選這些對象，使用哪個日期或版本的資料？",
   "priority": "core",
-  "evidence_requirements": "對象、時間與比較目的",
+  "evidence_requirements": "各比較對象的名稱、版本、資料日期及選入理由；需能說明它們如何回答同一問題。只比較部分選項時列明範圍。",
   "writing_guidance": {
-    "instruction": "說明比較的對象、選入理由與版本日期，界定讀者希望用比較回答的問題。",
+    "instruction": "先寫明比較要回答的問題，再列出對象、選入理由及資料日期或版本。未納入哪些選項會影響結論時一併交代。",
     "required_elements": [
       "比較問題",
       "比較對象",
@@ -14,9 +14,9 @@
       "版本、日期及範圍"
     ],
     "output_checks": [
-      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "這段該交代的內容是否都寫進正文？事實與說法是否能從該段的 evidence_ids 找到依據？",
       "是否交代選樣限制，避免讓部分對象看起來代表全部選項？",
-      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+      "資料不夠時，是否說明還缺什麼、哪些問題不能回答？有部分證據填 partial，沒有證據填 missing，並寫明 reason。本題不需要這段時，才可依角色規則填 not_applicable；不要自行補寫內容。"
     ]
   },
   "presentation_modules": [

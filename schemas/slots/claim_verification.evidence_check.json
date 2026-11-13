@@ -1,22 +1,22 @@
 {
   "type": "claim_verification.evidence_check",
   "id": "evidence_check",
-  "role": "證據對照",
-  "reader_question": "哪些資料支持、反對或無法驗證？",
+  "role": "支持與反駁的證據",
+  "reader_question": "針對同一項說法，哪些原始資料支持或反駁？來源、日期及適用條件是否一致？",
   "priority": "core",
   "evidence_requirements": "支持／反對證據與來源品質",
   "writing_guidance": {
-    "instruction": "以同一命題逐項對照支持、反駁和無法判斷的材料，說明原始來源、版本及證據強弱。",
+    "instruction": "針對每項說法並列支持與反駁的材料，註明來源、日期或版本，解釋各項材料能證明什麼；缺少證據時寫明無法確認。",
     "required_elements": [
-      "對照的命題",
+      "待核對的具體說法",
       "支持、反駁及無法判斷的材料",
-      "原始來源與版本",
-      "證據品質及支持範圍"
+      "原始來源、日期或版本",
+      "各項材料能證明的內容"
     ],
     "output_checks": [
-      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "這段該交代的內容是否都寫進正文？事實與說法是否能從該段的 evidence_ids 找到依據？",
       "是否以同一命題和條件比對，且未將缺乏證據當成反證？",
-      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+      "資料不夠時，是否說明還缺什麼、哪些問題不能回答？有部分證據填 partial，沒有證據填 missing，並寫明 reason。本題不需要這段時，才可依角色規則填 not_applicable；不要自行補寫內容。"
     ]
   },
   "presentation_modules": [

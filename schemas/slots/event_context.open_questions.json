@@ -1,22 +1,22 @@
 {
   "type": "event_context.open_questions",
   "id": "open_questions",
-  "role": "脈絡缺口",
-  "reader_question": "哪段時間或說法尚有爭議？",
+  "role": "尚未確認的經過",
+  "reader_question": "哪段時間缺少紀錄？哪些來源對日期、先後順序或行動內容說法不同？",
   "priority": "conditional",
-  "evidence_requirements": "缺漏紀錄、相異說法與歸屬",
+  "evidence_requirements": "對同一時間、行動或結果記載不一致的來源，以及資料缺少的時段。逐項註明誰的說法、差異在哪裡，缺失紀錄不能自行補寫。",
   "writing_guidance": {
-    "instruction": "明列妨礙重建的時間空白或互相衝突的記載，指出哪些事件相對順序仍無法確定。",
+    "instruction": "列出缺少紀錄的時段及互相矛盾的說法，註明來源，說明哪些事件的時間、順序或經過仍無法確認。",
     "required_elements": [
-      "缺漏的時間區段或紀錄",
-      "相互衝突的說法及來源",
-      "無法確認的先後順序",
-      "對事件重建的影響"
+      "缺少紀錄的時段",
+      "相互矛盾的說法及來源",
+      "仍無法確認的時間、順序或經過",
+      "因此不能作出的判斷"
     ],
     "output_checks": [
-      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "這段該交代的內容是否都寫進正文？事實與說法是否能從該段的 evidence_ids 找到依據？",
       "是否保留時間空白與矛盾，避免自行補齊連續故事？",
-      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+      "資料不夠時，是否說明還缺什麼、哪些問題不能回答？有部分證據填 partial，沒有證據填 missing，並寫明 reason。本題不需要這段時，才可依角色規則填 not_applicable；不要自行補寫內容。"
     ]
   },
   "presentation_modules": [

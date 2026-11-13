@@ -1,23 +1,23 @@
 {
   "type": "positions_debate.fault_lines",
   "id": "fault_lines",
-  "role": "分歧與共通點",
-  "reader_question": "分歧是事實、價值還是方案選擇？",
+  "role": "各方同意與爭議的事項",
+  "reader_question": "針對同一問題，各方同意什麼、不同意什麼？差別在事實認定、重視的價值還是解決方案？",
   "priority": "core",
-  "evidence_requirements": "對照主張的依據；共識不能自行推定",
+  "evidence_requirements": "各方對同一問題的說法與依據。要說大家有共識，必須有各方的說法支持，不能自行認定。",
   "writing_guidance": {
-    "instruction": "按爭點對齊各方主張，指出共享前提與真正相異的條件，保留無法放在同一尺度比較的觀點。",
+    "instruction": "針對每個爭議，比較各方怎麼說、為什麼這樣想，指出大家同意和不同意的地方。如果討論的對象或條件不一樣，要先說清楚，不能直接當成相反立場。",
     "required_elements": [
-      "共同爭點",
-      "對齊的各方主張",
-      "事實、價值或方案層次的分歧",
-      "有依據的共同前提",
-      "不可比條件"
+      "具體爭議事項",
+      "各方針對同一問題的說法",
+      "事實認定、價值或方案的差別",
+      "各方明確同意的事項",
+      "不能直接對照的對象或條件"
     ],
     "output_checks": [
-      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "這段該交代的內容是否都寫進正文？事實與說法是否能從該段的 evidence_ids 找到依據？",
       "是否未強迫正反二分，且共同點確有各方材料支持？",
-      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+      "資料不夠時，是否說明還缺什麼、哪些問題不能回答？有部分證據填 partial，沒有證據填 missing，並寫明 reason。本題不需要這段時，才可依角色規則填 not_applicable；不要自行補寫內容。"
     ]
   },
   "presentation_modules": [

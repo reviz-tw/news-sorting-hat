@@ -1,22 +1,22 @@
 {
   "type": "policy_evaluation.attribution",
   "id": "attribution",
-  "role": "歸因與限制",
-  "reader_question": "能否將結果歸因於政策？",
+  "role": "成果是否由政策造成",
+  "reader_question": "評估如何比較實施與未實施政策的情況？哪些其他變化也可能影響結果，證據能否區分？",
   "priority": "core",
-  "evidence_requirements": "評估設計、背景因素與限制",
+  "evidence_requirements": "政策評估的比較方法、實施前後或對照組資料，以及可能影響結果的其他因素。只有實施後數據時，不能直接認定政策造成變化。",
   "writing_guidance": {
-    "instruction": "檢視評估方法及可能干擾因素，說明資料能否把結果歸因於政策，列出缺少的對照或追蹤。",
+    "instruction": "說明評估使用何種比較或追蹤方法，列出其他可能影響結果的因素。據此交代能否確認政策效果，以及缺少哪些對照資料。",
     "required_elements": [
-      "評估方法或設計",
-      "可能干擾的背景因素",
-      "歸因可支持的程度",
+      "評估採用的比較或追蹤方法",
+      "其他可能影響結果的因素",
+      "證據能否確認政策效果",
       "缺少的對照、追蹤或證據"
     ],
     "output_checks": [
-      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "這段該交代的內容是否都寫進正文？事實與說法是否能從該段的 evidence_ids 找到依據？",
       "是否區分政策後發生的變化與政策造成的效果？",
-      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+      "資料不夠時，是否說明還缺什麼、哪些問題不能回答？有部分證據填 partial，沒有證據填 missing，並寫明 reason。本題不需要這段時，才可依角色規則填 not_applicable；不要自行補寫內容。"
     ]
   },
   "presentation_modules": [

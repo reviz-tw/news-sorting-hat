@@ -1,22 +1,22 @@
 {
   "type": "human_story.wider_context",
   "id": "wider_context",
-  "role": "經驗的邊界",
-  "reader_question": "此經驗能說明什麼、不能代表誰？",
+  "role": "個人經驗與其他人的比較",
+  "reader_question": "哪些報導、研究或統計顯示其他人也有類似經驗？這個人的情況有哪些特殊條件，不能代表哪些人？",
   "priority": "conditional",
-  "evidence_requirements": "背景材料與樣本代表性限制",
+  "evidence_requirements": "描述同一群體或制度的報導、研究或統計，用來比較共同經驗與個人特有條件；無比較資料時不能推定個案具有代表性。",
   "writing_guidance": {
-    "instruction": "將個案放回有來源的群體或制度脈絡，說明此人的經驗可以解釋到哪裡，以及推廣到其他人的限制。",
+    "instruction": "用報導、研究或統計，比較當事人跟其他人的經驗，指出哪些情況相似、哪些是這個人特有的。沒有比較資料時，要說明不能由一個人的經驗推論整個群體。",
     "required_elements": [
-      "有來源的群體或制度背景",
-      "個案能說明的現象",
-      "與更廣脈絡的關係",
-      "代表性及推廣限制"
+      "可供比較的報導、研究或統計",
+      "個人與其他人共同的經驗",
+      "當事人特有的條件",
+      "不能由個案推論的群體或情況"
     ],
     "output_checks": [
-      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "這段該交代的內容是否都寫進正文？事實與說法是否能從該段的 evidence_ids 找到依據？",
       "是否未將單一經歷寫成整個群體的普遍經驗？",
-      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+      "資料不夠時，是否說明還缺什麼、哪些問題不能回答？有部分證據填 partial，沒有證據填 missing，並寫明 reason。本題不需要這段時，才可依角色規則填 not_applicable；不要自行補寫內容。"
     ]
   },
   "presentation_modules": [

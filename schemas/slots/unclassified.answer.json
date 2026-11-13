@@ -1,21 +1,21 @@
 {
   "type": "unclassified.answer",
   "id": "answer",
-  "role": "可回答內容",
-  "reader_question": "材料目前能回答什麼？",
+  "role": "目前能確認的內容",
+  "reader_question": "現有來源能回答原問題的哪些部分？哪些部分沒有資料支持？",
   "priority": "core",
   "evidence_requirements": "已取得的證據或明確的無法回答聲明",
   "writing_guidance": {
-    "instruction": "用已取得且可追溯的材料直接回答可確認的部分；完全無來源時，在段落說明目前無法回答的內容。",
+    "instruction": "依現有來源直接回答能確認的部分，列明依據。完全沒有來源時，說明原問題目前無法回答的內容。",
     "required_elements": [
       "目前能確認的回答",
       "對應材料與來源",
       "無來源時的無法回答聲明"
     ],
     "output_checks": [
-      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
-      "是否直接回應原問題，且未強行分類或補造證據？",
-      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+      "這段該交代的內容是否都寫進正文？事實與說法是否能從該段的 evidence_ids 找到依據？",
+      "是否直接回應原問題，且未強行分類或編造證據？",
+      "資料不夠時，是否說明還缺什麼、哪些問題不能回答？有部分證據填 partial，沒有證據填 missing，並寫明 reason。本題不需要這段時，才可依角色規則填 not_applicable；不要自行補寫內容。"
     ]
   },
   "presentation_modules": [

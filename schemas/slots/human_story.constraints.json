@@ -1,12 +1,12 @@
 {
   "type": "human_story.constraints",
   "id": "constraints",
-  "role": "處境限制",
-  "reader_question": "哪些制度或資源限制影響選擇？",
+  "role": "影響選擇的限制",
+  "reader_question": "哪些規定、資源不足或人際關係限制了當事人的選項？有哪些紀錄或說法可核對？",
   "priority": "conditional",
-  "evidence_requirements": "具體限制與人物經驗的來源",
+  "evidence_requirements": "記載規定、資源或人際限制的文件、報導或訪談，以及它如何影響當事人選項的說明；感受與原因解釋需註明提出者。",
   "writing_guidance": {
-    "instruction": "指出制度、資源或關係如何限制當時的選項，分別交代當事人的感受與可獨立核對的條件。",
+    "instruction": "指出當事人遇到的具體限制，以及哪些選項因此無法採取。分開交代本人感受與文件或其他來源能核對的條件。",
     "required_elements": [
       "具體制度、資源或關係限制",
       "當時可選的做法",
@@ -14,9 +14,9 @@
       "當事人感受與可核對條件"
     ],
     "output_checks": [
-      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
-      "是否把感受歸屬給當事人，且未代替當事人推定心理？",
-      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+      "這段該交代的內容是否都寫進正文？事實與說法是否能從該段的 evidence_ids 找到依據？",
+      "當事人的感受是否有註明是本人說的，而不是模型猜測？",
+      "資料不夠時，是否說明還缺什麼、哪些問題不能回答？有部分證據填 partial，沒有證據填 missing，並寫明 reason。本題不需要這段時，才可依角色規則填 not_applicable；不要自行補寫內容。"
     ]
   },
   "presentation_modules": [

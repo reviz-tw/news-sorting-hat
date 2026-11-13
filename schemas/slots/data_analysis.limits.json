@@ -1,22 +1,22 @@
 {
   "type": "data_analysis.limits",
   "id": "limits",
-  "role": "解讀限制",
-  "reader_question": "這些資料不能支持哪些結論？",
+  "role": "資料不能回答的問題",
+  "reader_question": "抽樣、測量方式或觀察期間有哪些限制？哪些人未被涵蓋、哪些結論因此無法確認？",
   "priority": "core",
-  "evidence_requirements": "樣本、口徑、缺漏、不確定性與因果限制",
+  "evidence_requirements": "來源對抽樣、測量方式、缺值、觀察期間及涵蓋對象的說明；指出限制會影響哪項結論，不能憑空補寫偏差原因。",
   "writing_guidance": {
-    "instruction": "交代抽樣、測量、期間或代表性的限制，指出這些限制會削弱哪項推論以及可能的其他解釋。",
+    "instruction": "指出資料缺少哪些人、期間或測量項目，逐項說明哪些結論因此不能成立或仍需查證。其他可能解釋須附依據。",
     "required_elements": [
       "抽樣、測量或期間限制",
-      "代表性範圍",
-      "受限制影響的具體推論",
-      "材料支持的其他解釋或尚待驗證的可能性"
+      "未涵蓋的人或範圍",
+      "因此無法確認的結論",
+      "有依據、尚待查證的其他解釋"
     ],
     "output_checks": [
-      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "這段該交代的內容是否都寫進正文？事實與說法是否能從該段的 evidence_ids 找到依據？",
       "是否說明限制如何影響結論，而非只附上籠統的資料有限？",
-      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+      "資料不夠時，是否說明還缺什麼、哪些問題不能回答？有部分證據填 partial，沒有證據填 missing，並寫明 reason。本題不需要這段時，才可依角色規則填 not_applicable；不要自行補寫內容。"
     ]
   },
   "presentation_modules": [

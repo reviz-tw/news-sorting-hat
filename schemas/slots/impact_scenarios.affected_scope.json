@@ -1,12 +1,12 @@
 {
   "type": "impact_scenarios.affected_scope",
   "id": "affected_scope",
-  "role": "影響範圍",
-  "reader_question": "誰在什麼時間範圍受到影響？",
+  "role": "受影響對象與期間",
+  "reader_question": "哪些人或地區在什麼期間受到直接或間接影響？哪些影響已發生，哪些是誰提出的預估？",
   "priority": "core",
-  "evidence_requirements": "受影響者、時間、已發生與預期的區分",
+  "evidence_requirements": "載明受影響對象、地區、期間及結果的紀錄或評估。預估須有提出者及假設，與已發生影響分開。",
   "writing_guidance": {
-    "instruction": "辨認直接與間接受影響的對象、地區及時間，分開標示已觀察到的影響與仍屬推估的部分。",
+    "instruction": "列出受影響的人、地區及期間，分開說明直接與間接影響。已發生的結果附證據；預估的影響註明提出者。",
     "required_elements": [
       "直接與間接受影響對象",
       "地區及時間範圍",
@@ -14,9 +14,9 @@
       "推估影響及提出者"
     ],
     "output_checks": [
-      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "這段該交代的內容是否都寫進正文？事實與說法是否能從該段的 evidence_ids 找到依據？",
       "是否明確區分已發生影響與預期影響？",
-      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+      "資料不夠時，是否說明還缺什麼、哪些問題不能回答？有部分證據填 partial，沒有證據填 missing，並寫明 reason。本題不需要這段時，才可依角色規則填 not_applicable；不要自行補寫內容。"
     ]
   },
   "presentation_modules": [

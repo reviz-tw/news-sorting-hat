@@ -1,23 +1,23 @@
 {
   "type": "positions_debate.positions",
   "id": "positions",
-  "role": "各方主張",
-  "reader_question": "哪個 stakeholder 在什麼時間、以何種身分主張什麼，理由與條件為何？",
+  "role": "各方主張與理由",
+  "reader_question": "誰在何時、以個人或機構代表身分提出什麼主張？針對哪個提案版本，有哪些理由或條件？",
   "priority": "core",
-  "evidence_requirements": "穩定的 stakeholder 身分、實際發言時間、主張、理由、條件與來源；區分個人與組織立場，不強分正反",
+  "evidence_requirements": "確認發言者身分的資料、實際發言時間、說法、理由、附帶條件與來源。個人意見跟代表組織的立場分開，不必硬分正反兩方。",
   "writing_guidance": {
-    "instruction": "依發言者、時間和爭點呈現原話或具歸屬的轉述，連同理由、條件與當時回應的提案版本。",
+    "instruction": "逐一列出發言者、當時身分、發言時間、主張及理由，保留附帶條件與提案版本。轉述也須註明是誰的說法。",
     "required_elements": [
       "發言者及當時身分",
       "實際發言時間",
       "爭點與提案版本",
       "主張、理由及限定條件",
-      "原話或具歸屬的轉述與來源"
+      "原話或轉述內容、發言者與來源"
     ],
     "output_checks": [
-      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "這段該交代的內容是否都寫進正文？事實與說法是否能從該段的 evidence_ids 找到依據？",
       "是否區分個人和組織立場，且未以報導日期代替發言日期？",
-      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+      "資料不夠時，是否說明還缺什麼、哪些問題不能回答？有部分證據填 partial，沒有證據填 missing，並寫明 reason。本題不需要這段時，才可依角色規則填 not_applicable；不要自行補寫內容。"
     ]
   },
   "presentation_modules": [

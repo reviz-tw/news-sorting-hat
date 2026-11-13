@@ -1,7 +1,7 @@
 {
   "type": "discourse_analysis",
   "name": "輿論與媒體敘事分析",
-  "narrative_logic": "界定語料範圍與方法，辨識敘事框架，提出分析結果與可追溯資料，再以適當視覺化對照群體／時期差異，最後交代代表性限制。",
+  "narrative_logic": "先說明選了哪些報導或發言、怎麼分類，再用原句比較各方怎麼談同一件事。有可靠的統計才比較數量，最後說明這些資料沒有涵蓋哪些人或媒體。",
   "slots": [
     "discourse_analysis.corpus",
     "discourse_analysis.frames",
@@ -9,5 +9,5 @@
     "discourse_analysis.group_differences",
     "discourse_analysis.limits"
   ],
-  "composition_guidance": "analysis_results 必須交代分析後得到什麼，不能只列原始語料或泛稱媒體看法不同。至少用可追溯的質性編碼／例句對照整理結果；若連分類材料也不足，明示 partial/missing。模型歸納的框架是 inference，連回 based_on 的原句／主張，不冒充來源既有分類。量化只用來源或上游已提供且可核對方法的統計，不由有限 RAG 摘錄假造全體語料詞頻。框架可能重疊，除非分類完整互斥，不作總和 100% 的分配。"
+  "composition_guidance": "analysis_results 要寫出分析發現，不能只貼原文或說「各家媒體看法不同」。依照報導或發言內容分類，引用原句說明分類理由；資料不夠時標 partial/missing。模型自己整理的分類用 inference，並以 based_on 記錄依據，不能說成來源原本就有這種分類。要比較次數或比例，必須有來源或前一步提供的統計，且知道怎麼計算；不能用幾段 RAG 摘錄推算所有報導。一段內容可能屬於多個分類，只有分類不重複、又涵蓋全部資料時，才能加總成 100%。"
 }

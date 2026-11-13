@@ -1,22 +1,22 @@
 {
   "type": "issue_explainer.mechanism",
   "id": "mechanism",
-  "role": "作用機制",
-  "reader_question": "制度或現象如何運作？",
+  "role": "制度或現象如何運作",
+  "reader_question": "在什麼條件下，由誰或什麼因素啟動哪些步驟，最後產生什麼結果？",
   "priority": "core",
-  "evidence_requirements": "步驟、規則或作用關係；勿由相關推因果",
+  "evidence_requirements": "說明適用條件、參與對象、運作步驟與結果的規定、研究或事件紀錄；各步驟間的作用需有證據，不能由同時發生推定因果。",
   "writing_guidance": {
-    "instruction": "從一個適用情境出發，交代條件、行動者、處理步驟與結果，每個關鍵連結都對應材料。",
+    "instruction": "先說明適用條件，再依序寫出參與的人、機構或作用因素、處理步驟及結果。每一步的作用須有資料支持，不能只因同時發生就認定有因果。",
     "required_elements": [
-      "適用情境與前提",
-      "行動者",
-      "規則及處理步驟",
-      "結果與關鍵連結的證據"
+      "啟動條件或適用情況",
+      "參與的人、機構或作用因素",
+      "運作規則及先後步驟",
+      "各步驟如何產生結果的證據"
     ],
     "output_checks": [
-      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
-      "是否完整說明如何運作，且未以相關性代替機制證據？",
-      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+      "這段該交代的內容是否都寫進正文？事實與說法是否能從該段的 evidence_ids 找到依據？",
+      "是否寫清楚條件、步驟及結果，且各步驟的作用有證據支持？",
+      "資料不夠時，是否說明還缺什麼、哪些問題不能回答？有部分證據填 partial，沒有證據填 missing，並寫明 reason。本題不需要這段時，才可依角色規則填 not_applicable；不要自行補寫內容。"
     ]
   },
   "presentation_modules": [

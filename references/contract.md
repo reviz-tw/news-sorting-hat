@@ -58,6 +58,10 @@ limitations 含 code（missing_data、incomparable、conflicting、historical、
 
 各 slot 的 `writing_guidance` 為物件：`instruction` 說明寫法，`required_elements` 列出該段必須交代的內容，`output_checks` 列出輸出前逐項自查的要求。`resolve` 將完整物件保留在 `profiles[].slots[].writing_guidance`，供 analysis 與 presentation 階段使用。原本將此欄位當作字串的整合端須改讀 `instruction`，並一併傳入兩個清單。
 
+`narrative_logic` 只簡述文章先寫什麼、再寫什麼。slot 的 `role` 命名段落用途，`reader_question` 指出要查明的對象與問題，`evidence_requirements` 列明所需資料，寫作指示則直接說明要引述、比較或解釋什麼。生成的 `sections[].heading` 應依實際內容點出對象、問題或發現，不直接照抄 role；正文須指出具體差異，例如哪個時間、行動或結果的說法不同，避免只寫「存在分歧」。
+
+編輯說明、標題與正文使用台灣常用的繁體中文，句子簡短自然，直接說清楚誰做了什麼。不要為了縮短句子，把完整說明壓成不自然的縮寫。避免直譯和堆疊名詞：例如「帶歸屬的主張」寫成「註明是誰的說法」，「比較口徑」依實際意思寫成「計算方式與比較基準」，「共同維度」寫成「相同的比較項目」。需要的專業名詞可以保留，但要說明意思；逐字引文、正式名稱、JSON 欄位及 ID 不改寫。
+
 必要元素須有材料支持並寫入對應正文；資料缺漏時明示缺口及影響，使用符合證據覆蓋的角色狀態與 reason，不得為滿足清單補造內容。不適用角色沿用原有規則。檢查清單是模型的語意自查指引，不會新增前端欄位，也不代表程式已驗證每個元素的語意完整性；程式仍驗證既有 schema、引用與角色映射。
 
 文章類型檔的 slots 是 slot 類型 ID 陣列，依序讀取 schemas/slots/<slot_type>.json。各 slot 檔的 presentation_modules 是候選元件 ID 陣列，presentation_conditions 保存此 slot 的專屬適用條件。resolve 依順序查[元件索引](../schemas/components.json)與[呈現規則](../schemas/presentation-modules.json)，將元件預設或 slot 專屬的 use_when 展開到 profiles[].slots[].presentation_modules。15 個 supported 模組對應現有 block type；photo 為 planning_only，沒有合法 block_type。呈現階段只能輸出 supported 模組，不把候選數量視為必要區塊數量。
@@ -92,9 +96,9 @@ schema 語法與引用驗證不能代替編輯品質測試；下一步需用真�
 
 ## 模型呼叫與維護
 
-`scripts.pipeline.run_workflow(rag_input, generate)` 依序呼叫分類、內容整理、呈現三階段。每階段將 instruction、data 及已展開引用的 response_schema 交給 generate。程式驗證第一關分類、第二關來源與角色映射、第三關模組資料與段落候選，最後回傳 presentation。
+`scripts.pipeline.run_workflow(rag_input, generate)` 依序呼叫分類、內容整理、呈現三階段。每階段由文字模板產生已填入資料及完整 schema 的 request.prompt，另保留 instruction、data、response_schema 等結構化欄位。程式驗證第一關分類、第二關來源與角色映射、第三關模組資料與段落候選，最後回傳 presentation。
 
-分類索引的 reading_task、coverage、boundaries 提供機器可讀的分類依據。描述檔與各元件 JSON 提供內容規則與資料契約，執行時由 Python 讀取。原有 skills 文件提供歷史參考。
+分類索引的 reading_task、coverage、boundaries 提供機器可讀的分類依據。描述檔與各元件 JSON 提供內容規則與資料契約，由 Python 讀取並插入 skills/ 下的 prompt template，模型不需開啟檔案或連結。`build_slot_request()` 可另行準備符合 slot-draft.schema.json 的單段草稿請求；它不會自動合併成 analysis。詳見 [模板與草稿契約](prompt-templates.md)。
 
 驗證錯誤可在同一階段有限次修正，預設一次；模型或傳輸失敗立即停止並帶出 WorkflowError.stage。重新執行會重新呼叫三個階段。實例與接入介面見 [README](../README.md)。
 

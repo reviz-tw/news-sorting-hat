@@ -1,21 +1,21 @@
 {
   "type": "accountability.unresolved",
   "id": "unresolved",
-  "role": "尚待追查",
-  "reader_question": "哪些責任或事實仍未釐清？",
+  "role": "尚未查清的問題",
+  "reader_question": "哪些事實或責任還不能確認？需要哪份文件、紀錄或哪一方的說法才能查證？",
   "priority": "conditional",
-  "evidence_requirements": "未解處；不把關係推定為違法",
+  "evidence_requirements": "目前還無法確認的事實或責任。人或機構之間有關係，不代表已經違法。",
   "writing_guidance": {
-    "instruction": "列出尚待查證的責任或事實問題，指出需要何種文件或證詞才能推進，以及目前結論的界線。",
+    "instruction": "列出尚未查清的事實或責任，逐項說明缺少的文件、紀錄或證詞，以及因此不能作出的判斷。",
     "required_elements": [
-      "尚待查證的責任或事實",
-      "推進查證所需的文件或證詞",
-      "目前結論的界線"
+      "尚待查證的事實或責任",
+      "需要補查的文件、紀錄或證詞",
+      "目前不能作出的判斷"
     ],
     "output_checks": [
-      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "這段該交代的內容是否都寫進正文？事實與說法是否能從該段的 evidence_ids 找到依據？",
       "是否未將關聯、沉默或缺少資料直接推定為違法？",
-      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+      "資料不夠時，是否說明還缺什麼、哪些問題不能回答？有部分證據填 partial，沒有證據填 missing，並寫明 reason。本題不需要這段時，才可依角色規則填 not_applicable；不要自行補寫內容。"
     ]
   },
   "presentation_modules": [

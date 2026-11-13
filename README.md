@@ -4,6 +4,8 @@
 
 完整流程、驗證重試與 TODO 接入點見 [Python workflow 流程圖](references/workflow.md)。
 
+模型使用可直接送入 sglang 等推論服務的 [prompt template](references/prompt-templates.md)：Python 填入 `{{...}}`、展開 JSON 與 schema，模型不需讀取外部檔案。
+
 | 步驟 | 誰負責 | 輸入與輸出 |
 | --- | --- | --- |
 | 1. 判定文章架構分類 | 程式呼叫 generate，stage 為 classification | 問題與 RAG → 只有 status、primary、secondary 的 [classification](schemas/classification.schema.json) |
@@ -36,11 +38,13 @@ rag_input = load_json("examples/mixed-policy.input.json")
 presentation = run_workflow(rag_input, generate, max_retries=1)
 ```
 
-generate 收到一個 dict，每次只處理指定階段。將 instruction 作為模型指令，data 作為引用資料，response_schema 作為結構化回覆格式。模型服務若支援 JSON Schema 可直接使用 response_schema，其中本地 $ref 已完整展開；也可以讓模型依提示產生 JSON，再由 workflow 驗證。
+generate 收到一個 dict，每次只處理指定階段。直接將 `request["prompt"]` 作為完整模型輸入；其中已包含指示、資料與輸出 schema，不必再重複附加 data。模型服務若支援 JSON Schema，可另外使用 response_schema 配置輸出約束，其中本地 $ref 已完整展開。模型回覆仍由 workflow 驗證。
 
 | request 欄位 | 意義 |
 | --- | --- |
 | stage | classification、analysis 或 presentation |
+| prompt | 已填值的完整文字，包含規則、資料、schema 與本次修復資訊 |
+| rewritten_question | 呼叫端釐清後的提問；未指定時沿用 RAG question，不改寫原始輸入 |
 | instruction | 該階段的任務與新聞整理規則 |
 | data | 該階段需要的 RAG、已驗證產物及選中定義 |
 | response_schema | 完整的 JSON 輸出 schema |
@@ -48,6 +52,8 @@ generate 收到一個 dict，每次只處理指定階段。將 instruction 作�
 | repair | 僅在修正回覆時提供 validation_error 與 previous_response |
 
 正常流程呼叫模型三次。analysis 階段一次組織全篇段落與共用證據，可把重疊角色合併同一節。presentation 階段收到每個 section 的候選模組清單，以及實際可用元件的輸入契約。跨節模組須屬於至少一個被引用段落的候選；數據與來源須來自被引用段落。程式從分析結果取出正文、量測值與事件，完成前端 blocks。
+
+單一 slot 可用 `scripts.prompts.build_slot_request()` 準備請求，模板提供 `{{article_type.name}}`、`{{article_type.narrative_logic}}`、`{{slot.role}}` 與 `{{slot.reader_question}}` 等欄位。範例與單段草稿契約見 [模板文件](references/prompt-templates.md)；逐 slot 呼叫及合併仍為 TODO。
 
 每階段輸出驗證通過後才往下執行。max_retries=1 表示允許該階段修正一次。模型呼叫或傳輸失敗會立即拋出 WorkflowError，其 stage 標示失敗位置；驗證持續失敗時也拋出同一錯誤。各次執行保存自己的區域狀態，generate 所收到的 request 為深複製。
 

@@ -1,22 +1,22 @@
 {
   "type": "impact_scenarios.uncertainty",
   "id": "uncertainty",
-  "role": "不確定性",
-  "reader_question": "哪些風險能確認、哪些仍未知？",
+  "role": "尚無法確定的風險",
+  "reader_question": "哪些未知條件可能改變預估結果？目前能否判斷影響大小與發生機率，缺少什麼依據？",
   "priority": "core",
-  "evidence_requirements": "推估限制與不可支持的推論",
+  "evidence_requirements": "評估報告或具名說法中尚未確認的條件、資料限制及風險估計；無法判斷影響大小或機率時明示。",
   "writing_guidance": {
-    "instruction": "指出會改變情境結果的關鍵未知，說明目前能否判斷其規模與發生機率。",
+    "instruction": "列出會影響預估結果、但尚無法確認的條件，說明目前能否判斷影響大小與發生機率；不能判斷時指出缺少的依據。",
     "required_elements": [
-      "影響結果的關鍵未知",
+      "可能改變預估結果的未知條件",
       "已能確認的風險",
-      "規模與機率的可判斷程度",
-      "推估限制"
+      "影響大小與機率是否有依據",
+      "仍缺少的資料或評估方法"
     ],
     "output_checks": [
-      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "這段該交代的內容是否都寫進正文？事實與說法是否能從該段的 evidence_ids 找到依據？",
       "是否將未知機率明示為未知，且未以精確數字包裝不確定性？",
-      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+      "資料不夠時，是否說明還缺什麼、哪些問題不能回答？有部分證據填 partial，沒有證據填 missing，並寫明 reason。本題不需要這段時，才可依角色規則填 not_applicable；不要自行補寫內容。"
     ]
   },
   "presentation_modules": [

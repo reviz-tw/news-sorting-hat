@@ -1,23 +1,23 @@
 {
   "type": "event_brief.event_lead",
   "id": "event_lead",
-  "role": "事件核心",
-  "reader_question": "發生了什麼，涉及誰、何時、何地？",
+  "role": "事件概要",
+  "reader_question": "誰在何時、何地做了什麼？哪些細節已確認，哪些只是當事方的說法？",
   "priority": "core",
   "evidence_requirements": "可追溯的人事時地物；未知項保留未知",
   "writing_guidance": {
-    "instruction": "首句寫出誰在什麼情境做了什麼，接著補理解事件必需的時間、地點。若事件本身有爭議，首句保留消息歸屬。",
+    "instruction": "首句寫出誰做了什麼，再補上已知時間、地點及必要情境。未經確認或有爭議的內容，直接註明是誰的說法。",
     "required_elements": [
       "主要人物或機構",
       "發生的行動或事件",
       "已知時間與地點",
       "理解事件所需的情境",
-      "有爭議或未核實消息的歸屬"
+      "有爭議或還沒確認的消息是誰說的"
     ],
     "output_checks": [
-      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
-      "是否首句即可辨識誰做了什麼，且未補造未提供的時間、地點或原因？",
-      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+      "這段該交代的內容是否都寫進正文？事實與說法是否能從該段的 evidence_ids 找到依據？",
+      "是否首句即可辨識誰做了什麼，且未編造未提供的時間、地點或原因？",
+      "資料不夠時，是否說明還缺什麼、哪些問題不能回答？有部分證據填 partial，沒有證據填 missing，並寫明 reason。本題不需要這段時，才可依角色規則填 not_applicable；不要自行補寫內容。"
     ]
   },
   "presentation_modules": [

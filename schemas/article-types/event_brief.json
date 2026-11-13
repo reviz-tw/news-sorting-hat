@@ -1,7 +1,7 @@
 {
   "type": "event_brief",
   "name": "事件事實敘述",
-  "narrative_logic": "先交代事件核心、已知結果與必要背景，說明未明事項；有助理解事件的其他說法與回應，於收尾交代。",
+  "narrative_logic": "先說明誰在什麼時間、地點做了什麼，以及已經發生的結果，再補上必要的背景和還沒確認的細節。有相關回應或更正時，也要交代。",
   "slots": [
     "event_brief.event_lead",
     "event_brief.outcome",
@@ -9,5 +9,5 @@
     "event_brief.unknowns",
     "event_brief.other_accounts"
   ],
-  "composition_guidance": "other_accounts 為條件式收尾，補充事件相關的不同說法、當事方回應及更正，不泛收所有意見。短答或相關性不足時標 not_applicable，不增加空段落；若事件含直接指控、關鍵事實有爭議或問題要求多方回應，而必要說法未取得，標 partial/missing 並交代缺口，不能當成不適用。只有單方來源不代表已掌握全貌，也不自動需要假設存在反方。影響事件核心的爭議或更正須在 event_lead／outcome 同步反映，不能等到文末才推翻前文確定敘述；收尾補充歸屬與細節。unknowns 處理尚不能確認的事項，other_accounts 處理具歸屬的說法，重疊時可合併節點。其他說法仍是 claim，不能當成同等確定的事實；若立場比較成為重要任務，搭配 positions_debate，或依主要閱讀任務改以它為主類型。"
+  "composition_guidance": "other_accounts 放在最後，補充跟事件有關的說法、回應或更正，不需要收進所有意見。簡短回答或本題不需要的內容可標 not_applicable，不必多寫一段。事件涉及指控、重要事實有爭議，或使用者要求各方回應，但資料還不夠時，標 partial/missing 並說明少了哪一方的說法。只有單方資料，不能說已經了解全貌，也不用自行假設有反對意見。爭議或更正如果影響開頭與結果，event_lead／outcome 也要說清楚，不能前面寫成事實、最後才改口。unknowns 寫還沒確認的事，other_accounts 寫各方怎麼說；內容重複時可合併，並記錄對應的 slot。各方說法用 claim，不能直接當成已確認事實。若還需要比較立場，可加入 positions_debate；立場比較若成為主要問題，就重新判斷主類型。"
 }

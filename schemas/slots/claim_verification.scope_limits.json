@@ -1,12 +1,12 @@
 {
   "type": "claim_verification.scope_limits",
   "id": "scope_limits",
-  "role": "判定邊界",
-  "reader_question": "哪些部分仍不能判定？",
+  "role": "仍無法確認的部分",
+  "reader_question": "哪些內容沒有查到資料或尚未核對？查證結果只適用於哪些時間、對象或條件？",
   "priority": "core",
   "evidence_requirements": "查核範圍、缺漏與尚未排除的解釋",
   "writing_guidance": {
-    "instruction": "列出未檢驗的部分、缺失來源及仍合理的其他解釋，交代結論適用的時間與範圍。",
+    "instruction": "列出未查到資料或尚未核對的部分，說明結論適用的時間、對象及條件；有其他尚未排除的解釋時，交代其依據。",
     "required_elements": [
       "已查與未查範圍",
       "缺失來源",
@@ -14,9 +14,9 @@
       "結論適用時間與條件"
     ],
     "output_checks": [
-      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "這段該交代的內容是否都寫進正文？事實與說法是否能從該段的 evidence_ids 找到依據？",
       "是否明確說明哪些部分仍不能判定，避免將局部查核推廣為全面結論？",
-      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+      "資料不夠時，是否說明還缺什麼、哪些問題不能回答？有部分證據填 partial，沒有證據填 missing，並寫明 reason。本題不需要這段時，才可依角色規則填 not_applicable；不要自行補寫內容。"
     ]
   },
   "presentation_modules": [

@@ -1,7 +1,7 @@
 {
   "type": "human_story",
   "name": "人物與經驗敘事",
-  "narrative_logic": "先交代當事人的背景與當時處境，再敘述經歷、選擇、限制及個人經驗的邊界；有相關側訪時，以他人觀察收尾，補充或對照當事人的自述。",
+  "narrative_logic": "先介紹當事人，以及當時的生活或工作情況，再說明他經歷了什麼、做了哪些選擇、遇到什麼限制。有資料可以比較時，說明其他人是否也有類似經驗；有側訪時，再補上他人的觀察。",
   "slots": [
     "human_story.person_context",
     "human_story.experience",
@@ -9,5 +9,5 @@
     "human_story.wider_context",
     "human_story.side_interviews"
   ],
-  "composition_guidance": "person_context 是經歷與選擇之前的背景說明，保留既有角色 ID。human_story 為主類型時，正文開頭先交代人物背景與當時處境，再進入 experience；為次類型時，在人物段落開始先做必要介紹。短文可將 person_context 與 experience 合併同一 section/node，正文仍先背景後經歷，保留兩個角色映射，不重複介紹。只納入與故事理解相關的背景，不列完整履歷或無關個資；資料不足時標 partial/missing，簡述可確認的身分與缺口，繼續呈現有依據的經歷，不為開場補造生平。背景可以幫助理解選擇，但不能直接當成動機或因果證明。 side_interviews 是條件式收尾：有與故事相關的側訪就納入，可印證、補充或提出不同觀察，不為平衡而強配正反或等量篇幅。側訪缺乏且本題無需他人觀察時標 not_applicable；若使用者要求側訪、材料已指出關鍵爭議需外部觀察，或回應對理解故事不可或缺但未取得，則標 partial/missing 並說明範圍。未取得訪談不等於對方拒訪，不能聲稱模型已訪問當事人或他人。多角度補充仍須按證據強弱呈現，關鍵矛盾也須在相應經歷段落交代，不到收尾才修正確定敘述。側訪在短文可與 experience／wider_context 合併同一節，保留角色映射，依正文順序先自述再補充觀察。"
+  "composition_guidance": "先用 person_context 介紹當事人，再用 experience 說明經歷與選擇。當這是次類型時，也先在人物段落簡單介紹背景。短文可以合併兩段，但仍先介紹再說經歷，並記錄兩個 slot。只寫理解故事需要的背景，不列完整履歷或無關個資；資料不夠時標 partial/missing，寫出已知身分和還缺的資料，不自行補寫生平。不能只憑背景就推測當事人為什麼這樣選。side_interviews 補充親友或相關人士的觀察，可以支持本人自述，也可以指出不同之處，不必為了平衡硬找反方。沒有側訪且本題不需要時標 not_applicable；使用者有要求，或事件爭議需要他人說法卻沒找到時，標 partial/missing。沒找到訪談不等於對方拒訪，模型也不能說自己做過採訪。說法不同時，要在敘述相關經歷的段落交代，不能等到最後才改口。短文可將側訪跟 experience／wider_context 合併，先寫本人說法，再補其他人的觀察，並保留各自的 slot。"
 }

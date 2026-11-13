@@ -5,97 +5,97 @@
       "type": "event_brief",
       "name": "事件事實敘述",
       "file": "article-types/event_brief.json",
-      "reading_task": "事件事實敘述：發生什麼？",
-      "coverage": "人、事、時、地、相關對象、已知結果；必要時收尾補其他說法與回應",
-      "boundaries": "相關說法帶歸屬；不補造反方，核心爭議或更正也須反映於開頭"
+      "reading_task": "發生了什麼事？",
+      "coverage": "誰在什麼時間、地點做了什麼，結果如何；需要時補上各方回應",
+      "boundaries": "各方說法要註明是誰說的，不自行補寫反方意見。重要爭議或更正也要在開頭交代。"
     },
     {
       "type": "human_story",
       "name": "人物與經驗敘事",
       "file": "article-types/human_story.json",
-      "reading_task": "人物與經驗敘事：處境與選擇？",
-      "coverage": "先介紹人物背景與當時處境，再交代經歷、選擇、原話與限制，有相關側訪時收尾補他人觀察",
-      "boundaries": "側訪帶關係與依據，不強配正反；背景只取故事所需，不由身分推定動機；不把個人經驗當全體統計"
+      "reading_task": "這個人經歷了什麼，又做了什麼選擇？",
+      "coverage": "先介紹人物與當時生活，再寫經歷、選擇、本人說法和遇到的限制；有側訪時補上他人的觀察",
+      "boundaries": "側訪要交代受訪者跟當事人的關係及觀察依據，不必硬分正反。不能只憑身分猜測動機，也不能把一個人的經驗當成所有人的情況。"
     },
     {
       "type": "event_context",
       "name": "事件脈絡與重建",
       "file": "article-types/event_context.json",
-      "reading_task": "事件脈絡與重建：如何走到這裡？",
-      "coverage": "關鍵事件、時間、參與者、轉折與疑點；收尾補相關其他方觀點",
-      "boundaries": "有先後不代表有因果；觀點帶歸屬，關鍵分歧同步標於經過與轉折"
+      "reading_task": "這件事是怎麼一步步發展的？",
+      "coverage": "重要事件、時間、參與者、改變後續發展的決定與疑點；最後比較相關人士的說法",
+      "boundaries": "先後發生不代表有因果關係。各方說法要註明來源，寫到有爭議的經過時就要交代差異。"
     },
     {
       "type": "issue_explainer",
       "name": "議題與機制解釋",
       "file": "article-types/issue_explainer.json",
-      "reading_task": "議題與機制解釋：是什麼、如何運作、各方如何理解？",
-      "coverage": "概念、背景、機制、相關法規與法律見解、不同觀點與理由、範圍與例外",
-      "boundaries": "區分規範與評論，保留法域及版本；缺依據就明示，不補造對立或法條"
+      "reading_task": "這是什麼、怎麼運作，各方有什麼看法？",
+      "coverage": "概念、背景、運作方式、相關法規、各方意見與理由，以及適用條件和例外",
+      "boundaries": "分清法規和個人意見，註明適用地區與版本。缺少資料就明說，不自行編造法條或不同意見。"
     },
     {
       "type": "positions_debate",
       "name": "立場與爭點分析",
       "file": "article-types/positions_debate.json",
-      "reading_task": "立場與爭點分析：各方何時主張什麼，同一對象是否改變？",
-      "coverage": "先交代議題背景、爭議起點與共同問題，再整理 stakeholder 身分、觀察期間、逐時主張、理由、條件、證據與變化",
-      "boundaries": "不強分正反；不把措辭、版本差異或沉默當成立場轉向／不變"
+      "reading_task": "各方在什麼時候說了什麼？同一人的立場有沒有改變？",
+      "coverage": "先交代爭議背景與討論的問題，再依時間整理發言者身分、各次說法、理由、條件和變化",
+      "boundaries": "不必硬分成正反兩方。用詞或提案版本不同，不一定表示立場改變；沒發言也不代表立場不變。"
     },
     {
       "type": "data_analysis",
       "name": "資料現況與趨勢分析",
       "file": "article-types/data_analysis.json",
-      "reading_task": "資料現況與趨勢：發現什麼、規模與差異有何意義？",
-      "coverage": "核心洞察先行，接既有認識與新發現的對照，再展開數據、口徑與限制；資料足夠時搭配一至多張圖表",
-      "boundaries": "數據為核心問題才作主類型；不為洞察誇大因果，不為圖表補造數據"
+      "reading_task": "數據告訴我們什麼？變化或差異有多大？",
+      "coverage": "先說主要發現，再跟過去報導或研究比較，接著交代數字、計算方式和資料限制；資料足夠時搭配圖表",
+      "boundaries": "問題主要在問數據時才選為主類型。不能把數字的變化直接說成因果，也不能為了畫圖補上不存在的數據。"
     },
     {
       "type": "comparative_analysis",
       "name": "對象與方案比較",
       "file": "article-types/comparative_analysis.json",
-      "reading_task": "對象與方案比較：同異及意義？",
-      "coverage": "對象、共同維度、基準、比較表與差異解讀、不可比之處",
-      "boundaries": "不強行量化質性差異；區分未知、不適用與不可比"
+      "reading_task": "這些對象或方案有什麼差別？",
+      "coverage": "要比較的對象、相同的比較項目與基準、比較表、主要差異，以及不能直接比較的部分",
+      "boundaries": "不能用數字表示的差異，不要硬換成分數。沒有資料、不適用和不能比較，要分開說明。"
     },
     {
       "type": "accountability",
       "name": "調查揭露與問責",
       "file": "article-types/accountability.json",
-      "reading_task": "調查揭露與問責：脈絡、發現、落差及責任？",
-      "coverage": "必要背景與調查摘要先行，再交代問題線索、落差與質疑，展開證據、權責、當事方回應、未解處",
-      "boundaries": "區分事實與指控，不預斷責任；缺少背景或回應要揭露，不補寫"
+      "reading_task": "出了什麼問題，有哪些證據，誰該負責？",
+      "coverage": "先說背景與調查發現，再整理線索、跟原定承諾的差距、證據、負責單位、當事方回應和待查問題",
+      "boundaries": "分清事實與指控，不先認定誰有責任。缺少背景或回應時要說明，不自行補寫。"
     },
     {
       "type": "discourse_analysis",
       "name": "輿論與媒體敘事分析",
       "file": "article-types/discourse_analysis.json",
-      "reading_task": "輿論與媒體敘事：如何談論，分析發現什麼？",
-      "coverage": "文本來源、樣本、群體、框架、方法、分析結果與例句／數據對照、適當視覺化",
-      "boundaries": "不從摘錄推全體頻率或支持比例；區分質性編碼與量化統計"
+      "reading_task": "各家媒體或不同群體怎麼談同一件事？",
+      "coverage": "報導或發言的來源、選取與分類方法、分析發現、原句與統計，以及合適的圖表",
+      "boundaries": "不能用少數摘錄推算全部報導的用詞次數或民意支持比例。依內容分類跟實際計算數量要分清楚。"
     },
     {
       "type": "impact_scenarios",
       "name": "影響、風險與情境分析",
       "file": "article-types/impact_scenarios.json",
-      "reading_task": "影響、風險與情境：對誰、什麼條件？",
-      "coverage": "受影響者、途徑、期間、假設、不確定性",
-      "boundaries": "區分已發生影響與未來情境"
+      "reading_task": "誰會受到影響？條件改變時結果會怎樣？",
+      "coverage": "受影響對象、影響怎麼發生、期間、假設，以及還不能確定的事",
+      "boundaries": "分清已經發生的影響和對未來的預估。"
     },
     {
       "type": "policy_evaluation",
       "name": "政策執行與成效檢視",
       "file": "article-types/policy_evaluation.json",
-      "reading_task": "政策執行與成效：承諾做到嗎？",
-      "coverage": "目標、措施、投入、進度、成果、評估限制",
-      "boundaries": "目標不等於預測；前後差異不等於政策效果"
+      "reading_task": "政策原本答應的事，有沒有做到？",
+      "coverage": "目標、措施、投入的經費或資源、進度、成果，以及評估時缺少的資料",
+      "boundaries": "目標不是預測，政策實施前後有變化，也不代表一定是政策造成的。"
     },
     {
       "type": "claim_verification",
       "name": "說法查證與證據釐清",
       "file": "article-types/claim_verification.json",
-      "reading_task": "說法查證與證據釐清：支持程度？",
-      "coverage": "先交代事件緣由與查證背景，再列待查說法、提出者、支持／反對證據與判定範圍",
-      "boundaries": "背景也需來源，待查事件保留歸屬；不強迫真假二分"
+      "reading_task": "這個說法有證據嗎？哪些部分還不能確認？",
+      "coverage": "先交代相關事件與查證原因，再列出要查的說法、發言者、支持或反駁的證據，以及能確認的範圍",
+      "boundaries": "背景也要有來源。事件還沒確認時，先說明是誰的說法，不一定只能判定全真或全假。"
     }
   ],
   "fallback": {

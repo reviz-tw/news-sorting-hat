@@ -1,22 +1,22 @@
 {
   "type": "discourse_analysis.group_differences",
   "id": "group_differences",
-  "role": "群體差異",
-  "reader_question": "不同群體或時期如何使用語言？",
+  "role": "不同群體或時期的說法差異",
+  "reader_question": "不同群體、媒體或時期如何描述同一議題？材料數量、選取方式與分類標準能否直接比較？",
   "priority": "conditional",
-  "evidence_requirements": "可比樣本與群體標記",
+  "evidence_requirements": "標明群體、媒體或時期的文本，以及各組的選取方法與分類標準；數量比較另需可核對的統計與分母，不能由 RAG 摘錄推算全部材料。",
   "writing_guidance": {
-    "instruction": "在相同的編碼單位與抽樣條件下比較群體或時期，交代差異是否也可能來自語料構成。",
+    "instruction": "用相同的分類標準，比較不同群體或不同時期的說法，附上原句或可靠的統計。資料來源、數量或選取方法不同時，說明這些差別會不會影響比較。",
     "required_elements": [
-      "比較群體或時期",
-      "共同編碼單位及抽樣條件",
-      "差異及對應材料",
-      "語料構成對差異的可能影響"
+      "比較的群體、媒體或時期",
+      "相同的分析單位與選取條件",
+      "說法差異及原句或統計",
+      "材料來源與數量不同對比較的影響"
     ],
     "output_checks": [
-      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "這段該交代的內容是否都寫進正文？事實與說法是否能從該段的 evidence_ids 找到依據？",
       "是否先確認比較條件，且未把樣本構成差異直接歸因於群體特性？",
-      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+      "資料不夠時，是否說明還缺什麼、哪些問題不能回答？有部分證據填 partial，沒有證據填 missing，並寫明 reason。本題不需要這段時，才可依角色規則填 not_applicable；不要自行補寫內容。"
     ]
   },
   "presentation_modules": [

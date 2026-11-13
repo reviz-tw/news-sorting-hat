@@ -1,21 +1,21 @@
 {
   "type": "event_brief.context",
   "id": "context",
-  "role": "必要背景",
-  "reader_question": "哪個背景是理解此事必需的？",
+  "role": "事件前情",
+  "reader_question": "本次事件發生前，哪項已確認的事件、決定或規定有助理解這次發展？",
   "priority": "conditional",
   "evidence_requirements": "與問題直接相關的前情",
   "writing_guidance": {
-    "instruction": "挑出一項能解釋本次事件的前情，交代它與本次發展的關係。讀者單靠開頭就能理解時可略過。",
+    "instruction": "選出理解本次事件必要的一項前情，說明何時發生、出自何處及與本次事件的關係。開頭已足以說明時可略過。",
     "required_elements": [
       "必要的一項前情",
       "前情的來源與已知時間",
       "與本次事件的關係"
     ],
     "output_checks": [
-      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "這段該交代的內容是否都寫進正文？事實與說法是否能從該段的 evidence_ids 找到依據？",
       "是否只補理解事件所需背景；無需展開時是否交代不適用而不硬加段落？",
-      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+      "資料不夠時，是否說明還缺什麼、哪些問題不能回答？有部分證據填 partial，沒有證據填 missing，並寫明 reason。本題不需要這段時，才可依角色規則填 not_applicable；不要自行補寫內容。"
     ]
   },
   "presentation_modules": [

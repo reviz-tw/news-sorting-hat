@@ -1,22 +1,22 @@
 {
   "type": "accountability.evidence_chain",
   "id": "evidence_chain",
-  "role": "調查內容與證據鏈",
-  "reader_question": "查了哪些材料、如何核對，哪些證據能支持或削弱質疑，能證明到什麼程度？",
+  "role": "調查證據與查核結果",
+  "reader_question": "每項質疑有哪些文件、數據或訪談可核對？哪些支持、哪些反駁，哪些仍無法確認？",
   "priority": "core",
-  "evidence_requirements": "有來源的文件、紀錄、數據、訪談與已報導的查證方法；逐項連結質疑、支持證據、交叉核對結果、反證與證明界線。事實用 fact／measurement 等，受訪者說法用 claim，模型推論用 inference 並列 based_on；未提供查證方法時明說，不虛構實地調查或獨立驗證。",
+  "evidence_requirements": "有來源的文件、紀錄、數據、訪談，以及報導提到的查證方法。每項問題要列出支持或反駁的證據、核對結果，以及還不能確認的部分。事實用 fact／measurement，受訪者說法用 claim，模型推論用 inference 並列出 based_on。沒有查證方法的資料就明說，不能假裝做過實地調查。",
   "writing_guidance": {
-    "instruction": "按查核順序列材料與交叉核對方式，交代每一步證明了什麼、是否有反證，以及哪一環仍缺材料。",
+    "instruction": "逐項列出質疑、對應材料及查核結果。說明哪份證據支持或反駁哪個說法，以及仍缺什麼資料；查核方法只描述來源已記載的作法。",
     "required_elements": [
-      "待驗證的質疑",
-      "逐項材料與來源",
-      "材料記載的查核方法及核對結果",
-      "支持、反證與證明界線"
+      "逐項待查問題",
+      "對應文件、數據或訪談及來源",
+      "來源記載的查核方法與結果",
+      "支持、反駁及仍無法確認的內容"
     ],
     "output_checks": [
-      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "這段該交代的內容是否都寫進正文？事實與說法是否能從該段的 evidence_ids 找到依據？",
       "是否每一步結論都能連回證據，且未虛構實地調查或獨立查證？",
-      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+      "資料不夠時，是否說明還缺什麼、哪些問題不能回答？有部分證據填 partial，沒有證據填 missing，並寫明 reason。本題不需要這段時，才可依角色規則填 not_applicable；不要自行補寫內容。"
     ]
   },
   "presentation_modules": [

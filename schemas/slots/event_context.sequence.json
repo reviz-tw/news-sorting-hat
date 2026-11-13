@@ -1,22 +1,22 @@
 {
   "type": "event_context.sequence",
   "id": "sequence",
-  "role": "關鍵經過",
-  "reader_question": "哪些事件依什麼順序發生？",
+  "role": "事件發生順序",
+  "reader_question": "各事件何時發生、由誰採取什麼行動、產生什麼結果？來源能確認哪些先後順序？",
   "priority": "core",
-  "evidence_requirements": "事件時間與來源；區分刊出時間",
+  "evidence_requirements": "記載事件發生日期、參與者、行動及結果的原始紀錄或報導。保留來源的日期精度；只有刊出日期時不能拿來填事件時間。",
   "writing_guidance": {
-    "instruction": "依事件發生時間整理參與者、動作及結果。日期精度沿用來源，只有刊出日期的材料保留在文字說明。",
+    "instruction": "按事件發生時間敘述誰做了什麼及當時結果，逐項註明來源。日期只寫到來源提供的精度；只有刊出日期時，說明事件時間未知。",
     "required_elements": [
-      "各節點的事件時間及精度",
+      "事件時間及來源提供的日期精度",
       "參與者與行動",
-      "直接結果",
-      "事件來源及可確認順序"
+      "當時結果",
+      "各事件來源及可確認的先後順序"
     ],
     "output_checks": [
-      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "這段該交代的內容是否都寫進正文？事實與說法是否能從該段的 evidence_ids 找到依據？",
       "是否區分事件時間與刊出時間，且未把先後順序寫成因果？",
-      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+      "資料不夠時，是否說明還缺什麼、哪些問題不能回答？有部分證據填 partial，沒有證據填 missing，並寫明 reason。本題不需要這段時，才可依角色規則填 not_applicable；不要自行補寫內容。"
     ]
   },
   "presentation_modules": [

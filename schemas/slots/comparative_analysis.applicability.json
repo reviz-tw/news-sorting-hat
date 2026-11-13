@@ -1,22 +1,22 @@
 {
   "type": "comparative_analysis.applicability",
   "id": "applicability",
-  "role": "適用與不可比",
-  "reader_question": "哪些情況適用，哪些不能直接比較？",
+  "role": "適用條件與比較限制",
+  "reader_question": "比較結果適用於誰、什麼情況？哪些項目因期間、版本或計算方式不同而不能直接比較？",
   "priority": "conditional",
-  "evidence_requirements": "對象差異、例外與適用條件",
+  "evidence_requirements": "資料載明的適用對象、條件、日期與版本，以及不能比較的項目及原因；不由單一條件推定全面優劣。",
   "writing_guidance": {
-    "instruction": "說明比較結果適用的對象與情境，指出因範圍、版本或口徑而無法直接比較的項目。",
+    "instruction": "說明比較結果適用的對象與條件。逐項指出不能直接比較的資料，寫明是期間、版本、計算方式或涵蓋對象不同。",
     "required_elements": [
-      "適用對象與情境",
-      "比較的期間及版本",
-      "不可比項目及原因",
-      "結論的適用邊界"
+      "適用對象與使用條件",
+      "比較資料的期間與版本",
+      "不能直接比較的項目及原因",
+      "不能由比較結果推論的情況"
     ],
     "output_checks": [
-      "輸出前逐項核對 required_elements：有材料者須寫入對應段落，事實與主張須可追溯至該段 evidence_ids；不能只在內部分析或圖表出現。",
+      "這段該交代的內容是否都寫進正文？事實與說法是否能從該段的 evidence_ids 找到依據？",
       "是否未將特定條件下的優劣寫成普遍排名？",
-      "缺少必要元素時明示具體缺口及影響，依證據覆蓋標記 partial 或 missing 並填寫 reason；只有符合角色規則的不適用情況才標 not_applicable。不得為湊齊元素補造內容。"
+      "資料不夠時，是否說明還缺什麼、哪些問題不能回答？有部分證據填 partial，沒有證據填 missing，並寫明 reason。本題不需要這段時，才可依角色規則填 not_applicable；不要自行補寫內容。"
     ]
   },
   "presentation_modules": [
